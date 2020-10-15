@@ -1,0 +1,11 @@
+export const FETCH_DATA = "FETCH_DATA"
+
+export const CHANGE_SIZE_INDEX = "CHANGE_SIZE_INDEX"
+
+export const ADD_CART = "ADD_CART"
+
+export const REMOVE_CART = "REMOVE_CART"
+
+export const CART_ITEM_INCREMENT = "CART_ITEM_INCREMENT"
+
+export const CART_ITEM_DECREMENT = "CART_ITEM_DECREMENT"

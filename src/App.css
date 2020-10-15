@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+
+
+.div-Cart{
+    text-align:center;
+    min-height: 300px;
+    background-color:blanchedalmond;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.cartTable{
+    margin: auto;
+}
+.cartTable th{
+    border: 2px solid blue;
+    color:blueviolet;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cartTable tr td{
+    border: 1px solid blue;
+    color:goldenrod;
+
+}
+.cardAlignment{
+
+    margin-left: 40px;
+    
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card{
+    width: 250px;
+    max-height:300px;
+    min-height: 300px;
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+    margin-top: 15px;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.card-text{
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    color:blue; 
+    font-weight: bold;
+    font-size: large;
+    margin-top: 20px;
+    
+    
 }

@@ -1,26 +1,66 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Product from './Components/Product';
+import Cart from './Components/Cart';
+import { Provider } from 'react-redux'
+import {store} from './Redux/Store'
+import OrderComponent from './Components/OrderComponent'
+import CardList from './Components/CartList'
+import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom'
+import ProductEntry from './Components/ProductEntry';
+import jsPDF from 'jspdf'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+class App extends React.Component {
+   
+
+render(){
+  var doc = new jsPDF()
+
+return (
+  
+<div className ="container-fluid">
+<BrowserRouter>
+<nav className="navbar navbar-expand-md bg-dark">
+  <a href="/Logo" className="navbar-brand">Logo</a>
+  <ul className="navbar-nav">
+  <li className="nav-item"><NavLink to="/" className="nav-link">HomePage</NavLink></li>
+    <li className="nav-item"><NavLink to="/register" className="nav-link">Product-Registration</NavLink></li>
+    <li className="nav-item"><NavLink to="/order" className="nav-link">Delivery</NavLink></li>
+    
+    <li className="nav-item dropdown">
+      <a href="/DropBox" className="nav-link dropdown-toggle" data-toggle="dropdown">DropBox</a>
+      <div className="dropdown-menu">
+       <a href="#" className="dropdown-item">Page 1</a>
+       <a href="#" className="dropdown-item">Page 2</a>
+       <NavLink to="/order" className="dropdown-item">Page 3</NavLink>
+      </div>
+      </li>
+  </ul>
+</nav>
+
+
+     <div className="content">
+
+      <Switch>
+      <Provider store = {store}> 
+      <Route path="/"/>
+      <Route path="/register" component={ProductEntry}/>
+      <Route path="/order" component={OrderComponent}/>
+      <Route path ="/cardList" component={CardList}/>
+      </Provider>
+      </Switch>
+       
+      </div>  
+      </BrowserRouter>
     </div>
   );
+
+
+}
 }
 
 export default App;
+
+
+
