@@ -58,38 +58,43 @@ export const removeCart = (item, cartItems) => {
 export const cartItemIncrement = (item, cartItems) => {
     
 const cartItemList = [...cartItems]
-//const item = cartItemList.find(item => item.Id === Id)
+
+
 cartItemList.forEach((element, index) => {
- if(element.id === item.id && element.size === item.size){
-        if(element.totalQuantity > item.Quantity)
-        cartItemList[index].Quantity = cartItemList[index].Quantity + 1
-        else alert("Stock Exceeded")
+
+    if(element.id === item.id && element.size === item.size)
+    {
+        if(item.totalQuantity > item.Quantity)
+        {
+            cartItemList[index].Quantity = item.Quantity + 1
+        }
+        else{
+            alert("Stock Exceeds")
+        }
     }
 })
-
 return {
-    type:CART_ITEM_INCREMENT,
+    type: CART_ITEM_INCREMENT,
     payload: cartItemList
 }
-
-
 }
+
+
 
 export const cartItemDecrement = (item, cartItems) => {
     
     let cartItemList = [...cartItems]
-    //const item = cartItemList.find(item => item.Id === Id)
+   
     cartItemList.forEach((element, index) => {
      if(element.id === item.id && element.size === item.size){
-            if(item.Quantity === 1)
-            {
-                
-                cartItemList = cartItemList.filter(cartItem => cartItem.id !== item.id && cartItem.size !== item.size)
+             if(item.Quantity === 1){
+
+                cartItemList =  cartItemList.filter(x => x.id !== item.id || x.size !== item.size)
             }
-            else{
-            cartItemList[index].Quantity = cartItemList[index].Quantity - 1
-            }
-            
+             else{
+                cartItemList[index].Quantity = cartItemList[index].Quantity - 1
+             
+             }
         }
     })
     
@@ -97,6 +102,4 @@ export const cartItemDecrement = (item, cartItems) => {
         type:CART_ITEM_DECREMENT,
         payload: cartItemList
     }
-    
-    
     }

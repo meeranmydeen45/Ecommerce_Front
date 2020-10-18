@@ -11,7 +11,7 @@ function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}
     let totalProducts = cartItems.reduce((sum, item) => sum + item.Quantity, 0)
 
     const handleClick = (cartItems) => {
-        AlertMessage();
+      
     //  axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then(res => {
     //      alert("Transaction Completed IN REactjs")
          
@@ -28,10 +28,10 @@ function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}
                 <td>{item.cost}</td>
 
                 <td>
-                    <a href="" onClick={()=> cartItemDecrement(item, cartItems)}>-
+                    <a href="#" onClick={()=> cartItemDecrement(item, cartItems)}>-
                     </a>
                     {item.Quantity}
-                    <a href=""onClick={()=> cartItemIncrement(item, cartItems)}>+
+                    <a href="#" onClick={()=> cartItemIncrement(item, cartItems)}>+
                     </a>
                 </td>
                 
@@ -71,13 +71,7 @@ function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}
 
 }
 
-function AlertMessage()
-{
-   
-  // doc.text(10,10, "PDF Message")
- //  doc.save("zia.pdf")
-   
-}
+
 
 const mapStateToProps = (state) => {
 

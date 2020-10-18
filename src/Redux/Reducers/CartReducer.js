@@ -25,12 +25,16 @@ switch(action.type){
         };
 
         case CART_ITEM_INCREMENT:
+            
             return{
                 ...state,
                 items: action.payload
             };
 
             case CART_ITEM_DECREMENT:
+                
+                
+                debugger
                 return{
                     ...state,
                     items: action.payload
