@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
 import { removeCart, cartItemIncrement, cartItemDecrement } from '../Redux/Actions/CartAction'
 
 function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}){
@@ -11,12 +13,55 @@ function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}
     let totalProducts = cartItems.reduce((sum, item) => sum + item.Quantity, 0)
 
     const handleClick = (cartItems) => {
-      
     //  axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then(res => {
     //      alert("Transaction Completed IN REactjs")
          
     //  })
+    var container = document.getElementById('printArea')
+    html2canvas(container).then(canvas => {
+        var img = canvas.toDataURL()
+        var doc = new jsPDF()
+        doc.addImage(img, 'jpg', 10, 10)
+        
+        var byteChar = doc.output()
+        var base64 = btoa(byteChar)
 
+        var formData = new FormData()
+        formData.append('FileName', 'myPdfFile')
+        formData.append('base64', base64)
+       
+
+        var config = {
+            header:{
+                'Content-Type':'multipart/formdata'
+            }
+        }
+        
+
+        axios.post(`https://localhost:44348/api/home/pdfdata`, formData, config).then(res => {
+            alert('Saved Successfully')
+                 
+                  let base64 = res.data;
+                  base64 = base64.replace(/^[^,]+,/, '');
+                  base64= base64.replace(/\s/g, '');
+                  let byteCharacter = atob(base64)
+
+                  let byteNumber = new Array(byteCharacter.length) 
+
+                  for(var i=0 ; i<byteCharacter.length; i++){
+                    byteNumber[i] = byteCharacter.charCodeAt(i)
+                  }
+                var byteArray = new Uint8Array(byteNumber)
+                  
+                var blob = new Blob([byteArray], {type:'application/pdf;base64'})
+                var fileURL =  URL.createObjectURL(blob)
+                window.open(fileURL, '_target')
+
+                 
+             })
+
+      
+    })
     }
 
     const cartList = cartItems.map((item, i)=> {
@@ -43,7 +88,7 @@ function CartList({cartItems, removeCart, cartItemIncrement,  cartItemDecrement}
 
     return(
 
-        <div className="div-Cart">
+        <div className="div-Cart" id="printArea">
             
         Added Item in Cart {totalProducts}
         

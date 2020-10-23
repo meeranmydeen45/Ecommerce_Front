@@ -8,14 +8,14 @@ import OrderComponent from './Components/OrderComponent'
 import CardList from './Components/CartList'
 import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom'
 import ProductEntry from './Components/ProductEntry';
-import jsPDF from 'jspdf'
+
 
 
 class App extends React.Component {
    
 
 render(){
-  var doc = new jsPDF()
+ 
 
 return (
   
