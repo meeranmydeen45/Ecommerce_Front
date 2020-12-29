@@ -1,4 +1,51 @@
+*{
+    box-sizing:border-box;
+}
+body{
+    padding:0;
+    margin:0;
+}
+.containerBox{
+    background-color: cadetblue;
+    }
+.navbarHead{
+    display: flex;
+    justify-content: space-around;
+    line-height: 50px;
+    background-color: black;
+    }
+    .navbarHead .navbarText a{
+        text-decoration: none;
+        padding:5px 30px;
+        color:yellow;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }  
+    .navbarHead .navbarText a:hover{
+        font-weight: bold;
+        background-color: yellow;
+        color:blue;
+    }
+   
+  .dropdown{
+    cursor: pointer;
+    color:yellow; 
+  }
 
+  .dropdown-menu div a{
+    text-decoration: none;
+    padding:0;
+    margin:0;
+    font-weight: bold;
+    color:black; 
+      
+  }
+  .dropdown-menu div:hover{
+    background-color:darkgray;
+}
+  .dropdown-menu div a:hover{
+    color:yellow;
+  }
 
 .div-Cart{
     text-align:center;
@@ -49,4 +96,183 @@
 position: absolute;
 left:200px;
 
+}
+
+#divHead{
+    line-height:50px;
+    text-align:center;
+    }
+    #divBody{
+    display:flex;
+    background-color:lightyellow;
+    }
+    #left-Section{
+    flex:50%;
+    margin-top:50px;
+    flex-direction:column;
+    
+    }
+    #right-Section{
+    flex:50%;
+    background-color:lightblue;
+    }
+    
+    #div4{
+    display:flex;
+    margin-bottom:25px;
+    }
+    
+    #div4-1{
+    flex:30%;
+    }
+    
+    #div4-2{
+    flex:30%;
+    overflow:hidden;
+    }
+    
+    #div4-3{
+    flex:15%;
+    text-align:right;
+    }
+    
+    #div4-4{
+    flex:25%;
+    text-align: center;
+    }
+
+    #selectCategory{
+        width:100%;
+        height:35px;
+    }
+    
+    input[type="text"]{
+    box-sizing:border-box;
+    width:100%;
+    }
+    input[type="file"]{
+    width:100%;
+    }
+
+    /* My Custom Modal Class Creation */
+
+    #modalBackground{
+    display:none;    
+    position: absolute;
+    top:0;
+    width:100%;
+    padding:40px;   
+    background-color:rgba(0,0,0,0.6);
+    z-index:1;
+    }
+    #myModal{
+      padding:25px;
+      width:80%;
+      height:600px;
+      background-image:linear-gradient(to top, pink, lightblue);
+      margin:auto;
+      box-shadow: 1px 8px 16px 2px lightseagreen;
+    }
+   #divModalClose{
+      text-align: end;
+       font-weight: bold;
+       font-size: 40px;
+      
+   }
+   #divModalClose span:hover{
+    cursor: pointer;
+    color: mediumblue;
+   }
+   #divModalHeader{
+       display: flex;
+   }
+   #divModalHeader #searchTextBox{
+      width:50%;
+   }
+   #tableProductModal{
+    margin-top: 50px;
+       width:50%;
+   }
+
+   #tableProductModal th, td{
+       
+       border: 1px solid blue;
+   }
+    @media screen and (max-width:855px){
+    #divBody{
+    display:flex;
+    flex-direction:column;
+    }
+    }
+    
+    
+    @media screen and (max-width:400px){
+    #divBody{
+    display:flex;
+    flex-direction:column;
+    }
+    #div4{
+    display:flex;
+    flex-direction:column;
+    }
+    
+    #div4 #div4-3{
+    text-align:left;
+    }
+    #div4 #div4-4{
+    text-align:left;
+    }
+    
+    }
+
+
+.orderContainer{
+    display: flex;
+}
+.o-container1{
+    flex:70%;
+}
+.o-container2{
+    flex:30%;
+}
+.newCategory{
+    width:100%;
+    height:93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background-color:darksalmon;
+
+}
+.newProducts{
+    width:100%;
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:darksalmon;
+}
+
+.newProducts-Inner{
+    padding:20px;
+    width:50%;
+    transform: translateY(-50%);
+    border: 2px dotted blue;
+    
+   
+    
+}
+
+.newCategory-inner{
+    padding:20px;
+    width:50%;
+    transform: translateY(-50%);
+    border: 2px dotted blue;
+
+}
+.textBoxNewRegister{
+    margin-bottom: 20px;
+}
+.buttonNewRegister{
+    width:20%;
 }

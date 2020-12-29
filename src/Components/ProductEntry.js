@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import $ from 'jquery'
+
 
 
 class ProductEntry extends React.Component {
@@ -38,7 +40,9 @@ render(){
 
     
     const handleDropDownChange = e => {
+
      this.setState({categoryValue:e.target.value})
+     
     }
 
     const handleTextBoxChange = e => {
@@ -46,11 +50,7 @@ render(){
        
     }
 
-    const handleCheckBoxSelection = e => {
-        this.setState({productSize: e.target.id})
-    }
-
-    const handleImageChange = e => {
+    const handleImageChange = e => { 
 
         if(!e.target.files && e.target.files.length === 0){
            this.setState({ImageFile: undefined}) 
@@ -60,20 +60,40 @@ render(){
         this.setState({ImageFile: e.target.files[0]})
     }
 
+    const handleModel = e => {
+     var modal =  document.getElementById('modalBackground')
+     modal.style.display = 'block'
+       
+    }
+
+    const closeModal = e => {
+        var modal =  document.getElementById('modalBackground')
+        modal.style.display = 'none'
+
+    }
+
+    const tableSelect = e => {
+     var modal =  document.getElementById('modalBackground')
+     modal.style.display = 'none'
+     this.setState({productName:'LED'})
+    }
+
     const handleFormSumbit = e => {
-    
+       
+        
          e.preventDefault()
-         const formData = new FormData()
+        const formData = new FormData()
 
-         formData.append('Catergory', this.state.categoryValue) 
-         formData.append('Name', this.state.productName)
-         formData.append('Size', this.state.productSize)
-         formData.append('Quantity', this.state.productQuantity)
-         formData.append('Cost', this.state.productPrize)
-         formData.append('ImageFile', this.state.ImageFile)
+        formData.append('Catergory', this.state.categoryValue) 
+        formData.append('Name', this.state.productName)
+        formData.append('Size', this.state.productSize)
+        formData.append('Quantity', this.state.productQuantity)
+        formData.append('Cost', this.state.productPrize)
+        formData.append('ImageFile', this.state.ImageFile)
          
+         console.log(this.state.categoryValue)
           
-
+         
          axios.post(`https://localhost:44348/api/home/register`, formData)
          .then(res => {
             alert(res.data)
@@ -85,103 +105,108 @@ render(){
 
 
 return(
-   <div className="container-fluid" style={{background:"lightblue", height:"600px"}}>
+  <div>
+      
+  <div id="divHead">
+    Product Entry
+  </div>
 
-   <div className="row">
-    <div className="col-md-8">        
+  <div id="divBody">
+  <div id="left-Section"> 
    <form onSubmit={handleFormSumbit}>
 
-    <div className="form-group" style={{width:"300px", marginTop:"20px"}}>
-        <label htmlFor="selectControl">Select the Category:</label>
-        <select className="form-control" id="selectControl" onChange={handleDropDownChange}>
+   <div id="div4">
+   <div id="div4-1"><label>Select Category</label></div>
+   <div id="div4-2">
+   <select onChange={handleDropDownChange} id="selectCategory">
          <option>Motors</option>
          <option>Tubes</option>
          <option>Pipes</option>
          <option>Wires</option>
         </select>
+    </div>
+   <div id="div4-3"></div>
+   <div id="div4-4"></div>
    </div>
 
-        <div className="form-group">
-        <label htmlFor="name">ProductName:</label>
-        <input type="text" className="form-control" 
-        placeholder="Type ProductName" 
-        name= "productName"
-        value={this.state.productName}
-        onChange={handleTextBoxChange}
-        />
-        </div>
-         
-         
-        <div className="form-group">
+   <div id="div4">
+   <div id="div4-1"><label>ProductName</label></div>
+   <div id="div4-2"><input type="text" onChange={handleTextBoxChange} name="productName" value={this.state.productName}/></div>
+   <div id="div4-3" style={{textAlign:'left'}}>
+       <input type="button" value="--" onClick={handleModel}/>
+       </div>
+   <div id="div4-4"></div>
+   </div>
 
-         <label htmlFor="Sizes">Choose the Size:</label>
-         <br/>
+   <div id="div4">
+   <div id="div4-1"><label>ProductSize</label></div>
+   <div id="div4-2"><input type="text" onChange={handleTextBoxChange} name="productSize"/></div>
+   <div id="div4-3" style={{textAlign:'left'}}><input type="button" value="--"/></div>
+   <div id="div4-4"></div>
+   </div>
+   
+<div id="div4">
+<div id="div4-1"><label>UnitPrice</label></div>
+<div id="div4-2"><input type="text" onChange={handleTextBoxChange} name="productPrize"/></div>
+<div id="div4-3"></div>
+<div id="div4-4"></div>
+</div>
 
-        <div className="form-check-inline">
-            <label className="form-check-label">Small</label>
-            <input type="radio" className="form-check-input ml-3" 
-            name="size" id="small" 
-            onChange ={handleCheckBoxSelection}
-            />
-        </div>
+<div id="div4">
+<div id="div4-1"><label>TotalNumbers</label></div>
+<div id="div4-2"><input type="text" onChange={handleTextBoxChange} name="productQuantity"/></div>
+<div id="div4-3"><label>TotalCost</label></div>
+<div id="div4-4"><label>$45,000</label></div>
+</div>
 
-        <div className="form-check-inline">
-            <label className="form-check-label">Medium</label>
-            <input type="radio" className="form-check-input ml-3" 
-            name="size" id="medium" 
-            onChange = {handleCheckBoxSelection}
-            />
-        </div>
+<div id="div4">
+<div id="div4-1"><label>FileUpload</label></div>
+<div id="div4-2"><input type="file" onChange={handleImageChange}/></div>
+<div id="div4-3"></div>
+<div id="div4-4"></div>
+</div>
 
-        <div className="form-check-inline">
-            <label className="form-check-label">Large</label>
-            <input type="radio" className="form-check-input ml-3" 
-            name="size" id="large" 
-            onChange = {handleCheckBoxSelection}
-            />
-        </div>
-        </div>
-
-        <div className="row">
-            <div className="col-md-6">
-                <div className="form-group">
-                    <label htmlFor="Quantity">Total Quantity</label>
-                    <input type="text" className="form-control" placeholder="Enter Quantity"
-                    value={this.state.productQuantity}
-                    name = "productQuantity"
-                    onChange={handleTextBoxChange}
-                    />
-                </div>
-            </div>
-            <div className="col-md-6">
-            <div className="form-group">
-                    <label htmlFor="Price">Price per Piece</label>
-                    <input type="text" className="form-control" placeholder="Enter Price of single Item"
-                    value={this.state.productPrize}
-                    name = "productPrize"
-                    onChange={handleTextBoxChange}
-                    />
-                </div>
-            </div>
-        </div>
-
-        <div className="form-group">
-            <label htmlFor="imageUpload">UploadImage:</label>
-            <input type="file" className="form-control-file border" onChange={handleImageChange}/>
-        </div>
-
-        <button type="submit" className="btn btn-primary btn-lg mt-4">Store</button>
+<div>
+<input type="submit" value="Store" className="btn btn-primary"/>
+</div>
 
    </form>
    </div>
 
-   <div className="col-md-4">
+   <div id="right-Section">
        <label htmlFor="previewImage">PreviewImage of Uploaded File</label>
        <img src={this.state.previewImage} alt ="" style={{height:"300px"}}/>
     </div>
 
-   </div>
-   </div>
+ </div>
+ 
+    <div id="modalBackground">
+     <div id="myModal">
+       <div id="divModalClose"><span onClick={closeModal}>&times;</span></div>
+       <div id="divModalHeader">
+           <input type="text" id="searchTextBox" placeholder="TypeHere"/>
+           <input type="button" value="Search"/>
+       </div>
+       <div id="divModalBody">
+           <table id="tableProductModal">
+               <thead>
+                   <tr>
+                       <th></th>
+                       <th>ProductName</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td><input type="button" value="select" onClick={tableSelect}/></td>
+                       <td>LED Lights</td>
+                   </tr>
+               </tbody>
+          </table>
+       </div>
+     </div>
+    </div>
+
+    </div>
 )
 
 }

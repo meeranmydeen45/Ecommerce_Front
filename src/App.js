@@ -7,7 +7,9 @@ import {store} from './Redux/Store'
 import OrderComponent from './Components/OrderComponent'
 import CardList from './Components/CartList'
 import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom'
-import ProductEntry from './Components/ProductEntry';
+import ProductEntry from './Components/ProductEntry'
+import NewCategory from './Components/NewCategory'
+import NewProducts from './Components/NewProducts'
 
 
 
@@ -16,30 +18,29 @@ class App extends React.Component {
 
 render(){
  
+ 
+ 
 
 return (
   
-<div className ="container-fluid">
+<div className="containerBox">
 <BrowserRouter>
-<nav className="navbar navbar-expand-md bg-dark">
-  <a href="/Logo" className="navbar-brand">Logo</a>
-  <ul className="navbar-nav">
-  <li className="nav-item"><NavLink to="/" className="nav-link">HomePage</NavLink></li>
-    <li className="nav-item"><NavLink to="/register" className="nav-link">Product-Registration</NavLink></li>
-    <li className="nav-item"><NavLink to="/order" className="nav-link">Delivery</NavLink></li>
-    
-    <li className="nav-item dropdown">
-      <a href="/DropBox" className="nav-link dropdown-toggle" data-toggle="dropdown">DropBox</a>
-      <div className="dropdown-menu">
-       <a href="#" className="dropdown-item">Page 1</a>
-       <a href="#" className="dropdown-item">Page 2</a>
-       <NavLink to="/order" className="dropdown-item">Page 3</NavLink>
-      </div>
-      </li>
-  </ul>
-</nav>
-
-
+     <div className="navbarHead">
+       <div className="navbarText"><NavLink to="/">Home</NavLink></div>
+       <div className="navbarText"><NavLink to="/register">ProductEntry</NavLink></div>
+       <div className="navbarText"><NavLink to="/order">PlacerOrder</NavLink></div>
+       <div className="dropdown">
+  <div className="dropdown-toggle" data-toggle="dropdown">
+    MenuItems
+  </div>
+  <div className="dropdown-menu">
+    <div className="dropdown-item"><NavLink to="/newcategory">Add-Catergory</NavLink></div>
+    <div className="dropdown-item"><NavLink to="/newproducts">Add-Products</NavLink></div>
+  </div>
+</div>
+      
+     </div>
+     
      <div className="content">
 
       <Switch>
@@ -48,6 +49,8 @@ return (
       <Route path="/register" component={ProductEntry}/>
       <Route path="/order" component={OrderComponent}/>
       <Route path ="/cardList" component={CardList}/>
+      <Route path ="/newcategory" component={NewCategory}/>
+      <Route path ="/newproducts" component={NewProducts}/>
       </Provider>
       </Switch>
        

@@ -6,13 +6,13 @@ import Cart from './Cart'
 export default function OrderComponent(){
 
 return(
-      <div className="row">
-
-      <div className="col-md-8">
+      
+       <div className="orderContainer">
+      <div className="o-container1">
        <Product></Product>
       </div>
       
-      <div className="col-md-4">
+      <div className="o-container2">
         <Cart></Cart>
       </div>
       
