@@ -17,9 +17,24 @@ class ProductEntry extends React.Component {
         productName:"",
         productSize:"",
         productQuantity:"",
-        productPrize:""
+        productPrize:"",
+        optionList:""
         
     }
+}
+
+componentDidMount(){
+
+    axios.get(`https://localhost:44348/api/home/getcategory`).then(res => {
+        let categoryList =  res.data
+        const options = categoryList.map((item, i) => {
+           return(
+               <option id={i}>{item.categoryName}</option>
+           )})
+        this.setState({optionList: options})
+    }).catch(err => {
+        console.log(err)
+    });
 }
     
 componentDidUpdate(){
@@ -33,7 +48,7 @@ componentDidUpdate(){
     this.setState({previewImage: imageUrl, previousFile : this.state.ImageFile})
     }
      
-}
+    }
 
 
 render(){
@@ -119,10 +134,7 @@ return(
    <div id="div4-1"><label>Select Category</label></div>
    <div id="div4-2">
    <select onChange={handleDropDownChange} id="selectCategory">
-         <option>Motors</option>
-         <option>Tubes</option>
-         <option>Pipes</option>
-         <option>Wires</option>
+        {this.state.optionList}
         </select>
     </div>
    <div id="div4-3"></div>
