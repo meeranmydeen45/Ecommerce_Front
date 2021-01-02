@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NewProducts(){
+const NewProducts = () => {
 
 return(
 <div className="newProducts">
