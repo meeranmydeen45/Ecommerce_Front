@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from './Modal';
+import { getProductsforModal } from '../shared/utils/apicalls';
 import $ from 'jquery';
 
 class ProductEntry extends React.Component {
@@ -15,6 +17,7 @@ class ProductEntry extends React.Component {
       productQuantity: '',
       productPrize: '',
       optionList: '',
+      modalData: '',
     };
   }
 
@@ -24,7 +27,7 @@ class ProductEntry extends React.Component {
       .then((res) => {
         let categoryList = res.data;
         const options = categoryList.map((item, i) => {
-          return <option id={i}>{item.categoryName}</option>;
+          return <option value={item.id}>{item.categoryName}</option>;
         });
         this.setState({ optionList: options });
       })
@@ -63,19 +66,16 @@ class ProductEntry extends React.Component {
     };
 
     const handleModel = (e) => {
+      let promise = getProductsforModal(this.state.categoryValue);
+      promise.then((res) => {
+        this.setState({ modalData: res.data });
+      });
       var modal = document.getElementById('modalBackground');
       modal.style.display = 'block';
     };
 
-    const closeModal = (e) => {
-      var modal = document.getElementById('modalBackground');
-      modal.style.display = 'none';
-    };
-
-    const tableSelect = (e) => {
-      var modal = document.getElementById('modalBackground');
-      modal.style.display = 'none';
-      this.setState({ productName: 'LED' });
+    const updateValueFromModal = (productName) => {
+      this.setState({ productName: productName });
     };
 
     const handleFormSumbit = (e) => {
@@ -114,6 +114,7 @@ class ProductEntry extends React.Component {
                 </div>
                 <div id="div4-2">
                   <select onChange={handleDropDownChange} id="selectCategory">
+                    <option value="default">Choose Option</option>
                     {this.state.optionList}
                   </select>
                 </div>
@@ -194,36 +195,7 @@ class ProductEntry extends React.Component {
             <label htmlFor="previewImage">PreviewImage of Uploaded File</label>
             <img src={this.state.previewImage} alt="" style={{ height: '300px' }} />
           </div>
-        </div>
-
-        <div id="modalBackground">
-          <div id="myModal">
-            <div id="divModalClose">
-              <span onClick={closeModal}>&times;</span>
-            </div>
-            <div id="divModalHeader">
-              <input type="text" id="searchTextBox" placeholder="TypeHere" />
-              <input type="button" value="Search" />
-            </div>
-            <div id="divModalBody">
-              <table id="tableProductModal">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>ProductName</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <input type="button" value="select" onClick={tableSelect} />
-                    </td>
-                    <td>LED Lights</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <Modal data={this.state.modalData} updateValueToMain={updateValueFromModal}></Modal>
         </div>
       </div>
     );

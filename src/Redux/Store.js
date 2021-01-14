@@ -4,13 +4,8 @@ import { RootReducer } from './Reducers/RootReducer';
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
-  // other store enhancers if any
-);
+const enhancer = composeEnhancers(applyMiddleware(thunk));
 export const store = createStore(RootReducer, enhancer);

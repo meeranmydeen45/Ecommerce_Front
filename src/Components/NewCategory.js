@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function NewCategory() {
-  var CategoryName = '';
+  const [categoryName, setCategory] = useState('');
 
   const handleTextBoxChange = (e) => {
-    CategoryName = e.target.value;
+    setCategory(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('CategoryName', CategoryName);
+    formData.append('CategoryName', categoryName);
 
     axios
       .post(`https://localhost:44348/api/home/addcategory`, formData)
