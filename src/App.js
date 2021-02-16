@@ -10,6 +10,8 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import ProductEntry from './Components/ProductEntry';
 import NewCategory from './Components/NewCategory';
 import NewProducts from './Components/NewProducts';
+import Login from './Components/Login';
+import NewUser from './Components/NewUser';
 
 class App extends React.Component {
   render() {
@@ -18,13 +20,19 @@ class App extends React.Component {
         <BrowserRouter>
           <div className="navbarHead">
             <div className="navbarText">
-              <NavLink to="/">Home</NavLink>
+              <NavLink exact activeClassName="active" to="/">
+                Home
+              </NavLink>
             </div>
             <div className="navbarText">
-              <NavLink to="/register">ProductEntry</NavLink>
+              <NavLink activeClassName="active" to="/register">
+                ProductEntry
+              </NavLink>
             </div>
             <div className="navbarText">
-              <NavLink to="/order">PlacerOrder</NavLink>
+              <NavLink activeClassName="active" to="/order">
+                PlacerOrder
+              </NavLink>
             </div>
             <div className="dropdown">
               <div className="dropdown-toggle" data-toggle="dropdown">
@@ -37,6 +45,9 @@ class App extends React.Component {
                 <div className="dropdown-item">
                   <NavLink to="/newproducts">Add-Products</NavLink>
                 </div>
+                <div className="dropdown-item">
+                  <NavLink to="/newuser">NewUser</NavLink>
+                </div>
               </div>
             </div>
           </div>
@@ -44,12 +55,13 @@ class App extends React.Component {
           <div className="content">
             <Switch>
               <Provider store={store}>
-                <Route path="/" />
+                <Route exact path="/" component={Login} />
                 <Route path="/register" component={ProductEntry} />
                 <Route path="/order" component={OrderComponent} />
                 <Route path="/cardList" component={CardList} />
                 <Route path="/newcategory" component={NewCategory} />
                 <Route path="/newproducts" component={NewProducts} />
+                <Route path="/newuser" component={NewUser} />
               </Provider>
             </Switch>
           </div>

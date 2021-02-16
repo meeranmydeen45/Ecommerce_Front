@@ -258,3 +258,20 @@ td {
 .buttonNewRegister {
   width: 20%;
 }
+
+.LoginContainer {
+  display:flex;
+  flex-direction: column;
+  width:25%;
+  height:100vh;
+  margin:auto;
+  justify-content: center;
+  transform: translateY(-20%);
+  }
+  .divBorder {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border:2px dotted greenyellow;
+  }
+
