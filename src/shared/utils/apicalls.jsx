@@ -20,10 +20,18 @@ export const getProductsforModal = (categoryId) => {
 
 
 export const newUserRegistration = (userName, password) => {
-  console.log(password)
+ 
   const data = new FormData()
   data.append('username', userName)
   data.append('password', password)
   return axios.post(`https://localhost:44348/api/home/newuser-registration`, data)
 
+}
+
+export const userValidation = (userName, password) => {
+
+  const data = new FormData()
+  data.append('username', userName)
+  data.append('password', password)
+  return axios.post(`https://localhost:44348/api/home/uservalidation`, data)
 }
