@@ -4,7 +4,6 @@ import { userValidation } from '../shared/utils/apicalls';
 import { setUserSession, removeUserSession } from '../shared/utils/helper';
 
 function Login(props) {
-  removeUserSession();
   const userName = useTextBoxControl('');
   const password = useTextBoxControl('');
 

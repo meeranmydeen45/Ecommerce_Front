@@ -14,6 +14,7 @@ import Login from './Components/Login';
 import NewUser from './Components/NewUser';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
+import Logout from '../src/Components/Logout';
 
 class App extends React.Component {
   render() {
@@ -67,7 +68,7 @@ class App extends React.Component {
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
                 <AdminRoute path="/newuser" component={NewUser} />
-                <UserRoute path="/logout" component={Login} />
+                <Route path="/logout" component={Logout} />
               </Provider>
             </Switch>
           </div>
