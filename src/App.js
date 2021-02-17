@@ -12,6 +12,8 @@ import NewCategory from './Components/NewCategory';
 import NewProducts from './Components/NewProducts';
 import Login from './Components/Login';
 import NewUser from './Components/NewUser';
+import AdminRoute from './Components/AdminRoute';
+import UserRoute from './Components/UserRoute';
 
 class App extends React.Component {
   render() {
@@ -48,6 +50,9 @@ class App extends React.Component {
                 <div className="dropdown-item">
                   <NavLink to="/newuser">NewUser</NavLink>
                 </div>
+                <div className="dropdown-item">
+                  <NavLink to="/logout">LogOut</NavLink>
+                </div>
               </div>
             </div>
           </div>
@@ -55,13 +60,14 @@ class App extends React.Component {
           <div className="content">
             <Switch>
               <Provider store={store}>
-                <Route exact path="/" component={Login} />
-                <Route path="/register" component={ProductEntry} />
-                <Route path="/order" component={OrderComponent} />
-                <Route path="/cardList" component={CardList} />
-                <Route path="/newcategory" component={NewCategory} />
-                <Route path="/newproducts" component={NewProducts} />
-                <Route path="/newuser" component={NewUser} />
+                <UserRoute exact path="/" component={Login} />
+                <AdminRoute path="/register" component={ProductEntry} />
+                <AdminRoute path="/order" component={OrderComponent} />
+                <AdminRoute path="/cardList" component={CardList} />
+                <AdminRoute path="/newcategory" component={NewCategory} />
+                <AdminRoute path="/newproducts" component={NewProducts} />
+                <AdminRoute path="/newuser" component={NewUser} />
+                <UserRoute path="/logout" component={Login} />
               </Provider>
             </Switch>
           </div>
