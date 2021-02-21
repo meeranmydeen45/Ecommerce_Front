@@ -14,6 +14,7 @@ import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
+import LogoutRoute from './Components/LogoutRoute';
 
 class App extends React.Component {
   constructor(props) {
@@ -90,14 +91,14 @@ class App extends React.Component {
           <div className="content">
             <Switch>
               <Provider store={store}>
-                <UserRoute exact path="/" events={updateUserName} component={Login} />
+                <UserRoute exact path="/" handleEvents={updateUserName} component={Login} />
                 <AdminRoute path="/register" component={ProductEntry} />
                 <AdminRoute path="/order" component={OrderComponent} />
                 <AdminRoute path="/cardList" component={CardList} />
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
                 <AdminRoute path="/newuser" component={NewUser} />
-                <Route path="/logout" component={Logout} />
+                <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>
             </Switch>
           </div>

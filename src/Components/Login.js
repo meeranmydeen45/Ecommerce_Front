@@ -4,7 +4,6 @@ import { userValidation } from '../shared/utils/apicalls';
 import { setUserSession, removeUserSession } from '../shared/utils/helper';
 
 function Login(props) {
-  console.log(props);
   const userName = useTextBoxControl('');
   const password = useTextBoxControl('');
 
@@ -16,6 +15,7 @@ function Login(props) {
         if (userObj.username != null) {
           setUserSession(userObj.password, userObj);
           props.history.push('/order');
+          props.updateNavState.handleEvents();
         } else {
           alert(res.data);
         }

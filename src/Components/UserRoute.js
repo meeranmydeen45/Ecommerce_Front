@@ -6,7 +6,9 @@ const UserRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (!getToken() ? <Component {...props} /> : <Redirect to={{ pathname: '/order' }} />)}
+      render={(props) =>
+        !getToken() ? <Component {...props} updateNavState={rest} /> : <Redirect to={{ pathname: '/order' }} />
+      }
     />
   );
 };
