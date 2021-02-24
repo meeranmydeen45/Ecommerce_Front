@@ -5,6 +5,8 @@ body {
   padding: 0;
   margin: 0;
 }
+
+/*NavBar Section*/
 .containerBox {
   background-color: cadetblue;
 }
@@ -27,6 +29,12 @@ body {
   color: blue;
 }
 
+#userNameText{
+  color:blue;
+  font-weight: bold;
+  user-select: none;
+}
+
 .dropdown {
   cursor: pointer;
   color: yellow;
@@ -45,11 +53,31 @@ body {
 .dropdown-menu div a:hover {
   color: yellow;
 }
+/**/
+
+/*Placing Order Section*/
+.orderContainer {
+  position: relative;
+  min-height:100vh;
+  display: flex;
+}
+.o-container1 {
+  flex: 70%;
+}
+.o-container2 {
+  flex: 30%;
+
+}
 
 .div-Cart {
   text-align: center;
   min-height: 300px;
-  background-color: blanchedalmond;
+  background-color: lightgrey;
+  margin-top:20px;
+  margin-right:20px;
+  box-shadow: 1px 2px 12px 0px darkgrey;
+  z-index: 2;
+ 
 }
 
 .cartTable {
@@ -84,12 +112,21 @@ body {
   font-size: large;
   margin-top: 20px;
 }
+.shoppingCartLogo{
+  position: absolute;
+  right: 10px;
+  transform: translateY(-120%);
+}
 
+/**/
 #printArea {
   position: absolute;
   left: 200px;
 }
-
+/*Product Entry Section*/
+.productEntryComponent{
+min-height:100vh ;
+}
 #divHead {
   line-height: 50px;
   text-align: center;
@@ -101,6 +138,8 @@ body {
 #left-Section {
   flex: 50%;
   margin-top: 50px;
+  margin-left: 25px;
+  font-weight: bold;
   flex-direction: column;
 }
 #right-Section {
@@ -114,7 +153,7 @@ body {
 }
 
 #div4-1 {
-  flex: 30%;
+  flex: 20%;
 }
 
 #div4-2 {
@@ -188,6 +227,8 @@ input[type='file'] {
 td {
   border: 1px solid blue;
 }
+/*Model Design End */
+
 @media screen and (max-width: 855px) {
   #divBody {
     display: flex;
@@ -213,15 +254,7 @@ td {
   }
 }
 
-.orderContainer {
-  display: flex;
-}
-.o-container1 {
-  flex: 70%;
-}
-.o-container2 {
-  flex: 30%;
-}
+
 .newCategory {
   width: 100%;
   height: 93vh;

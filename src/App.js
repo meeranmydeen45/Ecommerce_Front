@@ -31,11 +31,6 @@ class App extends React.Component {
       navbar = (
         <div className="navbarHead">
           <div className="navbarText">
-            <NavLink exact activeClassName="active" to="">
-              Home
-            </NavLink>
-          </div>
-          <div className="navbarText">
             <NavLink activeClassName="active" to="/register">
               ProductEntry
             </NavLink>
@@ -43,6 +38,11 @@ class App extends React.Component {
           <div className="navbarText">
             <NavLink activeClassName="active" to="/order">
               PlacerOrder
+            </NavLink>
+          </div>
+          <div className="navbarText">
+            <NavLink activeClassName="active" to="/order">
+              Reports
             </NavLink>
           </div>
           <div className="dropdown">
@@ -64,8 +64,9 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-          <div className="navbarText">
-            <NavLink exact activeClassName="active" to="/"></NavLink>
+
+          <div className="navbarText" id="userNameText">
+            Welcome {isUserAvailable.username} !
           </div>
         </div>
       );

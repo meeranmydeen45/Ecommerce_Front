@@ -102,7 +102,7 @@ class ProductEntry extends React.Component {
     };
 
     return (
-      <div>
+      <div className="productEntryComponent">
         <div id="divHead">Product Entry</div>
 
         <div id="divBody">

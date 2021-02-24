@@ -59,21 +59,11 @@ class Product extends React.Component {
 
     return (
       <div className="div-Product">
-        <div
-          style={{
-            position: 'absolute',
-            textAlign: 'center',
-            color: 'gold',
-            fontWeight: 'bold',
-            top: '-40px',
-            right: '-350px',
-          }}
-        >
+        <div className="shoppingCartLogo">
           <NavLink to="/cardList" className="btn btn-secondary">
             <span class="fa fa-shopping-cart">{totalProducts}</span>
           </NavLink>
         </div>
-
         {productList}
       </div>
     );
