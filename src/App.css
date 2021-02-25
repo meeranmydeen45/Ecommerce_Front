@@ -10,48 +10,59 @@ body {
 .containerBox {
   background-color: cadetblue;
 }
-.navbarHead {
-  display: flex;
-  justify-content: space-around;
-  line-height: 50px;
+
+.navbarHead{
+  display:flex;
   background-color: black;
+  
 }
-.navbarHead .navbarText a {
-  text-decoration: none;
-  padding: 5px 30px;
+.div1navbarLogo{  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex:50%;
+}
+
+.div2afterLogo{
+  display: flex;
+  flex:50%;
+}
+.div2afterLogo > div > a{
+  float: left;
+  padding:15px 20px;
   color: yellow;
-  cursor: pointer;
-  transition: all 0.5s ease;
 }
-.navbarHead .navbarText a:hover {
-  font-weight: bold;
+.div2afterLogo > div > a:hover{
+  text-decoration: none;
   background-color: yellow;
-  color: blue;
+  color: black;
 }
 
 #userNameText{
   color:blue;
   font-weight: bold;
   user-select: none;
+  padding:15px 20px;
 }
 
 .dropdown {
+  padding: 15px 0;
   cursor: pointer;
   color: yellow;
 }
 
-.dropdown-menu div a {
-  text-decoration: none;
+.dropdown-menu{
   padding: 0;
-  margin: 0;
-  font-weight: bold;
-  color: black;
+  margin:0;
 }
-.dropdown-menu div:hover {
-  background-color: darkgray;
+.dropdown-item{
+  padding:10px 10px;
 }
-.dropdown-menu div a:hover {
-  color: yellow;
+.dropdown-item :hover{
+  padding:10px 10px;
+text-decoration: none;
+background-color: darkgray;
+user-select: none;
 }
 /**/
 

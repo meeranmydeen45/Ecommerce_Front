@@ -30,54 +30,58 @@ class App extends React.Component {
     if (isUserAvailable) {
       navbar = (
         <div className="navbarHead">
-          <div className="navbarText">
-            <NavLink activeClassName="active" to="/register">
-              ProductEntry
-            </NavLink>
-          </div>
-          <div className="navbarText">
-            <NavLink activeClassName="active" to="/order">
-              PlacerOrder
-            </NavLink>
-          </div>
-          <div className="navbarText">
-            <NavLink activeClassName="active" to="/order">
-              Reports
-            </NavLink>
-          </div>
-          <div className="dropdown">
-            <div className="dropdown-toggle" data-toggle="dropdown">
-              MenuItems
-            </div>
-            <div className="dropdown-menu">
-              <div className="dropdown-item">
-                <NavLink to="/newcategory">Add-Catergory</NavLink>
-              </div>
-              <div className="dropdown-item">
-                <NavLink to="/newproducts">Add-Products</NavLink>
-              </div>
-              <div className="dropdown-item">
-                <NavLink to="/newuser">NewUser</NavLink>
-              </div>
-              <div className="dropdown-item">
-                <NavLink to="/logout">LogOut</NavLink>
-              </div>
+          <div className="div1navbarLogo">
+            <div className="navbarLogo">
+              <a href="#">Logo</a>
             </div>
           </div>
 
-          <div className="navbarText" id="userNameText">
-            Welcome {isUserAvailable.username} !
+          <div className="div2afterLogo">
+            <div>
+              <NavLink activeClassName="active" to="/register">
+                ProductEntry
+              </NavLink>
+            </div>
+            <div>
+              <NavLink activeClassName="active" to="/order">
+                PlacerOrder
+              </NavLink>
+            </div>
+            <div>
+              <NavLink activeClassName="active" to="/order">
+                Reports
+              </NavLink>
+            </div>
+            <div className="dropdown">
+              <div className="dropdown-toggle" data-toggle="dropdown">
+                MenuItems
+              </div>
+              <div className="dropdown-menu">
+                <div className="dropdown-item">
+                  <NavLink to="/newcategory">Add-Catergory</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/newproducts">Add-Products</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/newuser">NewUser</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/logout">LogOut</NavLink>
+                </div>
+              </div>
+            </div>
+
+            <div id="userNameText">Welcome {isUserAvailable.username} !</div>
           </div>
         </div>
       );
     } else {
       navbar = (
         <div className="navbarHead">
-          <div className="navbarText">
-            <NavLink exact activeClassName="active" to="/">
-              Login
-            </NavLink>
-          </div>
+          <NavLink exact activeClassName="active" to="/">
+            Login
+          </NavLink>
         </div>
       );
     }
