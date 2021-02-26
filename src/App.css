@@ -22,7 +22,10 @@ body {
   align-items: center;
   flex:50%;
 }
-
+.navbarLogo a{
+  color:yellow;
+  text-decoration: none;
+}
 .div2afterLogo{
   display: flex;
   flex:50%;
@@ -31,6 +34,7 @@ body {
   float: left;
   padding:15px 20px;
   color: yellow;
+  transition: color 0.5s ease-out;
 }
 .div2afterLogo > div > a:hover{
   text-decoration: none;
@@ -39,31 +43,37 @@ body {
 }
 
 #userNameText{
-  color:blue;
+  color:yellow;
   font-weight: bold;
   user-select: none;
   padding:15px 20px;
 }
 
 .dropdown {
-  padding: 15px 0;
+  padding:15px 0;
   cursor: pointer;
   color: yellow;
+
 }
 
-.dropdown-menu{
-  padding: 0;
-  margin:0;
+div.dropdown-menu.show{
+   margin:0px 0px;
+   padding: 0px 0px;
 }
-.dropdown-item{
+div.dropdown-item{
   padding:10px 10px;
 }
-.dropdown-item :hover{
-  padding:10px 10px;
+div.dropdown-item a{
 text-decoration: none;
-background-color: darkgray;
-user-select: none;
 }
+div.dropdown-item a:hover{
+  color: black;
+  }
+div.dropdown-item:hover{
+  text-decoration: none;
+  background-color:yellow;
+  color:black;
+  }
 /**/
 
 /*Placing Order Section*/

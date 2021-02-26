@@ -19,7 +19,7 @@ export const fetchData = (data) => {
 
 export const changeSizeIndex = (prodId, sizeIndex, indexArray) => {
   const indexArrayList = [...indexArray];
-  indexArrayList[prodId - 1].SizeIndex = sizeIndex;
+  indexArrayList[prodId].SizeIndex = sizeIndex;
 
   return {
     type: CHANGE_SIZE_INDEX,

@@ -41,14 +41,14 @@ class Product extends React.Component {
               <img src={baseUrl + '/' + item.productImage} alt="NotFound" style={{ width: '200px', height: '100px' }} />
               <select onChange={handleDropDownChange}>
                 {item.listOfstocksBySize.map((sizeitem, index) => {
-                  return <option value={index + '-' + sizeitem.productId}>{sizeitem.size}</option>;
+                  return <option value={index + '-' + i}>{sizeitem.size}</option>;
                 })}
               </select>
-              <div>Quantity: {item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].quantity}</div>
+              <div>Quantity: {item.listOfstocksBySize[indexArray[i].SizeIndex].quantity}</div>
             </div>
             <div className="card-footer">
-              Cost ${item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].cost}
-              <button className="btn btn-primary" onClick={() => this.props.addToCart(item, indexArray, cartItems)}>
+              Cost ${item.listOfstocksBySize[indexArray[i].SizeIndex].cost}
+              <button className="btn btn-primary" onClick={() => this.props.addToCart(item, indexArray, cartItems, i)}>
                 Add
               </button>
             </div>

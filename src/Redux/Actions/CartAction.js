@@ -1,11 +1,12 @@
 import { ADD_CART, REMOVE_CART, CART_ITEM_INCREMENT, CART_ITEM_DECREMENT } from '../Actions/ActionTypes';
 
-export const addToCart = (item, indexArray, cartItems) => {
+export const addToCart = (item, indexArray, cartItems, indexs) => {
+  //const index = index;
   const itemsList = [...cartItems];
   let isAlreadInCart = false;
 
   itemsList.forEach((element, i) => {
-    if (item.id === element.id && item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].size === element.size) {
+    if (item.id === element.id && item.listOfstocksBySize[indexArray[indexs].SizeIndex].size === element.size) {
       if (element.totalQuantity > element.Quantity) {
         itemsList[i].Quantity = element.Quantity + 1;
       } else {
@@ -20,9 +21,9 @@ export const addToCart = (item, indexArray, cartItems) => {
     cartItem.id = item.id;
     cartItem.productName = item.productName;
     cartItem.productImage = item.productImage;
-    cartItem.size = item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].size;
-    cartItem.totalQuantity = item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].quantity;
-    cartItem.cost = item.listOfstocksBySize[indexArray[item.id - 1].SizeIndex].cost;
+    cartItem.size = item.listOfstocksBySize[indexArray[indexs].SizeIndex].size;
+    cartItem.totalQuantity = item.listOfstocksBySize[indexArray[indexs].SizeIndex].quantity;
+    cartItem.cost = item.listOfstocksBySize[indexArray[indexs].SizeIndex].cost;
 
     itemsList.push({ ...cartItem, Quantity: 1 });
   }
