@@ -4,16 +4,18 @@
 body {
   padding: 0;
   margin: 0;
+  letter-spacing: 0.6px;
 }
 
 /*NavBar Section*/
 .containerBox {
-  background-color: cadetblue;
+  background-color:cadetblue;
 }
 
 .navbarHead{
+  height: 60px;
   display:flex;
-  background-color: black;
+  background-color:black;
   
 }
 .div1navbarLogo{  
@@ -23,27 +25,35 @@ body {
   flex:50%;
 }
 .navbarLogo a{
-  color:yellow;
+  color:dodgerblue;
+  font-weight: bold;
   text-decoration: none;
+  font-size: large;
 }
 .div2afterLogo{
   display: flex;
   flex:50%;
 }
+.div2afterLogo > div {
+
+}
+.div2afterLogo > div:hover {
+  border: 2px solid blue;
+}
 .div2afterLogo > div > a{
+ 
   float: left;
   padding:15px 20px;
-  color: yellow;
-  transition: color 0.5s ease-out;
+  color:dodgerblue;
+  transition: all 0.5s ease-out;
 }
 .div2afterLogo > div > a:hover{
   text-decoration: none;
-  background-color: yellow;
-  color: black;
+  color:white;
 }
 
 #userNameText{
-  color:yellow;
+  color:dodgerblue;
   font-weight: bold;
   user-select: none;
   padding:15px 20px;
@@ -52,7 +62,8 @@ body {
 .dropdown {
   padding:15px 0;
   cursor: pointer;
-  color: yellow;
+  color: dodgerblue;
+  border: none;
 
 }
 
@@ -67,12 +78,12 @@ div.dropdown-item a{
 text-decoration: none;
 }
 div.dropdown-item a:hover{
-  color: black;
+  color:blue;
   }
 div.dropdown-item:hover{
   text-decoration: none;
-  background-color:yellow;
-  color:black;
+  background-color:lightgray;
+   
   }
 /**/
 

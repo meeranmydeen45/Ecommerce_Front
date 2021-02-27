@@ -77,13 +77,7 @@ class App extends React.Component {
         </div>
       );
     } else {
-      navbar = (
-        <div className="navbarHead">
-          <NavLink exact activeClassName="active" to="/">
-            Login
-          </NavLink>
-        </div>
-      );
+      navbar = '';
     }
     const updateUserName = () => {
       this.setState({ userName: '' });

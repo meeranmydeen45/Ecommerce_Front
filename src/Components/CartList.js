@@ -87,9 +87,9 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   });
 
   return (
-    <div className="div-Cart" id="printArea">
+    <div className="divCardPayment" id="printArea">
       Added Item in Cart {totalProducts}
-      <table className="cartTable" id="cartTable">
+      <table className="cardPaymentTable" id="cardPaymentTable">
         <thead>
           <tr>
             <th>Product Name</th>
