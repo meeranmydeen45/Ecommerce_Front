@@ -34,9 +34,7 @@ body {
   display: flex;
   flex:50%;
 }
-.div2afterLogo > div {
 
-}
 .div2afterLogo > div:hover {
   border: 2px solid blue;
 }
@@ -121,8 +119,8 @@ div.dropdown-item:hover{
 }
 
 .cartTable tr td {
-  border: 1px solid blue;
-  color: goldenrod;
+  border: 2px solid blue;
+  color: blue;
 }
 .cardAlignment {
   margin-left: 40px;
@@ -150,11 +148,40 @@ div.dropdown-item:hover{
   transform: translateY(-120%);
 }
 
-/**/
-#printArea {
-  position: absolute;
-  left: 200px;
+/*Customer Payment Registration and Card Table*/
+.cardUserPage{
+  display: flex;
+  min-height:100vh;
+  flex-direction: row;
 }
+.cardSection{
+  flex:60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userSection{
+  background-color:lightgrey;
+  flex:40%;
+}
+
+.cardSection table{
+  width: 90%;
+}
+
+.cardPaymentTable{
+  color:white;
+  background-color:black;
+}
+
+.cardPaymentTable tr td{
+border:none;
+}
+
+
+
+/**/
+
 /*Product Entry Section*/
 .productEntryComponent{
 min-height:100vh ;

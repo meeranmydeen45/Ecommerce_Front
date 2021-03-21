@@ -87,22 +87,25 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   });
 
   return (
-    <div className="divCardPayment" id="printArea">
-      Added Item in Cart {totalProducts}
-      <table className="cardPaymentTable" id="cardPaymentTable">
-        <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Size</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>{cartList}</tbody>
-      </table>
-      Total Cost to Pay {totalCost}
-      <input type="button" class="btn btn-info" value="Store" onClick={() => handleClick(cartItems)} />
+    <div className="cardUserPage">
+      <div className="cardSection" id="printArea">
+        Added Item in Cart {totalProducts}
+        <table className="cardPaymentTable" id="cardPaymentTable">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>{cartList}</tbody>
+        </table>
+        Total Cost to Pay {totalCost}
+        <input type="button" class="btn btn-info" value="Store" onClick={() => handleClick(cartItems)} />
+      </div>
+      <div className="userSection">user Detail Section</div>
     </div>
   );
 }
