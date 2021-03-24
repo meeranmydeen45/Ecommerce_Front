@@ -150,33 +150,63 @@ div.dropdown-item:hover{
 
 /*Customer Payment Registration and Card Table*/
 .cardUserPage{
-  display: flex;
   min-height:100vh;
-  flex-direction: row;
-}
-.cardSection{
+  display:flex;
+  }
+  .cardSection{
+  display:flex;
+  padding:20px;
+  flex-direction:column;
   flex:60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.userSection{
-  background-color:lightgrey;
+  background-color:lightblue;
+  }
+  
+  .cardSection table{
+  border-collapse:collapse;
+  }
+  table th{
+  border:1px solid blue;
+  }
+  table tr td{
+  border:1px solid blue;
+  text-align:center;
+  }
+  #btnInfoStore{
+  width:30%;
+  padding:2px;
+  margin-top:30px;
+  align-self:flex-end;
+  }
+  .userSection{
   flex:40%;
-}
+  background-color:lightgreen;
+  display:flex;
+  flex-direction:column;
+  }
+  
+  .userSection label{
+  padding:5px 40px;
+  }
+  .userSection input[type="text"]{
+  width: auto;
+  margin:0px 40px;
+  padding:3px;
+  }
+  #btnStore{
+  margin:25px 40px;
+  padding:5px;
+  width:50%;
+  }
+  
+  
+  @media(max-width:600px)
+  {
+  .cardUserPage{
+  display:flex;
+  flex-direction:column;
+  }
+  }
 
-.cardSection table{
-  width: 90%;
-}
-
-.cardPaymentTable{
-  color:white;
-  background-color:black;
-}
-
-.cardPaymentTable tr td{
-border:none;
-}
 
 
 
