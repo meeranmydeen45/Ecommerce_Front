@@ -192,7 +192,15 @@ div.dropdown-item:hover{
   margin:0px 40px;
   padding:3px;
   }
-  #btnStore{
+  
+#btnCheckUserAvailable{
+  margin:25px 40px;
+  padding:5px;
+  width:50%;
+
+}
+
+  #btnUserStore{
   margin:25px 40px;
   padding:5px;
   width:50%;
