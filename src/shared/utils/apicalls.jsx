@@ -41,6 +41,7 @@ export const customerRegistration = (customerObj) => {
  data.append('customermobile', customerObj.mobileNumber)
  data.append('CustomerName', customerObj.custName)
  data.append('Customeraddress', customerObj.custAddress)
+ data.append('CutomerId', customerObj.custId)
  data.append('Totalamount', customerObj.totalAmount)
 return axios.post(`https://localhost:44348/api/home/customer-registration`, data)
 

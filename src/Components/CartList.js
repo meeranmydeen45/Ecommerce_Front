@@ -11,9 +11,10 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   let totalCost = cartItems.reduce((sum, item) => sum + item.cost * item.Quantity, 0);
   let totalProducts = cartItems.reduce((sum, item) => sum + item.Quantity, 0);
 
-  const mobileNumber = useTextBoxControl('');
-  const custName = useTextBoxControl('');
-  const custAddress = useTextBoxControl('');
+  var uniqueCustomeIdFromDB = '';
+  const mobileNumber = useTextBoxControl();
+  const custName = useTextBoxControl();
+  const custAddress = useTextBoxControl();
 
   const handleClick = (cartItems) => {
     axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then((res) => {
@@ -26,15 +27,23 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     data.append('customermobile', mobileNumber.value);
     data.append('CustomerName', 'Empty');
     axios.post(`https://localhost:44348/api/home/is-cutomer-available`, data).then((res) => {
-      alert(res.data);
+      if (typeof res.data === 'object') {
+        uniqueCustomeIdFromDB = res.data.customerId;
+
+        // document.getElementById('txtName').value = res.data.customerName;
+        // document.getElementById('txtAddress').value = res.data.customeraddress;
+      } else {
+        alert('Mobile No. not registered with Us');
+      }
     });
   };
 
   const storeCustomer = () => {
     const customerObj = {};
-    customerObj.mobileNumber = mobileNumber;
-    customerObj.custName = custName;
-    customerObj.custAddress = custAddress;
+    customerObj.mobileNumber = mobileNumber.value;
+    customerObj.custName = custName.value;
+    customerObj.custAddress = custAddress.value;
+    customerObj.custId = uniqueCustomeIdFromDB;
     customerObj.totalAmount = totalCost;
     const promise = customerRegistration(customerObj);
 
@@ -103,7 +112,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         <input type="text" id="txtAddress" {...custAddress} />
         <label>TotalAmount</label>
         <input type="text" id="txtAmount" value={totalCost} />
-        <input type="button" value="Store" id="btnUserStore" />
+        <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} />
       </div>
     </div>
   );
