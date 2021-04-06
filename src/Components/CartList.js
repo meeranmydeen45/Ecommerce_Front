@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import useTextBoxControl from '../shared/utils/useTexBoxControl';
 import { removeCart, cartItemIncrement, cartItemDecrement } from '../Redux/Actions/CartAction';
 import { customerRegistration } from '../shared/utils/apicalls';
 
@@ -11,27 +10,33 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   let totalCost = cartItems.reduce((sum, item) => sum + item.cost * item.Quantity, 0);
   let totalProducts = cartItems.reduce((sum, item) => sum + item.Quantity, 0);
 
-  var uniqueCustomeIdFromDB = '';
-  const mobileNumber = useTextBoxControl();
-  const custName = useTextBoxControl();
-  const custAddress = useTextBoxControl();
+  const initialValue = {
+    mobileNumber: '',
+    custName: '',
+    custAddress: '',
+    custId: '',
+  };
 
-  const handleClick = (cartItems) => {
-    axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then((res) => {
-      alert('Transaction Completed IN REactjs');
-    });
+  const [getTxtBoxValue, setTxtBoxValue] = useState(initialValue);
+
+  const hanldeInputChange = (e) => {
+    const { name, value } = e.target;
+    setTxtBoxValue({ ...getTxtBoxValue, [name]: value });
   };
 
   const isUserAvailable = () => {
     const data = new FormData();
-    data.append('customermobile', mobileNumber.value);
+    data.append('customermobile', getTxtBoxValue.mobileNumber);
     data.append('CustomerName', 'Empty');
     axios.post(`https://localhost:44348/api/home/is-cutomer-available`, data).then((res) => {
       if (typeof res.data === 'object') {
-        uniqueCustomeIdFromDB = res.data.customerId;
-
-        // document.getElementById('txtName').value = res.data.customerName;
-        // document.getElementById('txtAddress').value = res.data.customeraddress;
+        const { customermobile, customerName, customeraddress, cutomerId } = res.data;
+        setTxtBoxValue({
+          mobileNumber: customermobile,
+          custName: customerName,
+          custAddress: customeraddress,
+          custId: cutomerId,
+        });
       } else {
         alert('Mobile No. not registered with Us');
       }
@@ -40,10 +45,10 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
 
   const storeCustomer = () => {
     const customerObj = {};
-    customerObj.mobileNumber = mobileNumber.value;
-    customerObj.custName = custName.value;
-    customerObj.custAddress = custAddress.value;
-    customerObj.custId = uniqueCustomeIdFromDB;
+    customerObj.mobileNumber = getTxtBoxValue.mobileNumber;
+    customerObj.custName = getTxtBoxValue.custName;
+    customerObj.custAddress = getTxtBoxValue.custAddress;
+    customerObj.custId = getTxtBoxValue.custId;
     customerObj.totalAmount = totalCost;
     const promise = customerRegistration(customerObj);
 
@@ -52,6 +57,12 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const makePurchase = (cartItems, getTxtBoxValue) => {
+    axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then((res) => {
+      alert('Transaction Completed IN REactjs');
+    });
   };
 
   const cartList = cartItems.map((item, i) => {
@@ -87,6 +98,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     <div className="cardUserPage">
       <div className="cardSection">
         <p style={{ textAlign: 'center' }}>Info Table Added Item in Cart {totalProducts}</p>
+        <b>Customer ID: {getTxtBoxValue.custId}</b>
         <table className="cardPaymentTable" id="cardPaymentTable">
           <thead>
             <tr>
@@ -100,16 +112,28 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           <tbody>{cartList}</tbody>
         </table>
         Total Cost to Pay {totalCost}
-        <input type="button" class="btn btn-info" value="Store" onClick={() => handleClick(cartItems)} />
+        <input type="button" class="btn btn-info" value="Store" onClick={() => makePurchase(cartItems)} />
       </div>
       <div className="userSection">
         <label>MobileId</label>
-        <input type="text" id="txtMobile" {...mobileNumber} />
+        <input
+          type="text"
+          name="mobileNumber"
+          id="txtMobile"
+          value={getTxtBoxValue.mobileNumber}
+          onChange={hanldeInputChange}
+        />
         <input type="button" value="Is-UserAvailable?" id="btnCheckUserAvailable" onClick={isUserAvailable} />
         <label>Name</label>
-        <input type="text" id="txtName" {...custName} />
+        <input type="text" name="custName" id="txtName" value={getTxtBoxValue.custName} onChange={hanldeInputChange} />
         <label>Address</label>
-        <input type="text" id="txtAddress" {...custAddress} />
+        <input
+          type="text"
+          name="custAddress"
+          id="txtAddress"
+          value={getTxtBoxValue.custAddress}
+          onChange={hanldeInputChange}
+        />
         <label>TotalAmount</label>
         <input type="text" id="txtAmount" value={totalCost} />
         <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} />
