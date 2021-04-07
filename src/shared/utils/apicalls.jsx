@@ -38,11 +38,10 @@ export const userValidation = (userName, password) => {
 
 export const customerRegistration = (customerObj) => {
  const data = new FormData()
- data.append('customermobile', customerObj.mobileNumber)
- data.append('CustomerName', customerObj.custName)
- data.append('Customeraddress', customerObj.custAddress)
- data.append('CutomerId', customerObj.custId)
- data.append('Totalamount', customerObj.totalAmount)
+ data.append('customermobile', customerObj.customerMobile)
+ data.append('CustomerName', customerObj.customerName)
+ data.append('Customeraddress', customerObj.customerAddress)
+ data.append('CustomerId', customerObj.customerId)
 return axios.post(`https://localhost:44348/api/home/customer-registration`, data)
 
 }

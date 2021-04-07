@@ -11,10 +11,10 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   let totalProducts = cartItems.reduce((sum, item) => sum + item.Quantity, 0);
 
   const initialValue = {
-    mobileNumber: '',
-    custName: '',
-    custAddress: '',
-    custId: '',
+    customerMobile: '',
+    customerName: '',
+    customerAddress: '',
+    customerId: '',
   };
 
   const [getTxtBoxValue, setTxtBoxValue] = useState(initialValue);
@@ -26,16 +26,16 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
 
   const isUserAvailable = () => {
     const data = new FormData();
-    data.append('customermobile', getTxtBoxValue.mobileNumber);
+    data.append('customermobile', getTxtBoxValue.customerMobile);
     data.append('CustomerName', 'Empty');
     axios.post(`https://localhost:44348/api/home/is-cutomer-available`, data).then((res) => {
       if (typeof res.data === 'object') {
-        const { customermobile, customerName, customeraddress, cutomerId } = res.data;
+        const { customermobile, customerName, customeraddress, customerId } = res.data;
         setTxtBoxValue({
-          mobileNumber: customermobile,
-          custName: customerName,
-          custAddress: customeraddress,
-          custId: cutomerId,
+          customerMobile: customermobile,
+          customerName: customerName,
+          customerAddress: customeraddress,
+          customerId: customerId,
         });
       } else {
         alert('Mobile No. not registered with Us');
@@ -44,13 +44,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   };
 
   const storeCustomer = () => {
-    const customerObj = {};
-    customerObj.mobileNumber = getTxtBoxValue.mobileNumber;
-    customerObj.custName = getTxtBoxValue.custName;
-    customerObj.custAddress = getTxtBoxValue.custAddress;
-    customerObj.custId = getTxtBoxValue.custId;
-    customerObj.totalAmount = totalCost;
-    const promise = customerRegistration(customerObj);
+    const promise = customerRegistration(getTxtBoxValue);
 
     promise
       .then((res) => {})
@@ -59,8 +53,12 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
       });
   };
 
-  const makePurchase = (cartItems, getTxtBoxValue) => {
-    axios.post(`https://localhost:44348/api/home/pruchase`, cartItems).then((res) => {
+  const makePurchase = (cartItems) => {
+    const CustwithOrders = {};
+    CustwithOrders.cartItems = cartItems;
+    CustwithOrders.customer = getTxtBoxValue;
+    CustwithOrders.totalCost = totalCost;
+    axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
       alert('Transaction Completed IN REactjs');
     });
   };
@@ -98,7 +96,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     <div className="cardUserPage">
       <div className="cardSection">
         <p style={{ textAlign: 'center' }}>Info Table Added Item in Cart {totalProducts}</p>
-        <b>Customer ID: {getTxtBoxValue.custId}</b>
+        <b>Customer ID: {getTxtBoxValue.customerId}</b>
         <table className="cardPaymentTable" id="cardPaymentTable">
           <thead>
             <tr>
@@ -118,20 +116,26 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         <label>MobileId</label>
         <input
           type="text"
-          name="mobileNumber"
+          name="customerMobile"
           id="txtMobile"
-          value={getTxtBoxValue.mobileNumber}
+          value={getTxtBoxValue.customerMobile}
           onChange={hanldeInputChange}
         />
         <input type="button" value="Is-UserAvailable?" id="btnCheckUserAvailable" onClick={isUserAvailable} />
         <label>Name</label>
-        <input type="text" name="custName" id="txtName" value={getTxtBoxValue.custName} onChange={hanldeInputChange} />
+        <input
+          type="text"
+          name="customerName"
+          id="txtName"
+          value={getTxtBoxValue.customerName}
+          onChange={hanldeInputChange}
+        />
         <label>Address</label>
         <input
           type="text"
-          name="custAddress"
+          name="customerAddress"
           id="txtAddress"
-          value={getTxtBoxValue.custAddress}
+          value={getTxtBoxValue.customerAddress}
           onChange={hanldeInputChange}
         />
         <label>TotalAmount</label>
