@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeCart, cartItemIncrement, cartItemDecrement } from '../Redux/Actions/CartAction';
 import { customerRegistration } from '../shared/utils/apicalls';
+import { designPDFwithData } from '../shared/utils/helper';
 
 function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement }) {
   const baseUrl = 'https://localhost:44348/Images/';
@@ -59,7 +60,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     CustwithOrders.customer = getTxtBoxValue;
     CustwithOrders.totalCost = totalCost;
     axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
-      alert('Transaction Completed IN REactjs');
+      designPDFwithData(res.data);
     });
   };
 

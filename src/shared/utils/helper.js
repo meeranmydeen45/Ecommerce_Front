@@ -24,6 +24,10 @@ export const getToken = () => {
   else return null;
 };
 
+export const designPDFwithData = (data) => {
+  console.log(data);
+};
+
 export const generatePDFandByteArray = (printArea) => {
   var container = document.getElementById(printArea);
   html2canvas(container).then((canvas) => {
