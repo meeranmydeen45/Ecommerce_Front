@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeCart, cartItemIncrement, cartItemDecrement } from '../Redux/Actions/CartAction';
 import { customerRegistration } from '../shared/utils/apicalls';
-import { designPDFwithData } from '../shared/utils/helper';
+import { designPDFwithData, generatePDFandByteArray } from '../shared/utils/helper';
 
 function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement }) {
   const baseUrl = 'https://localhost:44348/Images/';
@@ -54,14 +54,17 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
       });
   };
 
-  const makePurchase = (cartItems) => {
+  const makePurchase = async (cartItems) => {
+    let servertData = '';
     const CustwithOrders = {};
     CustwithOrders.cartItems = cartItems;
     CustwithOrders.customer = getTxtBoxValue;
     CustwithOrders.totalCost = totalCost;
-    axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
-      designPDFwithData(res.data);
+    await axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
+      servertData = res.data;
     });
+    const div = await designPDFwithData(servertData);
+    generatePDFandByteArray(div);
   };
 
   const cartList = cartItems.map((item, i) => {
@@ -94,7 +97,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   });
 
   return (
-    <div className="cardUserPage">
+    <div className="cardUserPage" id="printAreaH">
       <div className="cardSection">
         <p style={{ textAlign: 'center' }}>Info Table Added Item in Cart {totalProducts}</p>
         <b>Customer ID: {getTxtBoxValue.customerId}</b>

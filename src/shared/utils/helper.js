@@ -25,11 +25,17 @@ export const getToken = () => {
 };
 
 export const designPDFwithData = (data) => {
-  console.log(data);
+  const div = document.createElement('div');
+  div.setAttribute('id', 'divTest');
+  div.setAttribute('class', 'dynamicDiv');
+  div.innerHTML = 'Printable Element';
+  return div;
 };
 
-export const generatePDFandByteArray = (printArea) => {
-  var container = document.getElementById(printArea);
+export const generatePDFandByteArray = (d) => {
+  var container = document.getElementById('printAreaH');
+  console.log(container);
+
   html2canvas(container).then((canvas) => {
     var img = canvas.toDataURL();
     var doc = new jsPDF();

@@ -405,3 +405,12 @@ td {
     border:2px dotted greenyellow;
   }
 
+  /* Print Area Desing */
+  .dynamicDiv{
+   height: auto;
+   width: auto;
+   background-color: cornflowerblue;
+   color: darkblue;
+   font-weight: bold;
+  }
+
