@@ -406,11 +406,23 @@ td {
   }
 
   /* Print Area Desing */
-  .dynamicDiv{
+
+
+#printAreaH{
+position: absolute;
+bottom:-500px;     /*Its hidden below of User-Card Page */
+}
+
+ .dynamicDiv{
+  
    height: auto;
    width: auto;
-   background-color: cornflowerblue;
-   color: darkblue;
+   background-color:yellow;
+   color:darkblue;
    font-weight: bold;
   }
+
+ 
+   
+   
 

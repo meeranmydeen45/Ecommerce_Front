@@ -97,7 +97,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   });
 
   return (
-    <div className="cardUserPage" id="printAreaH">
+    <div className="cardUserPage">
       <div className="cardSection">
         <p style={{ textAlign: 'center' }}>Info Table Added Item in Cart {totalProducts}</p>
         <b>Customer ID: {getTxtBoxValue.customerId}</b>
@@ -146,6 +146,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         <input type="text" id="txtAmount" value={totalCost} />
         <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} />
       </div>
+      <div id="printAreaH"></div>
     </div>
   );
 }

@@ -24,19 +24,65 @@ export const getToken = () => {
   else return null;
 };
 
-export const designPDFwithData = (data) => {
+export const designPDFwithData = async (data) => {
+  //Parent Div of all Content in PrintPage
   const div = document.createElement('div');
-  div.setAttribute('id', 'divTest');
+  div.setAttribute('id', 'divParent');
   div.setAttribute('class', 'dynamicDiv');
-  div.innerHTML = 'Printable Element';
-  return div;
+  div.innerHTML = '-';
+
+  //Start  - Div for Header:Shop Name and address
+  const divHeader = document.createElement('div');
+  divHeader.setAttribute('class', 'content-head');
+  const h3 = document.createElement('h3');
+  h3.innerHTML = 'Freezing Blue Sky';
+  divHeader.appendChild(h3);
+  const p1 = document.createElement('p');
+  p1.innerHTML = '#101, Oak Street, Paris, France';
+  divHeader.appendChild(p1);
+  const p2 = document.createElement('p');
+  p2.innerHTML = '04-225687';
+  divHeader.appendChild(p2);
+  div.appendChild(divHeader);
+  //#endregion Div Header Section
+
+  //starts - Div Table Section
+  const divTable = document.createElement('div');
+  divTable.setAttribute('id', 'divTable');
+  const table = document.createElement('table');
+  var props = [];
+  for (var propName in data.custwithorder.cartItems[0]) {
+    props.push(propName);
+  }
+
+  for (var i = 0; i < data.custwithorder.cartItems.length; i++) {
+    var tr = document.createElement('tr');
+    for (var j = 0; j < props.length; j++) {
+      var td = document.createElement('td');
+
+      var textNode = document.createTextNode(data.custwithorder.cartItems[i][props[j]]);
+
+      td.appendChild(textNode);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  console.log(table);
+  divTable.appendChild(table);
+  div.appendChild(divTable);
+  //#endregion of Table Section
+  console.log(div);
+  return await div;
 };
 
-export const generatePDFandByteArray = (d) => {
+export const generatePDFandByteArray = (dynamicDiv) => {
   var container = document.getElementById('printAreaH');
-  console.log(container);
 
+  container.appendChild(dynamicDiv);
+  console.log(container);
+  //debugger;
   html2canvas(container).then((canvas) => {
+    //container.innerHTML = '';
     var img = canvas.toDataURL();
     var doc = new jsPDF();
     doc.addImage(img, 'jpg', 10, 10);
