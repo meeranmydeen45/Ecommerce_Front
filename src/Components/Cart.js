@@ -17,8 +17,9 @@ class Cart extends React.Component {
             <img src={baseUrl + '/' + item.productImage} alt="NA" style={{ width: '50px', height: '50px' }} />
           </td>
           <td>{item.size}</td>
-          <td>{item.cost}</td>
           <td>{item.Quantity}</td>
+          <td>{item.cost}</td>
+          <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
           <td>
             <button className="btn btn-success" onClick={() => removeCart(item, cartItems)}>
               X
@@ -38,6 +39,7 @@ class Cart extends React.Component {
               <th>Size</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Tot.Cost</th>
               <th>Remove</th>
             </tr>
           </thead>

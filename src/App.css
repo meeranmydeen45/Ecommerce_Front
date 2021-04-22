@@ -409,29 +409,32 @@ td {
 
 
 #printAreaH{
-position: absolute;
-width:50%;
+position:absolute;
+bottom:1200px;
+min-width:800px;
+min-height: 1500px;
 background-color:yellow;
-bottom:-500px;     /*Its hidden below of User-Card Page */
+    /*Its hidden below of User-Card Page */
 }
 
  .dynamicDiv{
-   position: relative;
-   width: 100%;
+   background-color: cadetblue;
    color:darkblue;
-   font-weight: bold;
+   font-size: 16px;
   }
 
   .dynamicDiv .content-head{
+    height:80px;
+    background-color: coral;
     text-align: center;
   }
 
    /*Customer Details and Invoice No and Date*/
   .dynamicDiv .div2-Section{
     display: flex;
+    height: 100px;
     background-color: greenyellow;
     padding: 20px;
-    height: 125px;
     overflow: hidden;
   }
   .div2-Section .div-Cust{
@@ -447,12 +450,16 @@ bottom:-500px;     /*Its hidden below of User-Card Page */
   }
  
   /*Table present Inside this DIV */
+  .dynamicDiv{
+    padding: 30px;
+  }
   .dynamicDiv .divTable table{
     width: 100%;
+    padding: 25px;
     border: 1px solid #000;
     border-collapse: collapse;
   }
-  .dynamicDiv .divTable tr, td{
+  .dynamicDiv .divTable td{
     background-color: #eee;
     padding:5px;
     text-align: center;

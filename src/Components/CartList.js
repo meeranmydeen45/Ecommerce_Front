@@ -86,7 +86,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
             +
           </a>
         </td>
-
+        <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
         <td>
           <button className="btn btn-success" onClick={() => removeCart(item, cartItems)}>
             X
@@ -108,6 +108,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
               <th>Size</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Tot.cost</th>
               <th>Remove</th>
             </tr>
           </thead>
