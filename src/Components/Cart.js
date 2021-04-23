@@ -37,8 +37,8 @@ class Cart extends React.Component {
             <tr>
               <th>Product Name</th>
               <th>Size</th>
-              <th>Price</th>
               <th>Quantity</th>
+              <th>Price</th>
               <th>Tot.Cost</th>
               <th>Remove</th>
             </tr>

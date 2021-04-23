@@ -9,6 +9,7 @@ export const addToCart = (item, indexArray, cartItems, indexs) => {
     if (item.id === element.id && item.listOfstocksBySize[indexArray[indexs].SizeIndex].size === element.size) {
       if (element.totalQuantity > element.Quantity) {
         itemsList[i].Quantity = element.Quantity + 1;
+        itemsList[i].totalCost = itemsList[i].Quantity * itemsList[i].cost;
       } else {
         alert('Stock Exceeds');
       }
@@ -24,9 +25,7 @@ export const addToCart = (item, indexArray, cartItems, indexs) => {
     cartItem.size = item.listOfstocksBySize[indexArray[indexs].SizeIndex].size;
     cartItem.totalQuantity = item.listOfstocksBySize[indexArray[indexs].SizeIndex].quantity;
     cartItem.cost = item.listOfstocksBySize[indexArray[indexs].SizeIndex].cost;
-    cartItem.totalCost =
-      item.listOfstocksBySize[indexArray[indexs].SizeIndex].quantity *
-      item.listOfstocksBySize[indexArray[indexs].SizeIndex].cost;
+    cartItem.totalCost = item.listOfstocksBySize[indexArray[indexs].SizeIndex].cost;
 
     itemsList.push({ ...cartItem, Quantity: 1 });
   }

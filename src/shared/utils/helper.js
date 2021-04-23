@@ -174,7 +174,7 @@ export const designPDFwithData = async (data) => {
         var textNode = document.createTextNode(i + 1);
         td.appendChild(textNode);
         tr.appendChild(td);
-      } else if (j !== 2) {
+      } else if (j !== 2 && j != 5) {
         //To skip Image Name and Id propery
         var td = document.createElement('td');
         var textNode = document.createTextNode(data.custwithorder.cartItems[i][props[j]]);
@@ -188,6 +188,19 @@ export const designPDFwithData = async (data) => {
   divTable.appendChild(table);
   div.appendChild(divTable);
   //#endregion of Table Section
+
+  //#Start Total Amont Section
+  //var labelForResult = document.createElement('label');
+  //labelForResult.setAttribute('class', 'lableForResult');
+  //labelForResult.innerHTML = 'Sum to Pay :';
+  //div.appendChild(labelForResult);
+
+  var divTableTotal = document.createElement('div');
+  // divResult.style.display = 'inline-block';
+  divTableTotal.setAttribute('class', 'divTableTotal');
+  divTableTotal.innerHTML = 'Sum to Pay :' + data.custwithorder.totalcost;
+  div.appendChild(divTableTotal);
+  //#End Region
 
   return await div;
 };

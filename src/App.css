@@ -464,5 +464,13 @@ background-color:yellow;
     padding:5px;
     text-align: center;
   }
+  
+  .divTableTotal{
+    
+    margin-left:550px;
+    font-weight: bold;
+    font-size: larger;
+    margin-top:20px;
+  }
    
 

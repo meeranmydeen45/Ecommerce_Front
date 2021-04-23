@@ -75,7 +75,6 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           <img src={baseUrl + '/' + item.productImage} alt="NA" style={{ width: '50px', height: '50px' }} />
         </td>
         <td>{item.size}</td>
-        <td>{item.cost}</td>
 
         <td>
           <a href="#" onClick={() => cartItemDecrement(item, cartItems)}>
@@ -86,6 +85,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
             +
           </a>
         </td>
+        <td>{item.cost}</td>
         <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
         <td>
           <button className="btn btn-success" onClick={() => removeCart(item, cartItems)}>
@@ -106,8 +106,8 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
             <tr>
               <th>Product Name</th>
               <th>Size</th>
-              <th>Price</th>
               <th>Quantity</th>
+              <th>Price</th>
               <th>Tot.cost</th>
               <th>Remove</th>
             </tr>
