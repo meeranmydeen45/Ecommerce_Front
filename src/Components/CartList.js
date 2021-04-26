@@ -16,9 +16,11 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     customerName: '',
     customerAddress: '',
     customerId: '',
+    customerDiscount: '',
   };
 
   const [getTxtBoxValue, setTxtBoxValue] = useState(initialValue);
+  const [customerStatus, setCustomerStatus] = useState(false);
 
   const hanldeInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +33,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     data.append('CustomerName', 'Empty');
     axios.post(`https://localhost:44348/api/home/is-cutomer-available`, data).then((res) => {
       if (typeof res.data === 'object') {
+        setCustomerStatus(true);
         const { customermobile, customerName, customeraddress, customerId } = res.data;
         setTxtBoxValue({
           customerMobile: customermobile,
@@ -63,8 +66,8 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     await axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
       servertData = res.data;
     });
-    const div = await designPDFwithData(servertData);
-    generatePDFandByteArray(div);
+    const div = await designPDFwithData(servertData, getTxtBoxValue.customerDiscount);
+    generatePDFandByteArray(div, servertData, getTxtBoxValue.customerDiscount);
   };
 
   const cartList = cartItems.map((item, i) => {
@@ -145,7 +148,15 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         />
         <label>TotalAmount</label>
         <input type="text" id="txtAmount" value={totalCost} />
-        <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} />
+        <label>Discount</label>
+        <input
+          type="text"
+          name="customerDiscount"
+          id="txtDiscount"
+          value={getTxtBoxValue.customerDiscount}
+          onChange={hanldeInputChange}
+        />
+        <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} disabled={customerStatus} />
       </div>
       <div id="printAreaH"></div>
     </div>

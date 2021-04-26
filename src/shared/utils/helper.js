@@ -24,7 +24,7 @@ export const getToken = () => {
   else return null;
 };
 
-export const designPDFwithData = async (data) => {
+export const designPDFwithData = async (data, custDiscount) => {
   console.log(data);
   //Parent Div of all Content in PrintPage
   const div = document.createElement('div');
@@ -189,29 +189,42 @@ export const designPDFwithData = async (data) => {
   div.appendChild(divTable);
   //#endregion of Table Section
 
-  //#Start Total Amont Section
-  //var labelForResult = document.createElement('label');
-  //labelForResult.setAttribute('class', 'lableForResult');
-  //labelForResult.innerHTML = 'Sum to Pay :';
-  //div.appendChild(labelForResult);
-
   var divTableTotal = document.createElement('div');
-  // divResult.style.display = 'inline-block';
   divTableTotal.setAttribute('class', 'divTableTotal');
   divTableTotal.innerHTML = 'Sum to Pay :' + data.custwithorder.totalcost;
   div.appendChild(divTableTotal);
+
+  //Calculating detuction amount from discount value
+  let totalCost = data.custwithorder.totalcost;
+  let detectionAmount = (custDiscount / 100) * totalCost;
+  let pay = totalCost - detectionAmount;
+  //End
+
+  var divDiscount = document.createElement('div');
+  divDiscount.setAttribute('class', 'divDiscount');
+  divDiscount.innerHTML = custDiscount + '% Discount will Benefit: ' + detectionAmount;
+  div.appendChild(divDiscount);
+
+  var divPay = document.createElement('div');
+  divPay.setAttribute('class', 'divPay');
+  divPay.innerHTML = 'Your Payment ' + pay;
+  div.appendChild(divPay);
+
   //#End Region
 
   return await div;
 };
 
-export const generatePDFandByteArray = (dynamicDiv) => {
+export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
   var container = document.getElementById('printAreaH');
+  const dataCollection = data;
+  console.log(dataCollection);
   container.appendChild(dynamicDiv);
   container.style.height = 'auto';
   document.documentElement.scrollTop = 0;
 
   html2canvas(container).then((canvas) => {
+    console.log('Inside:' + dataCollection);
     var img = canvas.toDataURL('image/jpeg');
     var doc = new jsPDF();
     doc.addImage(img, 'jpg', 0, 0);
@@ -221,9 +234,21 @@ export const generatePDFandByteArray = (dynamicDiv) => {
     var byteChar = doc.output();
     var base64 = btoa(byteChar);
 
+    //Calculating detuction amount from discount value
+    let totalCost = dataCollection.custwithorder.totalcost;
+    let detectionAmount = (custDiscount / 100) * totalCost;
+    let pay = totalCost - detectionAmount;
+    console.log('Deduction:' + detectionAmount);
+    console.log('To Pay:' + pay);
+    console.log('Bill Cost: ' + totalCost);
+    //End
     var formData = new FormData();
-    formData.append('FileName', 'myPdfFile');
-    formData.append('base64', base64);
+    formData.append('Billnumber', dataCollection.billnumber);
+    formData.append('Billamount', totalCost);
+    formData.append('Deduction', detectionAmount);
+    formData.append('Payableamount', pay);
+    formData.append('Base64', base64);
+    formData.append('Customerid', dataCollection.custwithorder.customer.customerId);
 
     var config = {
       header: {
