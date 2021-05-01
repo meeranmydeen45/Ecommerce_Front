@@ -25,7 +25,6 @@ export default function CartReducer(state = initialState, action) {
       };
 
     case CART_ITEM_DECREMENT:
-      debugger;
       return {
         ...state,
         items: action.payload,

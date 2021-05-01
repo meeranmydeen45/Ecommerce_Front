@@ -247,6 +247,7 @@ export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
     formData.append('Billamount', totalCost);
     formData.append('Deduction', detectionAmount);
     formData.append('Payableamount', pay);
+    formData.append('Billprofit', dataCollection.billprofit);
     formData.append('Base64', base64);
     formData.append('Customerid', dataCollection.custwithorder.customer.customerId);
 
