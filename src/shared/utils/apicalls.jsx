@@ -5,9 +5,10 @@ export const getCategoryList = () =>{
   return axios.get(`https://localhost:44348/api/home/getcategory`)
 };
 
-export const handleSaveNewProduct = (data) => {
+export const handleSaveNewProduct = (data, imageData) => {
   const productWithCategoryId = new FormData();
   productWithCategoryId.append('ProductName', data.name)
+  productWithCategoryId.append('Imagefile', imageData)
   productWithCategoryId.append('CategoryId', data.id)
   return axios.post(`https://localhost:44348/api/home/addnewproduct`, productWithCategoryId)
 }

@@ -11,6 +11,7 @@ class ProductEntry extends React.Component {
       ImageFile: undefined,
       previewImage: undefined,
       previousFile: null,
+      imagePathName: null,
       categoryValue: '',
       productName: '',
       productSize: '',
@@ -48,6 +49,8 @@ class ProductEntry extends React.Component {
   }
 
   render() {
+    const baseUrl = 'https://localhost:44348/Images/';
+
     const handleDropDownChange = (e) => {
       this.setState({ categoryValue: e.target.value });
     };
@@ -74,8 +77,8 @@ class ProductEntry extends React.Component {
       modal.style.display = 'block';
     };
 
-    const updateValueFromModal = (productName) => {
-      this.setState({ productName: productName });
+    const updateValueFromModal = (productName, imagePath) => {
+      this.setState({ productName: productName, imagePathName: imagePath });
     };
 
     const handleFormSumbit = (e) => {
@@ -193,7 +196,7 @@ class ProductEntry extends React.Component {
 
           <div id="right-Section">
             <label htmlFor="previewImage">PreviewImage of Uploaded File</label>
-            <img src={this.state.previewImage} alt="" style={{ height: '300px' }} />
+            <img src={baseUrl + '/' + this.state.imagePathName} alt="" style={{ height: '300px' }} />
           </div>
           <Modal data={this.state.modalData} updateValueToMain={updateValueFromModal}></Modal>
         </div>

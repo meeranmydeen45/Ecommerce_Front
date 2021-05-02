@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getCategoryList, handleSaveNewProduct } from '../shared/utils/apicalls';
 import SelectField from '../atoms/Select/index';
-import InputField from '../atoms/Input/index';
 
 function NewProducts() {
   const [dataList, setDataList] = useState([]);
   const [selectValue, setSelectValue] = useState('');
   const [txtBoxValue, setTxtBoxValue] = useState('');
+  const [imageFile, setImage] = useState(undefined);
+  const [previousImage, setPreviousImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(undefined);
+
   let isData = false;
+  let isImage = false;
   let idWithName = {};
 
   useEffect(() => {
@@ -25,8 +29,19 @@ function NewProducts() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!imageFile) {
+      return;
+    }
+    const imageUrl = URL.createObjectURL(imageFile);
+    if (previousImage !== imageFile) {
+      setPreviewImage(imageUrl);
+      setPreviousImage(imageFile);
+    }
+  }, [imageFile]);
+
   const handleSaveClick = () => {
-    let promise = handleSaveNewProduct(idWithName);
+    let promise = handleSaveNewProduct(idWithName, imageFile);
     promise.then((res) => {
       alert(res.data);
     });
@@ -41,6 +56,16 @@ function NewProducts() {
   };
   idWithName.id = selectValue;
   idWithName.name = txtBoxValue;
+
+  const handleImageChange = (e) => {
+    if (!e.target.files && e.target.files.length === 0) {
+      setImage(undefined);
+      return;
+    }
+    setPreviousImage(imageFile);
+    setImage(e.target.files[0]);
+  };
+
   return (
     <div className="newProducts">
       <div className="newProducts-Inner">
@@ -52,6 +77,12 @@ function NewProducts() {
           <b>Register Your New Products</b>
         </div>
         <input type="text" value={txtBoxValue} onChange={handleTextBox} />
+        <div>
+          <input type="file" onChange={handleImageChange} />
+        </div>
+        <div>
+          <img src={previewImage} alt="" style={{ width: '100px' }} />
+        </div>
         <input type="button" value="Save" onClick={handleSaveClick} className="buttonNewRegister" />
         <input type="button" value="Show" className="buttonNewRegister" />
       </div>
