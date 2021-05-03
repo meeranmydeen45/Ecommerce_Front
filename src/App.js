@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import ProductEntry from './Components/ProductEntry';
 import NewCategory from './Components/NewCategory';
 import NewProducts from './Components/NewProducts';
+import StockPriceChange from './Components/StockPriceChange';
 import Login from './Components/Login';
 import NewUser from './Components/NewUser';
 import AdminRoute from './Components/AdminRoute';
@@ -64,6 +65,9 @@ class App extends React.Component {
                   <NavLink to="/newproducts">Add-Products</NavLink>
                 </div>
                 <div className="dropdown-item">
+                  <NavLink to="/stockpricechange">StockPrice-Edit</NavLink>
+                </div>
+                <div className="dropdown-item">
                   <NavLink to="/newuser">NewUser</NavLink>
                 </div>
                 <div className="dropdown-item">
@@ -96,6 +100,7 @@ class App extends React.Component {
                 <AdminRoute path="/cardList" component={CardList} />
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
+                <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>

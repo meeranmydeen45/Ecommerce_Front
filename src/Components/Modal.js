@@ -4,7 +4,6 @@ const Modal = (props) => {
   let productsList = '';
   const baseUrl = 'https://localhost:44348/Images/';
   let { data, updateValueToMain } = props;
-  console.log(data);
   const closeModal = (e) => {
     var modal = document.getElementById('modalBackground');
     modal.style.display = 'none';
