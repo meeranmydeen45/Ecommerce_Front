@@ -8,9 +8,6 @@ class ProductEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ImageFile: undefined,
-      previewImage: undefined,
-      previousFile: null,
       imagePathName: null,
       categoryValue: '',
       productName: '',
@@ -37,16 +34,16 @@ class ProductEntry extends React.Component {
       });
   }
 
-  componentDidUpdate() {
-    if (!this.state.ImageFile) {
-      //this.setState({previewImage: undefined})
-      return;
-    }
-    const imageUrl = URL.createObjectURL(this.state.ImageFile);
-    if (this.state.previousFile !== this.state.ImageFile) {
-      this.setState({ previewImage: imageUrl, previousFile: this.state.ImageFile });
-    }
-  }
+  // componentDidUpdate() {
+  //   if (!this.state.ImageFile) {
+  //     //this.setState({previewImage: undefined})
+  //     return;
+  //   }
+  //   const imageUrl = URL.createObjectURL(this.state.ImageFile);
+  //   if (this.state.previousFile !== this.state.ImageFile) {
+  //     this.setState({ previewImage: imageUrl, previousFile: this.state.ImageFile });
+  //   }
+  // }
 
   render() {
     const baseUrl = 'https://localhost:44348/Images/';
@@ -59,14 +56,14 @@ class ProductEntry extends React.Component {
       this.setState({ [e.target.name]: e.target.value });
     };
 
-    const handleImageChange = (e) => {
-      if (!e.target.files && e.target.files.length === 0) {
-        this.setState({ ImageFile: undefined });
-        return;
-      }
-      this.setState({ previousFile: this.state.ImageFile });
-      this.setState({ ImageFile: e.target.files[0] });
-    };
+    // const handleImageChange = (e) => {
+    //   if (!e.target.files && e.target.files.length === 0) {
+    //     this.setState({ ImageFile: undefined });
+    //     return;
+    //   }
+    //   this.setState({ previousFile: this.state.ImageFile });
+    //   this.setState({ ImageFile: e.target.files[0] });
+    // };
 
     const handleModel = (e) => {
       let promise = getProductsforModal(this.state.categoryValue);
@@ -90,7 +87,6 @@ class ProductEntry extends React.Component {
       formData.append('Size', this.state.productSize);
       formData.append('Quantity', this.state.productQuantity);
       formData.append('Cost', this.state.productPrize);
-      formData.append('ImageFile', this.state.ImageFile);
 
       console.log(this.state.categoryValue);
 
@@ -173,17 +169,15 @@ class ProductEntry extends React.Component {
                   <label>TotalCost</label>
                 </div>
                 <div id="div4-4">
-                  <label>$45,000</label>
+                  <label>INR {this.state.productQuantity * this.state.productPrize}</label>
                 </div>
               </div>
 
               <div id="div4">
                 <div id="div4-1">
-                  <label>FileUpload</label>
+                  <label>EXTRAS</label>
                 </div>
-                <div id="div4-2">
-                  <input type="file" onChange={handleImageChange} />
-                </div>
+                <div id="div4-2">FILE UPLOAD REMOVED</div>
                 <div id="div4-3"></div>
                 <div id="div4-4"></div>
               </div>

@@ -25,7 +25,6 @@ export const getToken = () => {
 };
 
 export const designPDFwithData = async (data, custDiscount) => {
-  console.log(data);
   //Parent Div of all Content in PrintPage
   const div = document.createElement('div');
   div.setAttribute('id', 'divParent');
@@ -218,7 +217,7 @@ export const designPDFwithData = async (data, custDiscount) => {
 export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
   var container = document.getElementById('printAreaH');
   const dataCollection = data;
-  console.log(dataCollection);
+  console.log('dataCollec: ' + dataCollection);
   container.appendChild(dynamicDiv);
   container.style.height = 'auto';
   document.documentElement.scrollTop = 0;
