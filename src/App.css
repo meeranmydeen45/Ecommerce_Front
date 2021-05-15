@@ -473,4 +473,29 @@ background-color:yellow;
     margin-top:20px;
   }
    
+/* Payment Section */
 
+.div-PaymentPage{
+  background-color: lightblue;
+  width:50%;
+  height: 100vh;
+  margin:auto;
+  padding: 50px;
+
+}
+.div-PaymentPage input[type="text"]{
+  width: auto;
+}
+.div-bill-cust-details{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.div-bill-cust-details label{
+  width:150px;
+}
+.div-thirdsection label{
+width: 150px;
+}
+.div-thirdsection input[type="text"], select{
+  width: 150px;
+}

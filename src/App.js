@@ -11,6 +11,7 @@ import NewProducts from './Components/NewProducts';
 import StockPriceChange from './Components/StockPriceChange';
 import Login from './Components/Login';
 import NewUser from './Components/NewUser';
+import PaymentPage from './Components/PaymentPage';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
 import Logout from '../src/Components/Logout';
@@ -46,6 +47,11 @@ class App extends React.Component {
             <div>
               <NavLink activeClassName="active" to="/order">
                 PlacerOrder
+              </NavLink>
+            </div>
+            <div>
+              <NavLink activeClassName="active" to="/payment">
+                Payment
               </NavLink>
             </div>
             <div>
@@ -98,6 +104,7 @@ class App extends React.Component {
                 <AdminRoute path="/register" component={ProductEntry} />
                 <AdminRoute path="/order" component={OrderComponent} />
                 <AdminRoute path="/cardList" component={CardList} />
+                <AdminRoute path="/Payment" component={PaymentPage} />
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
