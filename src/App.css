@@ -473,7 +473,7 @@ background-color:yellow;
     margin-top:20px;
   }
    
-/* Payment Section */
+/* Payment-Page Section */
 
 .div-PaymentPage{
   background-color: lightblue;
@@ -498,4 +498,32 @@ width: 150px;
 }
 .div-thirdsection input[type="text"], select{
   width: 150px;
+}
+
+/*Reversal-Page Section*/
+.div-ReversalPage{
+  background-color: coral;
+  width:50%;
+  margin: auto;
+  height: 90vh;
+
+}
+.div-ReversalPage label{
+width: 150px;
+}
+.div-ReversalPage select{
+  width: 200px;
+  margin-bottom: 20px;
+}
+.div-ReversalPage input[type="text"]{
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+/*SizeAdd-Page Section*/
+.div-Adding-Size{
+  background-color: coral;
+  width:50%;
+  margin: auto;
+  height: 90vh;
 }

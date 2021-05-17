@@ -12,6 +12,8 @@ import StockPriceChange from './Components/StockPriceChange';
 import Login from './Components/Login';
 import NewUser from './Components/NewUser';
 import PaymentPage from './Components/PaymentPage';
+import ReversalPage from './Components/ReversalPage';
+import SizesAddPage from './Components/SizesAddPage';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
 import Logout from '../src/Components/Logout';
@@ -55,6 +57,11 @@ class App extends React.Component {
               </NavLink>
             </div>
             <div>
+              <NavLink activeClassName="active" to="/reverse">
+                Reverse Entry
+              </NavLink>
+            </div>
+            <div>
               <NavLink activeClassName="active" to="/order">
                 Reports
               </NavLink>
@@ -69,6 +76,9 @@ class App extends React.Component {
                 </div>
                 <div className="dropdown-item">
                   <NavLink to="/newproducts">Add-Products</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/newsizes">Add-Sizes</NavLink>
                 </div>
                 <div className="dropdown-item">
                   <NavLink to="/stockpricechange">StockPrice-Edit</NavLink>
@@ -105,8 +115,10 @@ class App extends React.Component {
                 <AdminRoute path="/order" component={OrderComponent} />
                 <AdminRoute path="/cardList" component={CardList} />
                 <AdminRoute path="/Payment" component={PaymentPage} />
+                <AdminRoute path="/reverse" component={ReversalPage} />
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
+                <AdminRoute path="/newsizes" component={SizesAddPage} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />

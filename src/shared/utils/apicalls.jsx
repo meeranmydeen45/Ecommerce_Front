@@ -5,6 +5,18 @@ export const getCategoryList = () =>{
   return axios.get(`https://localhost:44348/api/home/getcategory`)
 };
 
+export const getProductById = (categoryId) => {
+  const data = new FormData()
+  data.append('Id', categoryId)
+  if(categoryId !== 'default')
+  {
+  return axios.post(`https://localhost:44348/api/home/getproductbyid`, data)
+  }
+  else{
+    return null
+  }
+}
+
 export const handleSaveNewProduct = (data, imageData) => {
   const productWithCategoryId = new FormData();
   productWithCategoryId.append('ProductName', data.name)
@@ -45,4 +57,14 @@ export const customerRegistration = (customerObj) => {
  data.append('CustomerId', customerObj.customerId)
 return axios.post(`https://localhost:44348/api/home/customer-registration`, data)
 
+}
+
+export const AddingSizeInDB = (size) => {
+  const data = new FormData()
+  data.append('Size', size)
+  return axios.post(`https://localhost:44348/api/manage/addsizes`, data)
+}
+
+export const GetSizesInDB = () => {
+  return axios.get(`https://localhost:44348/api/manage/getsizes`)
 }
