@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Modal from './Modal';
 import { getProductsforModal } from '../shared/utils/apicalls';
-import $ from 'jquery';
 
 class ProductEntry extends React.Component {
   constructor(props) {

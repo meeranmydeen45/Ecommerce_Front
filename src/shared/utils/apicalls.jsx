@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 export const getCategoryList = () =>{
   
   return axios.get(`https://localhost:44348/api/home/getcategory`)
@@ -67,4 +68,21 @@ export const AddingSizeInDB = (size) => {
 
 export const GetSizesInDB = () => {
   return axios.get(`https://localhost:44348/api/manage/getsizes`)
+}
+
+export const GetBillData = (billNumber) => {
+  let formData = new FormData();
+      formData.append('Billnumber', billNumber);
+      return axios.post(`https://localhost:44348/api/manage/getbilldata`, formData)
+}
+
+export const PostReverseEntryData = (obj) =>{
+  let formData = new FormData();
+  formData.append('Billnumber', obj.Billnumber)
+  formData.append('Productid', obj.Productid)
+  formData.append('Size', obj.Size)
+  formData.append('Quantity', obj.Quantity)
+  formData.append('Saleprice', obj.Saleprice)
+  
+  return axios.post(`https://localhost:44348/api/reverse/reverseentry`, formData)
 }

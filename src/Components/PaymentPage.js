@@ -34,7 +34,6 @@ class PaymentPage extends React.Component {
           customerMobile: data.customer.customermobile,
           customerBillAmount: data.totalcost,
         });
-        console.log(res.data);
       });
     };
     const buttonStoreData = () => {

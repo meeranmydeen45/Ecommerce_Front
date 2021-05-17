@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getCategoryList, getProductById, GetSizesInDB } from '../shared/utils/apicalls';
+import {
+  getCategoryList,
+  getProductById,
+  GetSizesInDB,
+  GetBillData,
+  PostReverseEntryData,
+} from '../shared/utils/apicalls';
 import useTextBoxControl from '../shared/utils/useTexBoxControl';
 import SelectField from '../atoms/Select/index';
+import $ from 'jquery';
 
 function ReversalPage() {
   const [categoryList, setCategoryList] = useState([]);
@@ -11,8 +18,11 @@ function ReversalPage() {
   const [selectValueCategory, setSelectValueCategory] = useState('');
   const [selectValueProduct, setSelectValueProduct] = useState('');
   const [selectValueSize, setSelectValueSize] = useState('');
+  const [isBillNumberValid, setBillNumberValidStatus] = useState(false);
+  const [isFieldsStatus, setFieldStatus] = useState(false);
   const getQuantity = useTextBoxControl('');
-  const getUnitPrice = useTextBoxControl('');
+  const getSalePrice = useTextBoxControl('');
+  const getBillNumber = useTextBoxControl('');
 
   //Use Effect for - Get Categories
   useEffect(() => {
@@ -59,15 +69,63 @@ function ReversalPage() {
     setSelectValueSize(e.target.value);
   };
 
-  const handleReverseClick = () => {
-    console.log(getQuantity.value);
-    console.log(getUnitPrice.value);
-    console.log(selectValueCategory);
-    console.log(selectValueProduct);
-    console.log(selectValueSize);
+  const getBillData = () => {
+    if (!isNaN(getBillNumber.value)) {
+      const promise2 = GetBillData(getBillNumber.value);
+      promise2.then((res) => {
+        let data = res.data;
+        if (data.customer) {
+          setBillNumberValidStatus(true);
+          $('#txtBillNumber').val('');
+        } else {
+          setBillNumberValidStatus(false);
+        }
+      });
+    } else {
+      setBillNumberValidStatus(false);
+      alert('Enter Valid Data');
+    }
   };
+
+  const handleReverseClick = () => {
+    var obj = {};
+    obj.Billnumber = $('#txtBillNumber').val();
+    obj.Productid = selectValueProduct;
+    obj.Size = selectValueSize;
+    obj.Quantity = getQuantity.value;
+    obj.Saleprice = getSalePrice.value;
+    if (isBillNumberValid && !isNaN(obj.Quantity) && !isNaN(obj.Saleprice)) {
+      console.log(obj);
+      const promise3 = PostReverseEntryData(obj);
+      promise3
+        .then((res) => {
+          alert(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert('Error Occured while Reversing');
+        });
+    } else {
+      alert('Incorrect Details!');
+    }
+  };
+
+  const billStatusText = isBillNumberValid == true ? 'Valid-Bill' : 'Check-Bill';
+
   return (
     <div className="div-ReversalPage">
+      <div>
+        <label>Enter Bill Number:</label>
+        <input type="text" {...getBillNumber} id="txtBillNumber" />
+        <input type="button" value="GetBill" onClick={getBillData} />
+      </div>
+
+      <div>
+        <p id="ptagBillText">
+          <b>{billStatusText}</b>
+        </p>
+      </div>
+
       <div>
         <label>Select Category</label>
         <SelectField data={categoryList} onChange={handleSelectCategory} />
@@ -90,13 +148,13 @@ function ReversalPage() {
 
       <div>
         <label>Unit Price</label>
-        <input type="text" {...getUnitPrice} />
+        <input type="text" {...getSalePrice} />
       </div>
 
       <div>
         <input
           type="button"
-          value="Change"
+          value="Reverse"
           style={{ marginLeft: '150px', width: '200px' }}
           onClick={handleReverseClick}
         />

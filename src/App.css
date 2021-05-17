@@ -472,7 +472,8 @@ background-color:yellow;
     font-size: larger;
     margin-top:20px;
   }
-   
+ /*End of Print Area*/
+  
 /* Payment-Page Section */
 
 .div-PaymentPage{
@@ -518,6 +519,11 @@ width: 150px;
 .div-ReversalPage input[type="text"]{
   max-width: 200px;
   margin-bottom: 20px;
+}
+#ptagBillText{
+  font-weight: bold;
+  margin-left: 150px;
+  color:blue;
 }
 
 /*SizeAdd-Page Section*/

@@ -24,7 +24,7 @@ function SelectField(props){
     else if(data[0].size){
         //For Sizes
             options = data.map((item,i) =>{
-            return <option value={item.id}>{item.size}</option>
+            return <option value={item.size}>{item.size}</option>
            })  
     }
     }
