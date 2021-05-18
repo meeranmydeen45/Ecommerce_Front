@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { GetCustomerAccountDetails } from '../shared/utils/apicalls';
 
 class PaymentPage extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class PaymentPage extends React.Component {
       customerMobile: '',
       customerBillAmount: '',
       paymentMode: '',
+      availableAccountBalance: '',
+      isValid: false,
     };
   }
   render() {
@@ -21,20 +24,58 @@ class PaymentPage extends React.Component {
 
     const handleSelectChange = (e) => {
       this.setState({ paymentMode: e.target.value });
+      if (this.state.isValid) {
+      } else {
+      }
+    };
+    // Select Handling Issue in PaymentMode - Because of that function written outside instead of Select Hanlding
+    const getAvailableBalance = () => {
+      if (this.state.isValid) {
+        if (this.state.paymentMode === 'ACCOUNT') {
+          let promiseCustAccount = GetCustomerAccountDetails(this.state.customerid);
+          promiseCustAccount
+            .then((res) => {
+              let data = res.data;
+              this.setState({ availableAccountBalance: data.availableamount });
+            })
+            .catch((err) => {
+              console.log(err);
+              alert(`Error Occured whilte fetchinig Account Details of Mr.${this.state.customerName}`);
+            });
+        }
+      }
     };
 
+    getAvailableBalance();
+
     const buttonGetBillData = () => {
-      let formData = new FormData();
-      formData.append('Billnumber', this.state.txtBillNumber);
-      axios.post(`https://localhost:44348/api/manage/getbilldata`, formData).then((res) => {
-        let data = res.data;
-        this.setState({
-          customerid: data.customer.customerId,
-          customerName: data.customer.customerName,
-          customerMobile: data.customer.customermobile,
-          customerBillAmount: data.totalcost,
+      if (!isNaN(this.state.txtBillNumber)) {
+        let formData = new FormData();
+        formData.append('Billnumber', this.state.txtBillNumber);
+        axios.post(`https://localhost:44348/api/manage/getbilldata`, formData).then((res) => {
+          let data = res.data;
+          if (data.customer !== null) {
+            this.setState({
+              customerid: data.customer.customerId,
+              customerName: data.customer.customerName,
+              customerMobile: data.customer.customermobile,
+              customerBillAmount: data.totalcost,
+              isValid: true,
+            });
+          } else {
+            alert('Incorrect Bill Number');
+            this.setState({
+              customerid: '',
+              customerName: '',
+              customerMobile: '',
+              customerBillAmount: '',
+              isValid: false,
+            });
+          }
         });
-      });
+      } else {
+        alert('Enter Number Values only!');
+      }
     };
     const buttonStoreData = () => {
       let formData = new FormData();
@@ -79,10 +120,11 @@ class PaymentPage extends React.Component {
           <div>
             <label>Payment-Mode:</label>
             <select onChange={handleSelectChange}>
-              <option value="1">Cash</option>
-              <option value="2">Account-Debit</option>
+              <option value="CASH">Cash</option>
+              <option value="ACCOUNT">Account-Debit</option>
             </select>
           </div>
+          <div></div>
           <div>
             <label>Pay:</label>
             <input

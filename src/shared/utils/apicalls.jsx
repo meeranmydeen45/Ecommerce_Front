@@ -86,3 +86,23 @@ export const PostReverseEntryData = (obj) =>{
   
   return axios.post(`https://localhost:44348/api/reverse/reverseentry`, formData)
 }
+
+export const GetCustomerById = (id) => {
+  let formData = new FormData();
+  formData.append('CustomerId', id)
+  return axios.post(`https://localhost:44348/api/manage/getcustomerbyid`, formData)
+}
+
+export const CreateCustomerAccount = (custId, custName, custMobile) => {
+  let formData = new FormData();
+  formData.append('Customerid',custId)
+  formData.append('Customername', custName)
+  formData.append('Customermobile', custMobile)
+  return axios.post(`https://localhost:44348/api/manage/createcustomeraccount`, formData)
+}
+
+export const GetCustomerAccountDetails = (custId) => {
+  let formData = new FormData();
+  formData.append('Customerid',custId)
+  return axios.post(`https://localhost:44348/api/manage/getcustomeraccount`, formData)
+}

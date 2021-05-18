@@ -503,10 +503,11 @@ width: 150px;
 
 /*Reversal-Page Section*/
 .div-ReversalPage{
-  background-color: coral;
+  background-color:royalblue;
   width:50%;
   margin: auto;
   height: 90vh;
+  padding: 50px;
 
 }
 .div-ReversalPage label{
@@ -523,7 +524,7 @@ width: 150px;
 #ptagBillText{
   font-weight: bold;
   margin-left: 150px;
-  color:blue;
+  color:greenyellow;
 }
 
 /*SizeAdd-Page Section*/
@@ -532,4 +533,30 @@ width: 150px;
   width:50%;
   margin: auto;
   height: 90vh;
+  padding: 50px;
+}
+
+/*CustomerAccount-Page Section*/
+.div-CustomerAccountPage{
+  background-color: indianred;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+.div-CustomerAccountPage label{
+min-width: 150px;
+}
+.div-CustomerAccountPage input[type="text"]{
+  max-width:200px;
+}
+
+/*Cash Position- Page Section*/
+.div-CashPositionPage{
+  background-color:goldenrod;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+  
 }

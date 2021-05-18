@@ -14,6 +14,8 @@ import NewUser from './Components/NewUser';
 import PaymentPage from './Components/PaymentPage';
 import ReversalPage from './Components/ReversalPage';
 import SizesAddPage from './Components/SizesAddPage';
+import CustomerAccountPage from './Components/CustomerAccountPage';
+import CashPositionPage from './Components/CashPositionPage';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
 import Logout from '../src/Components/Logout';
@@ -84,6 +86,12 @@ class App extends React.Component {
                   <NavLink to="/stockpricechange">StockPrice-Edit</NavLink>
                 </div>
                 <div className="dropdown-item">
+                  <NavLink to="/createcustomeraccount">Create-Cust-Account</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/cashposition">Cash-Position</NavLink>
+                </div>
+                <div className="dropdown-item">
                   <NavLink to="/newuser">NewUser</NavLink>
                 </div>
                 <div className="dropdown-item">
@@ -119,6 +127,8 @@ class App extends React.Component {
                 <AdminRoute path="/newcategory" component={NewCategory} />
                 <AdminRoute path="/newproducts" component={NewProducts} />
                 <AdminRoute path="/newsizes" component={SizesAddPage} />
+                <AdminRoute path="/createcustomeraccount" component={CustomerAccountPage} />
+                <AdminRoute path="/cashposition" component={CashPositionPage} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
