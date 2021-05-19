@@ -70,7 +70,7 @@ function ReversalPage() {
   };
 
   const getBillData = () => {
-    if (!isNaN(getBillNumber.value)) {
+    if (!isNaN(getBillNumber.value) && getBillNumber.value != '') {
       const promise2 = GetBillData(getBillNumber.value);
       promise2.then((res) => {
         let data = res.data;
@@ -142,12 +142,12 @@ function ReversalPage() {
       </div>
 
       <div>
-        <label>No. of Quantity:</label>
+        <label>Quantity</label>
         <input type="text" {...getQuantity} />
       </div>
 
       <div>
-        <label>Unit Price</label>
+        <label>Sale Price</label>
         <input type="text" {...getSalePrice} />
       </div>
 

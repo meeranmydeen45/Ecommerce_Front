@@ -12,7 +12,7 @@ class PaymentPage extends React.Component {
       customerName: '',
       customerMobile: '',
       customerBillAmount: '',
-      paymentMode: '',
+      paymentMode: 'CASH',
       availableAccountBalance: '',
       isValid: false,
     };
@@ -24,14 +24,11 @@ class PaymentPage extends React.Component {
 
     const handleSelectChange = (e) => {
       this.setState({ paymentMode: e.target.value });
-      if (this.state.isValid) {
-      } else {
-      }
     };
     // Select Handling Issue in PaymentMode - Because of that function written outside instead of Select Hanlding
     const getAvailableBalance = () => {
       if (this.state.isValid) {
-        if (this.state.paymentMode === 'ACCOUNT') {
+        if (this.state.paymentMode === 'ACCOUNT' && this.state.availableAccountBalance === '') {
           let promiseCustAccount = GetCustomerAccountDetails(this.state.customerid);
           promiseCustAccount
             .then((res) => {
@@ -42,10 +39,11 @@ class PaymentPage extends React.Component {
               console.log(err);
               alert(`Error Occured whilte fetchinig Account Details of Mr.${this.state.customerName}`);
             });
+        } else if (this.state.paymentMode === 'CASH' && this.state.availableAccountBalance !== '') {
+          this.setState({ availableAccountBalance: '' });
         }
       }
     };
-
     getAvailableBalance();
 
     const buttonGetBillData = () => {
@@ -77,7 +75,7 @@ class PaymentPage extends React.Component {
         alert('Enter Number Values only!');
       }
     };
-    const buttonStoreData = () => {
+    const buttonMakePayment = () => {
       let formData = new FormData();
       formData.append('Billnumber', this.state.txtBillNumber);
       formData.append('Customerid', this.state.customerid);
@@ -88,6 +86,16 @@ class PaymentPage extends React.Component {
         .post(`https://localhost:44348/api/manage/storepayment`, formData)
         .then((res) => {
           alert('Transaction Completed!!');
+          this.setState({
+            txtBillNumber: '',
+            customerName: '',
+            customerMobile: '',
+            customerBillAmount: '',
+            isValid: false,
+            txtPay: '',
+            availableAccountBalance: '',
+            paymentMode: '',
+          });
         })
         .catch((err) => {
           console.log(err);
@@ -124,7 +132,10 @@ class PaymentPage extends React.Component {
               <option value="ACCOUNT">Account-Debit</option>
             </select>
           </div>
-          <div></div>
+          <div>
+            <label>{this.state.availableAccountBalance !== '' ? 'Account Balance' : ''}</label>
+            <label>{this.state.availableAccountBalance}</label>
+          </div>
           <div>
             <label>Pay:</label>
             <input
@@ -140,7 +151,7 @@ class PaymentPage extends React.Component {
               type="button"
               value="store"
               style={{ marginTop: '20px', marginLeft: '150px', width: '150px' }}
-              onClick={buttonStoreData}
+              onClick={buttonMakePayment}
             />
           </div>
         </div>

@@ -196,12 +196,12 @@ export const designPDFwithData = async (data, custDiscount) => {
   //Calculating detuction amount from discount value
   let totalCost = data.custwithorder.totalcost;
   let detectionAmount = (custDiscount / 100) * totalCost;
-  let pay = totalCost - detectionAmount;
+  let pay = totalCost - parseInt(detectionAmount);
   //End
 
   var divDiscount = document.createElement('div');
   divDiscount.setAttribute('class', 'divDiscount');
-  divDiscount.innerHTML = custDiscount + '% Discount will Benefit: ' + detectionAmount;
+  divDiscount.innerHTML = custDiscount + '% Discount will Benefit: ' + parseInt(detectionAmount);
   div.appendChild(divDiscount);
 
   var divPay = document.createElement('div');
@@ -236,15 +236,16 @@ export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
     //Calculating detuction amount from discount value
     let totalCost = dataCollection.custwithorder.totalcost;
     let detectionAmount = (custDiscount / 100) * totalCost;
-    let pay = totalCost - detectionAmount;
-    console.log('Deduction:' + detectionAmount);
+
+    let pay = totalCost - parseInt(detectionAmount);
+    console.log('Deduction:' + parseInt(detectionAmount));
     console.log('To Pay:' + pay);
     console.log('Bill Cost: ' + totalCost);
     //End
     var formData = new FormData();
     formData.append('Billnumber', dataCollection.billnumber);
     formData.append('Billamount', totalCost);
-    formData.append('Deduction', detectionAmount);
+    formData.append('Deduction', parseInt(detectionAmount));
     formData.append('Payableamount', pay);
     formData.append('Billprofit', dataCollection.billprofit);
     formData.append('Base64', base64);

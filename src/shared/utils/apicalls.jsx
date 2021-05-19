@@ -106,3 +106,7 @@ export const GetCustomerAccountDetails = (custId) => {
   formData.append('Customerid',custId)
   return axios.post(`https://localhost:44348/api/manage/getcustomeraccount`, formData)
 }
+
+export const GetGlobalCashAPI = () => {
+  return axios.get(`https://localhost:44348/api/manage/getglobalcash`)
+}
