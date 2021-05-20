@@ -551,7 +551,43 @@ min-width: 150px;
   max-width:200px;
 }
 
-/*Cash Position- Page Section*/
+/*Get All Pending Bills - Page*/
+.div-GetPendingBillsPage{
+  background-color:olivedrab;
+  width: 70%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+.div-GetPendingBillsPage input[type="text"]{
+  max-width: 250px;
+  margin-bottom: 30px;
+}
+.div-GetPendingBillsPage label{
+  margin-right: 10px;
+  letter-spacing: 2px;
+}
+.div-GetPendingBillsPage input[type="radio"]{
+  margin-right: 5px;
+}
+/*ReprintBill - Page Section*/
+.div-ReprintBillPage{
+  background-color:darkslateblue;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+.div-ReprintBillPage label{
+  min-width: 150px;
+  }
+  .div-ReprintBillPage input[type="text"]{
+    max-width:200px;
+  }
+
+
+
+/*GlobalCash Position- Page Section*/
 .div-CashPositionPage{
   background-color:goldenrod;
   width: 50%;

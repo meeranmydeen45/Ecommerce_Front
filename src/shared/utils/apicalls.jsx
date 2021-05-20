@@ -110,3 +110,40 @@ export const GetCustomerAccountDetails = (custId) => {
 export const GetGlobalCashAPI = () => {
   return axios.get(`https://localhost:44348/api/manage/getglobalcash`)
 }
+
+export const GetAllPendingBillsAPI = () => {
+  
+    return axios.get(`https://localhost:44348/api/manage/getallpendingbills`)
+}
+
+export const GetPendingBillByCustomerAPI = (txtValue, searchCriteria) => {
+  let formData = new FormData();
+  formData.append('TextBoxValue', txtValue)
+  formData.append('SearchCriteria',searchCriteria)
+  return axios.post(`https://localhost:44348/api/manage/getpendingbillsbycustomer`, formData)
+}
+
+export const GetBillPdfAPI = (billNumber) =>{
+  let formData = new FormData();
+  formData.append('Billnumber', billNumber)
+  return axios.post(`https://localhost:44348/api/manage/getpdfbillbyno`, formData)
+}
+
+export const GeneatePDFwithBase64 = (base64Data) => {
+  let base64 = base64Data;
+      base64 = base64.replace(/^[^,]+,/, '');
+      base64 = base64.replace(/\s/g, '');
+      let byteCharacter = atob(base64);
+
+      let byteNumber = new Array(byteCharacter.length);
+
+      for (var i = 0; i < byteCharacter.length; i++) {
+        byteNumber[i] = byteCharacter.charCodeAt(i);
+      }
+      
+      var byteArray = new Uint8Array(byteNumber);
+
+      var blob = new Blob([byteArray], { type: 'application/pdf;base64' });
+      var fileURL = URL.createObjectURL(blob);
+      window.open(fileURL, '_target');
+}

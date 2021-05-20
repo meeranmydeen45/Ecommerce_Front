@@ -217,13 +217,12 @@ export const designPDFwithData = async (data, custDiscount) => {
 export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
   var container = document.getElementById('printAreaH');
   const dataCollection = data;
-  console.log('dataCollec: ' + dataCollection);
+
   container.appendChild(dynamicDiv);
   container.style.height = 'auto';
   document.documentElement.scrollTop = 0;
 
   html2canvas(container).then((canvas) => {
-    console.log('Inside:' + dataCollection);
     var img = canvas.toDataURL('image/jpeg');
     var doc = new jsPDF();
     doc.addImage(img, 'jpg', 0, 0);
@@ -236,12 +235,9 @@ export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
     //Calculating detuction amount from discount value
     let totalCost = dataCollection.custwithorder.totalcost;
     let detectionAmount = (custDiscount / 100) * totalCost;
-
     let pay = totalCost - parseInt(detectionAmount);
-    console.log('Deduction:' + parseInt(detectionAmount));
-    console.log('To Pay:' + pay);
-    console.log('Bill Cost: ' + totalCost);
     //End
+
     var formData = new FormData();
     formData.append('Billnumber', dataCollection.billnumber);
     formData.append('Billamount', totalCost);

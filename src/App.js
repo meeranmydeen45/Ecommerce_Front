@@ -15,6 +15,8 @@ import PaymentPage from './Components/PaymentPage';
 import ReversalPage from './Components/ReversalPage';
 import SizesAddPage from './Components/SizesAddPage';
 import CustomerAccountPage from './Components/CustomerAccountPage';
+import GetPendingBillsPage from './Components/GetPendingBillsPage';
+import ReprintBillPage from './Components/ReprintBillPage';
 import CashPositionPage from './Components/CashPositionPage';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
@@ -89,6 +91,12 @@ class App extends React.Component {
                   <NavLink to="/createcustomeraccount">Create-Cust-Account</NavLink>
                 </div>
                 <div className="dropdown-item">
+                  <NavLink to="/getallpendingbills">Get-PendingBills</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/reprintbill">Reprint-Bill</NavLink>
+                </div>
+                <div className="dropdown-item">
                   <NavLink to="/cashposition">Cash-Position</NavLink>
                 </div>
                 <div className="dropdown-item">
@@ -128,6 +136,8 @@ class App extends React.Component {
                 <AdminRoute path="/newproducts" component={NewProducts} />
                 <AdminRoute path="/newsizes" component={SizesAddPage} />
                 <AdminRoute path="/createcustomeraccount" component={CustomerAccountPage} />
+                <AdminRoute path="/getallpendingbills" component={GetPendingBillsPage} />
+                <AdminRoute path="/reprintbill" component={ReprintBillPage} />
                 <AdminRoute path="/cashposition" component={CashPositionPage} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
