@@ -20,6 +20,8 @@ import ReprintBillPage from './Components/ReprintBillPage';
 import CashPositionPage from './Components/CashPositionPage';
 import AdminRoute from './Components/AdminRoute';
 import UserRoute from './Components/UserRoute';
+import PDFTableCreation from './Components/PDFTableCreation';
+import ReceiptVoucherPage from './Components/ReceiptVoucherPage';
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
 import LogoutRoute from './Components/LogoutRoute';
@@ -103,11 +105,23 @@ class App extends React.Component {
                   <NavLink to="/newuser">NewUser</NavLink>
                 </div>
                 <div className="dropdown-item">
+                  <NavLink to="/TestPrintPDF">TestPrintPDF</NavLink>
+                </div>
+                <div className="dropdown-item">
                   <NavLink to="/logout">LogOut</NavLink>
                 </div>
               </div>
             </div>
-
+            <div className="dropdown">
+              <div className="dropdown-toggle" data-toggle="dropdown">
+                Accounts
+              </div>
+              <div className="dropdown-menu">
+                <div className="dropdown-item">
+                  <NavLink to="/receiptvoucher">Receipt-Voucher</NavLink>
+                </div>
+              </div>
+            </div>
             <div id="userNameText">Welcome {isUserAvailable.username} !</div>
           </div>
         </div>
@@ -141,6 +155,8 @@ class App extends React.Component {
                 <AdminRoute path="/cashposition" component={CashPositionPage} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
+                <AdminRoute path="/TestPrintPDF" component={PDFTableCreation} />
+                <AdminRoute path="/receiptvoucher" component={ReceiptVoucherPage} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>
             </Switch>

@@ -596,3 +596,35 @@ min-width: 150px;
   padding: 50px;
   
 }
+
+/*PDF Table Creation - jsPDF*/
+.div-PDFTableCreation{
+  background-color:darkcyan;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+
+/*Receipt voucher - Page Section*/
+.div-ReceiptVoucherPage{
+  background-color:lightcoral;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+
+.div-ReceiptVoucherPage label{
+  min-width: 250px;
+}
+
+.div-ReceiptVoucherPage input[type="text"]{
+  max-width: 200px;
+}
+
+#btnHandleCreditClick{
+  min-width: 200px;
+  margin-left: 250px;
+  margin-top: 10px;
+}

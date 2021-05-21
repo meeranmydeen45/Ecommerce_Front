@@ -147,3 +147,16 @@ export const GeneatePDFwithBase64 = (base64Data) => {
       var fileURL = URL.createObjectURL(blob);
       window.open(fileURL, '_target');
 }
+
+export const getCustomerAccountAPI = (searchValue) => {
+
+return axios.get(`https://localhost:44348/api/manage/getaccountdetails/?SearchValue=${searchValue}`)
+
+}
+
+export const setCustomerAccountCreditAPI = (customerID, creditAmount) =>{
+  let formData = new FormData();
+  formData.append('Availableamount', creditAmount)
+  formData.append('Customerid', customerID)
+  return axios.post(`https://localhost:44348/api/manage/credittocustaccount`, formData)
+}

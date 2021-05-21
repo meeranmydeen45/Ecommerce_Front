@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import html2canvas from 'html2canvas';
 import axios from 'axios';
 
@@ -273,4 +274,55 @@ export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
       window.open(fileURL, '_target');
     });
   });
+};
+
+export const jsPDFTableCreation = (header, rows, dataObject, voucherType) => {
+  console.log(dataObject);
+  debugger;
+  var doc = new jsPDF('p', 'pt');
+  doc.setFontSize(15);
+
+  var date = new Date().toDateString();
+  var time = new Date();
+  var hours = time.getHours();
+  var minutes = time.getMinutes();
+  var seconds = time.getSeconds();
+  var completeTime = hours + ' H ' + minutes + ' M ' + seconds + ' s';
+  doc.text(480, 20, date);
+  doc.text(480, 40, completeTime);
+  doc.text(180, 50, 'THE ASKAN TRADERS LLC SHOP');
+  doc.text(250, 70, '04-644635');
+
+  //Receipt Voucher
+  if (voucherType === 'RECEIPT') {
+    doc.text(50, 110, 'Customer Name:');
+    doc.text(200, 110, dataObject.customername);
+    doc.text(50, 130, 'VocherType');
+    doc.text(200, 130, voucherType);
+  }
+
+  doc.autoTable(header, rows, {
+    margin: { top: 150, left: 20, right: 20, bottom: 0 },
+    styles: { overflow: 'linebreak', halign: 'center', fontSize: 15 },
+    //tableWidth: 500,
+    //tableLineColor: 'red',
+    //tableLineWidth: 3,
+    theme: 'grid' /*striped*/,
+    didParseCell: function (table) {
+      if (table.section === 'head') {
+        table.cell.styles.fontSize = 18;
+        table.cell.styles.fillColor = 'dodgerblue';
+        table.cell.styles.textColor = 'yellow';
+      } else {
+        table.cell.styles.textColor = 'dodgerblue';
+        table.cell.styles.cellPadding = 5;
+        table.cell.styles.cellWidth = 'auto';
+      }
+    },
+  });
+  let finalY = doc.autoTable.previous.finalY;
+  let noofPage = doc.internal.getNumberOfPages();
+  doc.text(480, finalY + 80, 'No of Pages ' + noofPage);
+  doc.text(250, finalY + 80, 'End of Statement');
+  doc.save('output.pdf');
 };
