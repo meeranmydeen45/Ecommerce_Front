@@ -43,8 +43,8 @@ function ModifiedBillsPage() {
         <table>
           <thead>
             <tr>
-              <td>BillNumber</td>
-              <td>CustomerID</td>
+              <th>BillNumber</th>
+              <th>CustomerID</th>
             </tr>
           </thead>
           <tbody>{tableBodyData}</tbody>

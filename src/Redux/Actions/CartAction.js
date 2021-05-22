@@ -35,8 +35,11 @@ export const addToCart = (item, indexArray, cartItems, indexs) => {
   };
 };
 
-export const removeCart = (item, cartItems) => {
-  const itemsList = cartItems.filter((cartItem) => cartItem.id !== item.id || cartItem.size !== item.size);
+export const removeCart = (item, cartItems, removeAll) => {
+  let itemsList = [];
+  if (!removeAll) {
+    itemsList = cartItems.filter((cartItem) => cartItem.id !== item.id || cartItem.size !== item.size);
+  }
 
   return {
     type: REMOVE_CART,

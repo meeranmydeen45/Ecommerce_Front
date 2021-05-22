@@ -21,6 +21,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
 
   const [getTxtBoxValue, setTxtBoxValue] = useState(initialValue);
   const [customerStatus, setCustomerStatus] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   const hanldeInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,31 +44,74 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         });
       } else {
         alert('Mobile No. not registered with Us');
+        setCustomerStatus(false);
       }
     });
   };
 
-  const storeCustomer = () => {
-    const promise = customerRegistration(getTxtBoxValue);
+  const btnUpdateClick = () => {
+    setUpdateStatus(true);
+    setCustomerStatus(false);
+  };
 
-    promise
-      .then((res) => {})
-      .catch((e) => {
-        console.log(e);
-      });
+  const storeCustomer = () => {
+    const mobile = getTxtBoxValue.customerMobile;
+    const name = getTxtBoxValue.customerName;
+    const address = getTxtBoxValue.customerAddress;
+    console.log(mobile);
+    console.log(!isNaN(mobile));
+    if (!isNaN(mobile) && name !== '' && address !== '') {
+      const promise = customerRegistration(getTxtBoxValue, updateStatus);
+      promise
+        .then((res) => {
+          alert('Registed Sucessfully');
+          setTxtBoxValue({
+            customerMobile: '',
+            customerName: '',
+            customerAddress: '',
+            customerId: '',
+          });
+          setUpdateStatus(false);
+          setCustomerStatus(false);
+        })
+        .catch((e) => {
+          console.log(e);
+          alert('Error Occured while Customer Registration');
+        });
+    } else {
+      alert('Please check your customer Info');
+    }
   };
 
   const makePurchase = async (cartItems) => {
-    let servertData = '';
-    const CustwithOrders = {};
-    CustwithOrders.cartItems = cartItems;
-    CustwithOrders.customer = getTxtBoxValue;
-    CustwithOrders.totalCost = totalCost;
-    await axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
-      servertData = res.data;
-    });
-    const div = await designPDFwithData(servertData, getTxtBoxValue.customerDiscount);
-    generatePDFandByteArray(div, servertData, getTxtBoxValue.customerDiscount);
+    let discount = getTxtBoxValue.customerDiscount;
+
+    if (!isNaN(discount) && customerStatus && cartItems.length > 0) {
+      let servertData = '';
+      const CustwithOrders = {};
+      CustwithOrders.cartItems = cartItems;
+      CustwithOrders.customer = getTxtBoxValue;
+      CustwithOrders.totalCost = totalCost;
+      await axios.post(`https://localhost:44348/api/home/pruchase`, CustwithOrders).then((res) => {
+        servertData = res.data;
+      });
+      discount = getTxtBoxValue.customerDiscount === '' ? 0 : discount;
+      const div = await designPDFwithData(servertData, discount);
+      generatePDFandByteArray(div, servertData, getTxtBoxValue.customerDiscount);
+      removeCart(null, null, true);
+      totalCost = '';
+      totalProducts = '';
+      setTxtBoxValue({
+        customerMobile: '',
+        customerName: '',
+        customerAddress: '',
+        customerId: '',
+      });
+
+      setCustomerStatus(false);
+    } else {
+      alert('Please Check Your Details');
+    }
   };
 
   const cartList = cartItems.map((item, i) => {
@@ -91,7 +135,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         <td>{item.cost}</td>
         <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
         <td>
-          <button className="btn btn-success" onClick={() => removeCart(item, cartItems)}>
+          <button className="btn btn-success" onClick={() => removeCart(item, cartItems, false)}>
             X
           </button>
         </td>
@@ -117,8 +161,20 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           </thead>
           <tbody>{cartList}</tbody>
         </table>
-        Total Cost to Pay {totalCost}
-        <input type="button" class="btn btn-info" value="Store" onClick={() => makePurchase(cartItems)} />
+        <div>
+          <label>Discount</label>
+          <input
+            type="text"
+            name="customerDiscount"
+            id="txtDiscount"
+            value={getTxtBoxValue.customerDiscount}
+            onChange={hanldeInputChange}
+          />
+        </div>
+        <div>Total Cost to Pay {totalCost}</div>
+        <div>
+          <input type="button" class="btn btn-info" value="Store" onClick={() => makePurchase(cartItems)} />
+        </div>
       </div>
       <div className="userSection">
         <label>MobileId</label>
@@ -129,7 +185,10 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           value={getTxtBoxValue.customerMobile}
           onChange={hanldeInputChange}
         />
-        <input type="button" value="Is-UserAvailable?" id="btnCheckUserAvailable" onClick={isUserAvailable} />
+        <div>
+          <input type="button" value="Is-UserAvailable?" id="btnCheckUserAvailable" onClick={isUserAvailable} />
+          <input type="button" value="Update" id="btnUpdate" onClick={btnUpdateClick} />
+        </div>
         <label>Name</label>
         <input
           type="text"
@@ -146,16 +205,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           value={getTxtBoxValue.customerAddress}
           onChange={hanldeInputChange}
         />
-        <label>TotalAmount</label>
-        <input type="text" id="txtAmount" value={totalCost} />
-        <label>Discount</label>
-        <input
-          type="text"
-          name="customerDiscount"
-          id="txtDiscount"
-          value={getTxtBoxValue.customerDiscount}
-          onChange={hanldeInputChange}
-        />
+
         <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} disabled={customerStatus} />
       </div>
       <div id="printAreaH"></div>

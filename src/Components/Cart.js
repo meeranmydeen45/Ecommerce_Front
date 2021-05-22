@@ -21,7 +21,7 @@ class Cart extends React.Component {
           <td>{item.cost}</td>
           <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
           <td>
-            <button className="btn btn-success" onClick={() => removeCart(item, cartItems)}>
+            <button className="btn btn-success" onClick={() => removeCart(item, cartItems, false)}>
               X
             </button>
           </td>

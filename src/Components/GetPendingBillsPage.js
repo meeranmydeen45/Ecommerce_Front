@@ -131,7 +131,7 @@ function GetPendingBillsPage() {
       </div>
       <div>{errorMessage != '' ? errorMessage : ''}</div>
       <div>
-        <tabel id="tableMain">
+        <table>
           <thead>
             <tr>
               <th>BillNo</th>
@@ -143,7 +143,7 @@ function GetPendingBillsPage() {
             </tr>
           </thead>
           <tbody>{errorMessage == '' ? tableBodyData : ''}</tbody>
-        </tabel>
+        </table>
       </div>
       <div style={{ marginTop: '30px', fontWeight: 'bold', color: 'blue' }}>
         {errorMessage === '' ? `Total Amount: ${totalAmountAllPendingBills}` : ''}

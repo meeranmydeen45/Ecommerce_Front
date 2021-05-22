@@ -50,13 +50,13 @@ export const userValidation = (userName, password) => {
   return axios.post(`https://localhost:44348/api/home/uservalidation`, data)
 }
 
-export const customerRegistration = (customerObj) => {
+export const customerRegistration = (customerObj, updateStatus) => {
  const data = new FormData()
  data.append('customermobile', customerObj.customerMobile)
  data.append('CustomerName', customerObj.customerName)
  data.append('Customeraddress', customerObj.customerAddress)
  data.append('CustomerId', customerObj.customerId)
-return axios.post(`https://localhost:44348/api/home/customer-registration`, data)
+return axios.post(`https://localhost:44348/api/home/customer-registration/?update=${updateStatus}`, data)
 
 }
 

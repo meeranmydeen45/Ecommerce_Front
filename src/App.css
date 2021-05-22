@@ -553,10 +553,10 @@ min-width: 150px;
 
 /*Get All Pending Bills - Page*/
 .div-GetPendingBillsPage{
-  background-color:olivedrab;
-  width: 70%;
+  background-color:lightsalmon;
+  width: 80%;
   margin: auto;
-  height: 90vh;
+  min-height: 90vh;
   padding: 50px;
 }
 .div-GetPendingBillsPage input[type="text"]{
@@ -570,6 +570,27 @@ min-width: 150px;
 .div-GetPendingBillsPage input[type="radio"]{
   margin-right: 5px;
 }
+
+.div-GetPendingBillsPage table{
+  width: 100%;
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  
+}
+.div-GetPendingBillsPage table thead{
+  background-color: black;
+  color:white;
+}
+.div-GetPendingBillsPage table tbody{
+  background-color: lightgray;
+  color: blue;
+}
+.div-GetPendingBillsPage input[type="button"]{
+  margin:10px;
+}
+
+
 /*ReprintBill - Page Section*/
 .div-ReprintBillPage{
   background-color:darkslateblue;
@@ -668,4 +689,30 @@ min-width: 150px;
   min-width: 200px;
   margin-left: 150px;
   margin-top: 10px;
+}
+
+/*Lis of all ModifiedBills - Page*/
+
+.div-ModifiedBillsPage{
+  background-color:lightcoral;
+  width: 50%;
+  margin: auto;
+  min-height: 90vh;
+  padding: 50px;
+}
+.div-ModifiedBillsPage table{
+  width: 100%;
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  
+}
+
+.div-ModifiedBillsPage table thead{
+  background-color: black;
+  color:white;
+}
+.div-ModifiedBillsPage table tbody{
+  background-color: lightgray;
+  color: blue;
 }
