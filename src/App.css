@@ -628,3 +628,44 @@ min-width: 150px;
   margin-left: 250px;
   margin-top: 10px;
 }
+
+/*GlobalCash Credit _page */
+.div-GlobalCashCreditPage{
+  background-color:lightcoral;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+.div-GlobalCashCreditPage label{
+  min-width: 150px;
+}
+.div-GlobalCashCreditPage input[type="text"]{
+  max-width: 200px;
+}
+#btnGlobalCashTx{
+  min-width: 200px;
+  margin-left: 150px;
+  margin-top: 10px;
+}
+
+
+/*GlobalCash Debit _page */
+.div-GlobalCashDebitPage{
+  background-color:lightcoral;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}
+.div-GlobalCashDebitPage label{
+  min-width: 150px;
+}
+.div-GlobalCashDebitPage input[type="text"]{
+  max-width: 200px;
+}
+#btnGlobalCashTx{
+  min-width: 200px;
+  margin-left: 150px;
+  margin-top: 10px;
+}

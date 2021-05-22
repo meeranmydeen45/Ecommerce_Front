@@ -277,8 +277,6 @@ export const generatePDFandByteArray = (dynamicDiv, data, custDiscount) => {
 };
 
 export const jsPDFTableCreation = (header, rows, dataObject, voucherType) => {
-  console.log(dataObject);
-  debugger;
   var doc = new jsPDF('p', 'pt');
   doc.setFontSize(15);
 
@@ -294,8 +292,8 @@ export const jsPDFTableCreation = (header, rows, dataObject, voucherType) => {
   doc.text(250, 70, '04-644635');
 
   //Receipt Voucher
-  if (voucherType === 'RECEIPT') {
-    doc.text(50, 110, 'Customer Name:');
+  if (voucherType === 'RECEIPT' || 'DEBIT') {
+    doc.text(50, 110, 'Name:');
     doc.text(200, 110, dataObject.customername);
     doc.text(50, 130, 'VocherType');
     doc.text(200, 130, voucherType);

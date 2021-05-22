@@ -160,3 +160,12 @@ export const setCustomerAccountCreditAPI = (customerID, creditAmount) =>{
   formData.append('Customerid', customerID)
   return axios.post(`https://localhost:44348/api/manage/credittocustaccount`, formData)
 }
+
+export const GlobalCashCreditDebitAPI = (amount, type) => {
+  return axios.post(`https://localhost:44348/api/manage/globalcashtx/?amount=${amount}&type=${type}`)
+}
+
+export const GetModifitedBillsAPI = () => {
+
+return axios.get(`https://localhost:44348/api/manage/modifiedbills`)
+}

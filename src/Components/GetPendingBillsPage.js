@@ -13,6 +13,7 @@ function GetPendingBillsPage() {
   const [isCheckBoxValidStatus, setCheckBoxValidStatus] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   let tableBodyData = '';
+  let totalAmountAllPendingBills = '';
 
   useEffect(() => {
     let mounted = true;
@@ -40,6 +41,7 @@ function GetPendingBillsPage() {
 
   const GenerateTableBody = () => {
     if (billData.length > 0 && billData[0].billnumber) {
+      totalAmountAllPendingBills = billData.reduce((sum, item) => sum + item.pendingamount, 0);
       tableBodyData = billData.map((item, index) => {
         return (
           <tr id={index}>
@@ -55,6 +57,7 @@ function GetPendingBillsPage() {
         );
       });
     } else if (billData.billNumber) {
+      totalAmountAllPendingBills = billData.pendingamount;
       tableBodyData = (
         <tr>
           <td>{billData.billnumber}</td>
@@ -141,6 +144,9 @@ function GetPendingBillsPage() {
           </thead>
           <tbody>{errorMessage == '' ? tableBodyData : ''}</tbody>
         </tabel>
+      </div>
+      <div style={{ marginTop: '30px', fontWeight: 'bold', color: 'blue' }}>
+        {errorMessage === '' ? `Total Amount: ${totalAmountAllPendingBills}` : ''}
       </div>
     </div>
   );
