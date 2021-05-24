@@ -10,6 +10,7 @@ body {
 /*NavBar Section*/
 .containerBox {
   background-color:cadetblue;
+  min-height: 100vh;
 }
 
 .navbarHead{
@@ -715,4 +716,28 @@ min-width: 150px;
 .div-ModifiedBillsPage table tbody{
   background-color: lightgray;
   color: blue;
+}
+
+/*ViewTemplate01 - Page*/
+.div-ViewTemplate01{
+  height:90vh;
+  display: flex;
+  justify-content: center;
+}
+.div-ViewTemplate01-InnerDiv{
+  padding: 50px;
+  background-color: mediumseagreen;
+  width:60%;
+  height: 90vh;
+}
+.div-ViewTemplate01-InnerDiv label{
+  font-weight: bold;
+  min-width: 150px;
+}
+.div-ViewTemplate01-InnerDiv select{
+  min-width: 200px;
+}
+
+#btnGetReportData{
+  width:180px;
 }

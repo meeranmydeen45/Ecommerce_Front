@@ -169,3 +169,17 @@ export const GetModifitedBillsAPI = () => {
 
 return axios.get(`https://localhost:44348/api/manage/modifiedbills`)
 }
+
+
+export const GetDataViewTemplate01API = (obj, type) => {
+  
+  console.log(obj)
+  let formData = new FormData()
+  formData.append('CategoryValue', obj.categoryValue)
+  formData.append('ProductValue', obj.productValue)
+  formData.append('SizeValue', obj.sizeValue)
+  formData.append('FromDate', obj.fromDate)
+  formData.append('EndDate', obj.endDate)
+   return axios.post(`https://localhost:44348/api/viewtemplateone/prodaddhistory`, formData)
+  
+}
