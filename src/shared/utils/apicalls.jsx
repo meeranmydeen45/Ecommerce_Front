@@ -171,7 +171,7 @@ return axios.get(`https://localhost:44348/api/manage/modifiedbills`)
 }
 
 
-export const GetDataViewTemplate01API = (obj, type) => {
+export const GetDataViewTemplate01API = (obj, type, value) => {
   
   console.log(obj)
   let formData = new FormData()
@@ -180,6 +180,6 @@ export const GetDataViewTemplate01API = (obj, type) => {
   formData.append('SizeValue', obj.sizeValue)
   formData.append('FromDate', obj.fromDate)
   formData.append('EndDate', obj.endDate)
-   return axios.post(`https://localhost:44348/api/viewtemplateone/prodaddhistory`, formData)
+   return axios.post(`https://localhost:44348/api/viewtemplateone/prodaddhistory/?groupvalue=${value}`, formData)
   
 }

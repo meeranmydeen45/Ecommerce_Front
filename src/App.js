@@ -25,7 +25,7 @@ import ReceiptVoucherPage from './Components/ReceiptVoucherPage';
 import GlobalCashCreditPage from './Components/GlobalCashCreditPage';
 import GlobalCashDebitPage from './Components/GlobalCashDebitPage';
 import ModifiedBillsPage from './Components/ModifiedBillsPage';
-import ViewTemplate01 from './Components/ViewTemplate01';
+import ProdAddHistoryReportPage from './Components/ProdAddHistoryReportPage';
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
 import LogoutRoute from './Components/LogoutRoute';
@@ -77,8 +77,8 @@ class App extends React.Component {
               </NavLink>
             </div>
             <div>
-              <NavLink activeClassName="active" to="/viewtemplate">
-                View-Template
+              <NavLink activeClassName="active" to="/prodaddhistoryreport">
+                Product Add History Report
               </NavLink>
             </div>
             <div className="dropdown">
@@ -178,7 +178,7 @@ class App extends React.Component {
                 <AdminRoute path="/globalcashcredit" component={GlobalCashCreditPage} />
                 <AdminRoute path="/globalcashdebit" component={GlobalCashDebitPage} />
                 <AdminRoute path="/modifiedBillsPage" component={ModifiedBillsPage} />
-                <AdminRoute path="/viewtemplate" component={ViewTemplate01} />
+                <AdminRoute path="/prodaddhistoryreport" component={ProdAddHistoryReportPage} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>
             </Switch>

@@ -324,3 +324,88 @@ export const jsPDFTableCreation = (header, rows, dataObject, voucherType) => {
   doc.text(250, finalY + 80, 'End of Statement');
   doc.save('output.pdf');
 };
+
+export const generateHeaderDataForTable = (type) => {
+  if (type === 'PRODADDHISTORY') {
+    return ['NAME', 'SIZE', 'QUANTITY', 'COST', 'DATE'];
+  }
+};
+
+export const generateBodyDataForTable = (data) => {
+  const rows = [];
+  data.forEach((item, i) => {
+    var data = [];
+    data[0] = item.productname;
+    data[1] = item.size;
+    data[2] = item.quantity;
+    data[3] = item.cost;
+    data[4] = item.date;
+    rows.push(data);
+  });
+  return rows;
+};
+
+export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, voucherType) => {
+  console.log(fromDate);
+  var doc = new jsPDF('p', 'pt');
+  doc.setFontSize(15);
+
+  // Current Date and Time
+  var date = new Date().toDateString();
+  var time = new Date();
+  var hours = time.getHours();
+  var minutes = time.getMinutes();
+  var seconds = time.getSeconds();
+  var completeTime = hours + ' H ' + minutes + ' M ' + seconds + ' s';
+
+  //Converting FromDate and EndDate to Simple Format
+  let fromDatevalue = fromDate.getDate();
+  let fromMonthValue = fromDate.getMonth();
+  fromMonthValue = parseInt(fromMonthValue) + 1;
+  let fromYearValue = fromDate.getFullYear();
+  var completeFromDate = fromDatevalue + '/' + fromMonthValue + '/' + fromYearValue;
+
+  let endDateValue = endDate.getDate();
+  let endMonthValue = endDate.getMonth();
+  endMonthValue = parseInt(endMonthValue) + 1;
+  let endYearValue = endDate.getFullYear();
+  let completeEndDate = endDateValue + '/' + endMonthValue + '/' + endYearValue;
+
+  doc.setFontSize(13);
+  doc.text(480, 20, date);
+  doc.text(480, 40, completeTime);
+  doc.text(180, 50, 'THE ASKAN TRADERS LLC SHOP');
+  doc.text(250, 70, '04-644635');
+
+  doc.text(50, 110, 'Time Period:');
+  doc.text(200, 110, completeFromDate);
+  doc.text(300, 110, 'BETWEEN');
+  doc.text(400, 110, completeEndDate);
+  doc.text(50, 130, 'VocherType');
+  doc.text(200, 130, voucherType);
+
+  doc.autoTable(header, rows, {
+    margin: { top: 150, left: 20, right: 20, bottom: 0 },
+    styles: { overflow: 'linebreak', halign: 'center', fontSize: 12 },
+    //tableWidth: 500,
+    //tableLineColor: 'red',
+    //tableLineWidth: 3,
+    theme: 'grid' /*striped*/,
+    didParseCell: function (table) {
+      if (table.section === 'head') {
+        table.cell.styles.fontSize = 12;
+        table.cell.styles.fillColor = 'dodgerblue';
+        table.cell.styles.textColor = 'yellow';
+      } else {
+        table.cell.styles.textColor = 'dodgerblue';
+        table.cell.styles.cellPadding = 5;
+        table.cell.styles.cellWidth = 'auto';
+      }
+    },
+  });
+  let finalY = doc.autoTable.previous.finalY;
+  let noofPage = doc.internal.getNumberOfPages();
+  doc.text(480, finalY + 80, 'No of Pages ' + noofPage);
+  doc.text(250, finalY + 80, 'End of Statement');
+  doc.save('output.pdf');
+};

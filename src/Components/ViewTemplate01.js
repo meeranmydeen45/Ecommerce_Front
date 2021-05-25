@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import SelectField from '../atoms/Select/index';
 import { getCategoryList, getProductById, GetSizesInDB, GetDataViewTemplate01API } from '../shared/utils/apicalls';
+import {
+  generateHeaderDataForTable,
+  generateBodyDataForTable,
+  jsPDFTableCreationForReports,
+} from '../shared/utils/helper';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function ViewTemplate01() {
+function ViewTemplate01({ ReportTitle }) {
   const [title, setTitle] = useState('');
   const [fromDate, setFromDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -14,6 +19,7 @@ function ViewTemplate01() {
   const [categoryValue, setSelectValueCategory] = useState('');
   const [productValue, setSelectValueProduct] = useState('');
   const [sizeValue, setSelectValueSize] = useState('');
+  const [groupValue, setGroupValue] = useState('DEFAULT');
   const [type, setType] = useState('');
 
   //Use Effect for - Get Categories
@@ -61,6 +67,10 @@ function ViewTemplate01() {
     setSelectValueSize(e.target.value);
   };
 
+  const handleSelectGroup = (e) => {
+    setGroupValue(e.target.value);
+  };
+
   const handleDateChange = () => {};
 
   const handleButtonClick = () => {
@@ -70,11 +80,17 @@ function ViewTemplate01() {
     obj.sizeValue = sizeValue;
     obj.fromDate = fromDate;
     obj.endDate = endDate;
-    const promise = GetDataViewTemplate01API(obj, type);
+    const promise = GetDataViewTemplate01API(obj, type, groupValue);
     promise
       .then((res) => {
         let data = res.data;
-        console.log(data);
+        if (typeof data === 'object') {
+          const header = generateHeaderDataForTable(ReportTitle);
+          const rows = generateBodyDataForTable(data);
+          jsPDFTableCreationForReports(header, rows, fromDate, endDate, ReportTitle);
+        } else {
+          alert('Not Found any Records!');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -125,8 +141,17 @@ function ViewTemplate01() {
           />
         </div>
         <div>
+          <select onChange={handleSelectGroup}>
+            <option value="DEFAULT">Choose</option>
+            <option value="GROUP">GROUP</option>
+          </select>
+        </div>
+        <div>
           <label></label>
           <input type="button" value="GetData" onClick={handleButtonClick} id="btnGetReportData" />
+        </div>
+        <div className="div-ViewTemplate01-div-table">
+          <table></table>
         </div>
       </div>
     </div>
