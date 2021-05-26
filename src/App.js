@@ -26,6 +26,8 @@ import GlobalCashCreditPage from './Components/GlobalCashCreditPage';
 import GlobalCashDebitPage from './Components/GlobalCashDebitPage';
 import ModifiedBillsPage from './Components/ModifiedBillsPage';
 import ProdAddHistoryReportPage from './Components/ProdAddHistoryReportPage';
+import ProdSaleHistoryReportPage from './Components/ProdSaleHistoryReportPage';
+import ProdSaleProfitReportPage from './Components/ProdSaleProfitReportPage';
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
 import LogoutRoute from './Components/LogoutRoute';
@@ -69,16 +71,6 @@ class App extends React.Component {
             <div>
               <NavLink activeClassName="active" to="/reverse">
                 Reverse Entry
-              </NavLink>
-            </div>
-            <div>
-              <NavLink activeClassName="active" to="/order">
-                Reports
-              </NavLink>
-            </div>
-            <div>
-              <NavLink activeClassName="active" to="/prodaddhistoryreport">
-                Product Add History Report
               </NavLink>
             </div>
             <div className="dropdown">
@@ -140,6 +132,24 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
+
+            <div className="dropdown">
+              <div className="dropdown-toggle" data-toggle="dropdown">
+                Reports
+              </div>
+              <div className="dropdown-menu">
+                <div className="dropdown-item">
+                  <NavLink to="/prodaddhistoryreport">ProdAddHistory</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/prodsalehistory">ProdSaleHistory</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/prodsaleprofit">ProdSaleProfitHistory</NavLink>
+                </div>
+              </div>
+            </div>
+
             <div id="userNameText">Welcome {isUserAvailable.username} !</div>
           </div>
         </div>
@@ -179,6 +189,8 @@ class App extends React.Component {
                 <AdminRoute path="/globalcashdebit" component={GlobalCashDebitPage} />
                 <AdminRoute path="/modifiedBillsPage" component={ModifiedBillsPage} />
                 <AdminRoute path="/prodaddhistoryreport" component={ProdAddHistoryReportPage} />
+                <AdminRoute path="/prodsalehistory" component={ProdSaleHistoryReportPage} />
+                <AdminRoute path="/prodsaleprofit" component={ProdSaleProfitReportPage} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>
             </Switch>

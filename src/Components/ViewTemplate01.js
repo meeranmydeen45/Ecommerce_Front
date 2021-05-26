@@ -9,8 +9,7 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function ViewTemplate01({ ReportTitle }) {
-  const [title, setTitle] = useState('');
+function ViewTemplate01({ ReportType, Title }) {
   const [fromDate, setFromDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [categoryList, setCategoryList] = useState([]);
@@ -80,14 +79,14 @@ function ViewTemplate01({ ReportTitle }) {
     obj.sizeValue = sizeValue;
     obj.fromDate = fromDate;
     obj.endDate = endDate;
-    const promise = GetDataViewTemplate01API(obj, type, groupValue);
+    const promise = GetDataViewTemplate01API(obj, ReportType, groupValue);
     promise
       .then((res) => {
         let data = res.data;
         if (typeof data === 'object') {
-          const header = generateHeaderDataForTable(ReportTitle);
-          const rows = generateBodyDataForTable(data);
-          jsPDFTableCreationForReports(header, rows, fromDate, endDate, ReportTitle);
+          const header = generateHeaderDataForTable(ReportType);
+          const rows = generateBodyDataForTable(data, ReportType);
+          jsPDFTableCreationForReports(header, rows, fromDate, endDate, Title, ReportType);
         } else {
           alert('Not Found any Records!');
         }
@@ -101,7 +100,7 @@ function ViewTemplate01({ ReportTitle }) {
   return (
     <div className="div-ViewTemplate01">
       <div className="div-ViewTemplate01-InnerDiv">
-        <h3>{title}</h3>
+        <h3>{Title} Section</h3>
         <div>
           <label>Select Category</label>
           <SelectField data={categoryList} onChange={handleSelectCategory} />
@@ -150,9 +149,7 @@ function ViewTemplate01({ ReportTitle }) {
           <label></label>
           <input type="button" value="GetData" onClick={handleButtonClick} id="btnGetReportData" />
         </div>
-        <div className="div-ViewTemplate01-div-table">
-          <table></table>
-        </div>
+        <div className="div-ViewTemplate01-div-table"></div>
       </div>
     </div>
   );
