@@ -58,8 +58,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
     const mobile = getTxtBoxValue.customerMobile;
     const name = getTxtBoxValue.customerName;
     const address = getTxtBoxValue.customerAddress;
-    console.log(mobile);
-    console.log(!isNaN(mobile));
+
     if (!isNaN(mobile) && name !== '' && address !== '') {
       const promise = customerRegistration(getTxtBoxValue, updateStatus);
       promise
@@ -85,7 +84,9 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
 
   const makePurchase = async (cartItems) => {
     let discount = getTxtBoxValue.customerDiscount;
-
+    console.log(!isNaN(discount));
+    console.log(customerStatus);
+    console.log(cartItems.length);
     if (!isNaN(discount) && customerStatus && cartItems.length > 0) {
       let servertData = '';
       const CustwithOrders = {};
