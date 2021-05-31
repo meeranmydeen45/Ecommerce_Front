@@ -186,5 +186,8 @@ export const GetDataViewTemplate01API = (obj, type, value) => {
    return axios.post(`https://localhost:44348/api/viewtemplateone/prodsalehistory/?groupvalue=${value}`, formData)
    else if(type === 'PRODPROFITHISTORY')
    return axios.post(`https://localhost:44348/api/viewtemplateone/prodsaleprofit/?groupvalue=${value}`, formData)
-
+   else if(type === 'PRODSTOCKREPORT')
+   return axios.post(`https://localhost:44348/api/viewtemplateone/prodstockreport/?groupvalue=${value}`, formData)
+   else if(type === 'PRODCOSTCOMPARISON')
+   return axios.post(`https://localhost:44348/api/viewtemplateone/prodcostcomparisonreport/?groupvalue=${value}`, formData)
 }

@@ -84,6 +84,7 @@ function ViewTemplate01({ ReportType, Title }) {
       .then((res) => {
         let data = res.data;
         if (typeof data === 'object') {
+          console.log(data);
           const header = generateHeaderDataForTable(ReportType);
           const rows = generateBodyDataForTable(data, ReportType);
           jsPDFTableCreationForReports(header, rows, fromDate, endDate, Title, ReportType);

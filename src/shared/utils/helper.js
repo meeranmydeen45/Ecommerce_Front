@@ -330,6 +330,10 @@ export const generateHeaderDataForTable = (type) => {
     return ['NAME', 'SIZE', 'QUANTITY', 'COST', 'DATE'];
   } else if (type === 'PRODPROFITHISTORY') {
     return ['NAME', 'SIZE', 'PURCHASE', 'SALERATE', 'QUANTITY-SOLD', 'PROFIT'];
+  } else if (type === 'PRODSTOCKREPORT') {
+    return ['NAME', 'SIZE', 'AVAILABLE-QUANTITY', 'SALE-PRICE'];
+  } else if (type === 'PRODCOSTCOMPARISON') {
+    return ['NAME', 'SIZE', 'LATEST-PURCAHSE-RATE', 'SALE-PRICE', 'AVAILABLE-PROFIT'];
   }
 };
 
@@ -354,6 +358,25 @@ export const generateBodyDataForTable = (data, type) => {
       data[3] = item.salecostaverage;
       data[4] = item.quantitysold;
       data[5] = item.profit;
+      rows.push(data);
+    });
+  } else if (type === 'PRODSTOCKREPORT') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = item.productname;
+      data[1] = item.size;
+      data[2] = item.quantity;
+      data[3] = item.saleprice;
+      rows.push(data);
+    });
+  } else if (type === 'PRODCOSTCOMPARISON') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = item.productname;
+      data[1] = item.size;
+      data[2] = item.latestpurchaseprice;
+      data[3] = item.saleprice;
+      data[4] = item.saleprice - item.latestpurchaseprice;
       rows.push(data);
     });
   }
