@@ -741,3 +741,31 @@ min-width: 150px;
 #btnGetReportData{
   width:180px;
 }
+
+
+/* ViewTemplate02 - Page*/
+.div-ViewTemplate02{
+  display:flex;
+  flex-direction: column;
+  width:80%;
+  min-height: 90vh;
+  background-color:royalblue;
+  margin: auto;
+  padding:50px;
+}
+.div-ViewTemplate02 > div{
+  width: 100%;
+  margin:8px 0;
+}
+
+.div-ViewTemplate02 input[type="text"]{
+  max-width: 200px;
+
+}
+.div-ViewTemplate02 div label{
+
+}
+.div-ForDate{
+  display: flex;
+  background-color: black;
+}

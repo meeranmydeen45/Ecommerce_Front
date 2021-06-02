@@ -173,7 +173,7 @@ return axios.get(`https://localhost:44348/api/manage/modifiedbills`)
 
 export const GetDataViewTemplate01API = (obj, type, value) => {
   
-  console.log(obj)
+  
   let formData = new FormData()
   formData.append('CategoryValue', obj.categoryValue)
   formData.append('ProductValue', obj.productValue)
@@ -190,4 +190,22 @@ export const GetDataViewTemplate01API = (obj, type, value) => {
    return axios.post(`https://localhost:44348/api/viewtemplateone/prodstockreport/?groupvalue=${value}`, formData)
    else if(type === 'PRODCOSTCOMPARISON')
    return axios.post(`https://localhost:44348/api/viewtemplateone/prodcostcomparisonreport/?groupvalue=${value}`, formData)
+}
+
+
+export const GetCustomerByMobileNumberAPI = (mobileNumber) => {
+  console.log(mobileNumber)
+  return axios.get(`https://localhost:44348/api/viewtemplatetwo/getcustomerbymobile/?MobileNumber=${mobileNumber}`)
+
+}
+
+export const GetDataViewTemplate02API = (obj, type) => {
+
+  let formData = new FormData()
+  formData.append('FromDate', obj.FromDate)
+  formData.append('EndDate', obj.EndDate)
+  formData.append('MobileNumber', obj.MobileNumber)
+  formData.append('Customerid', obj.Customerid)
+   if(type === 'PROFITDATA')
+   return axios.post(`https://localhost:44348/api/viewtemplatetwo/getmonthprofitandcustomer`, formData)
 }

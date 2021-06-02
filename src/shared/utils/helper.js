@@ -334,6 +334,8 @@ export const generateHeaderDataForTable = (type) => {
     return ['NAME', 'SIZE', 'AVAILABLE-QUANTITY', 'SALE-PRICE'];
   } else if (type === 'PRODCOSTCOMPARISON') {
     return ['NAME', 'SIZE', 'LATEST-PURCAHSE-RATE', 'SALE-PRICE', 'AVAILABLE-PROFIT'];
+  } else if (type === 'PROFITDATA') {
+    return ['BILLNUMBER', 'CUSTOMERNAME', 'PROFIT', 'BILLDATE'];
   }
 };
 
@@ -379,11 +381,20 @@ export const generateBodyDataForTable = (data, type) => {
       data[4] = item.saleprice - item.latestpurchaseprice;
       rows.push(data);
     });
+  } else if (type === 'PROFITDATA') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = item.billnumber;
+      data[1] = item.customername;
+      data[2] = item.profit;
+      data[3] = item.date;
+      rows.push(data);
+    });
   }
   return rows;
 };
 
-export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, voucherType, ReportType) => {
+export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, Title, ReportType) => {
   console.log(fromDate);
   var doc = new jsPDF('p', 'pt');
   doc.setFontSize(15);
@@ -420,7 +431,7 @@ export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, vo
   doc.text(300, 110, 'BETWEEN');
   doc.text(400, 110, completeEndDate);
   doc.text(50, 130, 'VocherType');
-  doc.text(200, 130, voucherType);
+  doc.text(200, 130, Title);
 
   doc.autoTable(header, rows, {
     margin: { top: 150, left: 20, right: 20, bottom: 0 },
@@ -443,14 +454,20 @@ export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, vo
   });
   let finalY = doc.autoTable.previous.finalY;
   let noofPage = doc.internal.getNumberOfPages();
-
+  //Calculating Total Profit Section
+  let Totalprofit = 0;
   if (ReportType === 'PRODPROFITHISTORY') {
-    let Totalprofit = 0;
     rows.forEach((item) => {
       Totalprofit += parseInt(item[5]);
     });
-    doc.text(450, finalY + 40, 'Total Profit ' + Totalprofit);
+  } else if (ReportType === 'PROFITDATA') {
+    rows.forEach((item) => {
+      Totalprofit += parseInt(item[2]);
+    });
   }
+
+  if (Totalprofit > 0) doc.text(450, finalY + 40, 'Total Profit ' + Totalprofit);
+
   doc.text(480, finalY + 80, 'No of Pages ' + noofPage);
   doc.text(250, finalY + 80, 'End of Statement');
   doc.save('output.pdf');
