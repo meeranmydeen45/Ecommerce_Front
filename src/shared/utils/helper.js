@@ -336,6 +336,12 @@ export const generateHeaderDataForTable = (type) => {
     return ['NAME', 'SIZE', 'LATEST-PURCAHSE-RATE', 'SALE-PRICE', 'AVAILABLE-PROFIT'];
   } else if (type === 'PROFITDATA') {
     return ['BILLNUMBER', 'CUSTOMERNAME', 'PROFIT', 'BILLDATE'];
+  } else if (type === 'CUSTACCOUNTDETAILS') {
+    return ['S.NO', 'CUSTOMER NAME', 'AVAILABLE AMOUNT'];
+  } else if (type === 'CUSTTXHISTORY') {
+    return ['CUSTOMER NAME', 'BILL.NO', 'PAID', 'MODE', 'DATE'];
+  } else if (type === 'TXREVERSEHISTORY') {
+    return ['PROD NAME', 'SIZE', 'QUANTITY', 'SALE.PRICE', 'TOTAL', 'DATE'];
   }
 };
 
@@ -390,12 +396,40 @@ export const generateBodyDataForTable = (data, type) => {
       data[3] = item.date;
       rows.push(data);
     });
+  } else if (type === 'CUSTACCOUNTDETAILS') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = i + 1;
+      data[1] = item.customername;
+      data[2] = item.availableamount;
+      rows.push(data);
+    });
+  } else if (type === 'CUSTTXHISTORY') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = item.customername;
+      data[1] = item.billnumber;
+      data[2] = item.paidamount;
+      data[3] = item.paymentmode;
+      data[4] = item.paiddate.split('')[0];
+      rows.push(data);
+    });
+  } else if (type === 'TXREVERSEHISTORY') {
+    data.forEach((item, i) => {
+      var data = [];
+      data[0] = item.productname;
+      data[1] = item.size;
+      data[2] = item.quantity;
+      data[3] = item.saleprice;
+      data[4] = item.quantity * item.saleprice;
+      data[5] = item.date;
+      rows.push(data);
+    });
   }
   return rows;
 };
 
 export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, Title, ReportType) => {
-  console.log(fromDate);
   var doc = new jsPDF('p', 'pt');
   doc.setFontSize(15);
 
@@ -454,21 +488,28 @@ export const jsPDFTableCreationForReports = (header, rows, fromDate, endDate, Ti
   });
   let finalY = doc.autoTable.previous.finalY;
   let noofPage = doc.internal.getNumberOfPages();
-  //Calculating Total Profit Section
-  let Totalprofit = 0;
+  //Calculating Total Profit and TotalValue Section
+  let Total = 0;
   if (ReportType === 'PRODPROFITHISTORY') {
     rows.forEach((item) => {
-      Totalprofit += parseInt(item[5]);
+      Total += parseInt(item[5]);
     });
+    // doc.text(400, finalY + 40, 'Total Profit', +Total);
   } else if (ReportType === 'PROFITDATA') {
     rows.forEach((item) => {
-      Totalprofit += parseInt(item[2]);
+      Total += parseInt(item[2]);
     });
+    //doc.text(400, finalY + 40, 'Total Profit', +Total);
+  } else if (ReportType === 'CUSTACCOUNTDETAILS') {
+    rows.forEach((item) => {
+      Total += parseInt(item[2]);
+    });
+    //doc.text(400, finalY + 40, 'Total Amount', +Total);
   }
+  if (Total > 0) doc.text(400, finalY + 40, 'Total Amount ' + Total);
 
-  if (Totalprofit > 0) doc.text(450, finalY + 40, 'Total Profit ' + Totalprofit);
-
-  doc.text(480, finalY + 80, 'No of Pages ' + noofPage);
   doc.text(250, finalY + 80, 'End of Statement');
+  doc.text(480, finalY + 80, 'No of Pages ' + noofPage);
+
   doc.save('output.pdf');
 };

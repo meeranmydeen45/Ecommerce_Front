@@ -208,4 +208,14 @@ export const GetDataViewTemplate02API = (obj, type) => {
   formData.append('Customerid', obj.Customerid)
    if(type === 'PROFITDATA')
    return axios.post(`https://localhost:44348/api/viewtemplatetwo/getmonthprofitandcustomer`, formData)
+   else if (type === 'CUSTACCOUNTDETAILS')
+   return axios.get(`https://localhost:44348/api/viewtemplatetwo/customeraccountdetails/?CustomerId=${obj.Customerid}`)
+   else if (type === 'CUSTTXHISTORY')
+   return axios.get(`https://localhost:44348/api/viewtemplatetwo/customertxhistory/?CustomerId=${obj.Customerid}`)
+}
+
+
+export const GetTxReverseHistoryDataAPI = (Billnumber) => {
+
+  return axios.get(`https://localhost:44348/api/viewtemplatetwo/getreversehistoryforbill/?BillNo=${Billnumber}`)
 }

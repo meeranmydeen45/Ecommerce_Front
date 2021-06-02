@@ -31,6 +31,8 @@ import ProdSaleProfitReportPage from './Components/ProdSaleProfitReportPage';
 import ProdStockReportPage from './Components/ProdStockReportPage';
 import ProdCostComparisonPage from './Components/ProdCostComparisonPage';
 import ProdMonthProfitReportPage from './Components/ProdMonthProfitReportPage';
+import CustomerAccountReportPage from './Components/CustomerAccountReportPage';
+import CustomerTxHistoryReportPage from './Components/CustomerTxHistoryReportPage';
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
 import LogoutRoute from './Components/LogoutRoute';
@@ -159,6 +161,12 @@ class App extends React.Component {
                 <div className="dropdown-item">
                   <NavLink to="/monthProfit">MonthProfit</NavLink>
                 </div>
+                <div className="dropdown-item">
+                  <NavLink to="/customeracdetails">CustomerAccountHistory</NavLink>
+                </div>
+                <div className="dropdown-item">
+                  <NavLink to="/customertxhistory">CustomerTxHistory</NavLink>
+                </div>
               </div>
             </div>
 
@@ -206,6 +214,8 @@ class App extends React.Component {
                 <AdminRoute path="/prodstockreport" component={ProdStockReportPage} />
                 <AdminRoute path="/prodcostcomparison" component={ProdCostComparisonPage} />
                 <AdminRoute path="/monthProfit" component={ProdMonthProfitReportPage} />
+                <AdminRoute path="/customeracdetails" component={CustomerAccountReportPage} />
+                <AdminRoute path="/customertxhistory" component={CustomerTxHistoryReportPage} />
                 <LogoutRoute path="/logout" handleEvents={updateUserName} component={Logout} />
               </Provider>
             </Switch>
