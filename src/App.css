@@ -10,7 +10,8 @@ body {
 /*NavBar Section*/
 .containerBox {
   background-color:cadetblue;
-  min-height: 100vh;
+  width: 100%;
+  min-height: 110vh;
 }
 
 .navbarHead{
@@ -352,44 +353,58 @@ td {
   }
 }
 
-
+/*Adding New Category and Product - Section*/
 .newCategory {
-  width: 100%;
-  height: 93vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darksalmon;
+  width: 50%;
+  margin: auto;
+  background-color:honeydew;
+  min-height: 110vh;
+  text-transform: uppercase;
+  padding: 1px 50px;
 }
+
+/*Adding New Product Section*/
 .newProducts {
+  width: 50%;
+  margin: auto;
+  min-height: 110vh;
+  padding:50px;
+  background-color:honeydew;
+  text-transform: uppercase;
+}
+.newProducts select, input[type="text"]{
+  max-width: 300px;
+}
+.div-preview-img{
+  width: 50%;
+  height: 200px;
+  border:1px solid blue;
+  margin:auto;
+}
+.div-preview-img img{
+  display: block;
   width: 100%;
-  height: 93vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darksalmon;
+  height: 100%;
+  object-fit: cover;
 }
-
-.newProducts-Inner {
-  padding: 20px;
+/*Stock Price Editable Page*/
+.div-EditStockPrice{
   width: 50%;
-  transform: translateY(-50%);
-  border: 2px dotted blue;
+  min-height: 110vh;
+  margin: auto;
+  padding: 20px 100px;
+  text-transform: uppercase;
+  background-color: honeydew;
 }
-
-.newCategory-inner {
-  padding: 20px;
-  width: 50%;
-  transform: translateY(-50%);
-  border: 2px dotted blue;
+.div-EditStockPrice select{
+  max-width: 300px;
 }
-.textBoxNewRegister {
-  margin-bottom: 20px;
+#DynamicLabel{
+ margin-left: 50px;
+  
+  
 }
-.buttonNewRegister {
-  width: 20%;
-}
-
+/*Login Container*/
 .LoginContainer {
   display:flex;
   flex-direction: column;
@@ -478,25 +493,37 @@ background-color:yellow;
 /* Payment-Page Section */
 
 .div-PaymentPage{
-  background-color: lightblue;
+  background-color:honeydew;
   width:50%;
-  height: 100vh;
+  min-height: 110vh;
   margin:auto;
   padding: 50px;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  transition: all ease-in-out 2s;
 
 }
 .div-PaymentPage input[type="text"]{
-  width: auto;
+  max-width: 250px;
+  display: inline-block;
+  margin-right: 20px;
+  
+}
+.getbtn{
+  padding: 0;
+  min-width: 100px;
 }
 .div-bill-cust-details{
   margin-top: 50px;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .div-bill-cust-details label{
   width:150px;
 }
 .div-thirdsection label{
 width: 150px;
+text-transform: uppercase;
 }
 .div-thirdsection input[type="text"], select{
   width: 150px;
@@ -504,37 +531,37 @@ width: 150px;
 
 /*Reversal-Page Section*/
 .div-ReversalPage{
-  background-color:royalblue;
+  background-color:honeydew;
   width:50%;
   margin: auto;
-  height: 90vh;
+  min-height: 100vh;
   padding: 50px;
 
 }
-.div-ReversalPage label{
-width: 150px;
-}
+
 .div-ReversalPage select{
-  width: 200px;
+  max-width: 250px;
   margin-bottom: 20px;
 }
 .div-ReversalPage input[type="text"]{
-  max-width: 200px;
-  margin-bottom: 20px;
+  max-width: 250px;
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 #ptagBillText{
   font-weight: bold;
-  margin-left: 150px;
-  color:greenyellow;
+  color:blue;
 }
 
 /*SizeAdd-Page Section*/
 .div-Adding-Size{
-  background-color: coral;
+  background-color:honeydew;
   width:50%;
   margin: auto;
-  height: 90vh;
+  min-height:110vh;
   padding: 50px;
+  text-transform: uppercase;
 }
 
 /*CustomerAccount-Page Section*/

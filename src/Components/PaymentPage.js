@@ -73,6 +73,7 @@ class PaymentPage extends React.Component {
         });
       } else {
         alert('Enter Number Values only!');
+        this.setState({ isValid: false });
       }
     };
     const buttonMakePayment = () => {
@@ -105,41 +106,54 @@ class PaymentPage extends React.Component {
 
     return (
       <div className="div-PaymentPage">
-        <div>
-          <label for="txtBillNumber">Enter Bill Number</label>
-          <input type="text" name="txtBillNumber" value={this.state.txtBillNumber} onChange={handleTextBoxChange} />
-          <input type="button" value="Get" onClick={buttonGetBillData} />
+        <h4 style={{ textAlign: 'center' }}>PAYMENT SECTION</h4>
+        <div className="form-group" style={{ marginTop: '50px' }}>
+          <input
+            type="text"
+            className="form-control"
+            name="txtBillNumber"
+            placeholder="Enter Bill No.."
+            value={this.state.txtBillNumber}
+            onChange={handleTextBoxChange}
+          />
+          <input type="button" value="Get-Bill" onClick={buttonGetBillData} className="getbtn btn btn-primary" />
         </div>
-        <div className="div-bill-cust-details">
-          <div>
-            <label>Customer Name:</label>
-            <label>{this.state.customerName}</label>
+        {this.state.isValid === true ? (
+          <div className="div-bill-cust-details">
+            <div className="form-group">
+              <label>Customer Name</label>
+              <label>{this.state.customerName}</label>
+            </div>
+            <div className="form-group">
+              <label>MobileNumber</label>
+              <label>{this.state.customerMobile}</label>
+            </div>
+            <div className="form-group">
+              <label>Needs to Pay</label>
+              <label>{this.state.customerBillAmount}</label>
+            </div>
           </div>
-          <div>
-            <label>MobileNumber:</label>
-            <label>{this.state.customerMobile}</label>
-          </div>
-          <div>
-            <label>Needs to Pay:</label>
-            <label>{this.state.customerBillAmount}</label>
-          </div>
-        </div>
+        ) : (
+          ''
+        )}
+
         <div className="div-thirdsection">
-          <div>
-            <label>Payment-Mode:</label>
-            <select onChange={handleSelectChange}>
+          <div className="form-group">
+            <label>Payment-Mode</label>
+            <select onChange={handleSelectChange} className="form-control">
               <option value="CASH">Cash</option>
               <option value="ACCOUNT">Account-Debit</option>
             </select>
           </div>
           <div>
             <label>{this.state.availableAccountBalance !== '' ? 'Account Balance' : ''}</label>
-            <label>{this.state.availableAccountBalance}</label>
+            <label style={{ fontWeight: 'bold', color: 'blue' }}>{this.state.availableAccountBalance}</label>
           </div>
-          <div>
-            <label>Pay:</label>
+          <div className="form-group">
             <input
               type="text"
+              className="form-control"
+              placeholder="Pay Amount.."
               name="txtPay"
               value={this.state.txtPay}
               style={{ marginTop: '20px' }}
@@ -149,8 +163,8 @@ class PaymentPage extends React.Component {
           <div>
             <input
               type="button"
-              value="store"
-              style={{ marginTop: '20px', marginLeft: '150px', width: '150px' }}
+              value="Pay"
+              style={{ marginTop: '20px', padding: '6px 60px' }}
               onClick={buttonMakePayment}
             />
           </div>

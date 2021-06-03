@@ -30,7 +30,7 @@ function SelectField(props){
     }
 
     return(
-        <select onChange={onChange}>
+        <select onChange={onChange} className="form-control">
             <option value="default">Choose Options</option>
            {options}
         </select>

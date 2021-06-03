@@ -68,24 +68,27 @@ function NewProducts() {
 
   return (
     <div className="newProducts">
-      <div className="newProducts-Inner">
-        <div>
-          <b>Select Category</b>
-          <SelectField data={dataList} onChange={handleSelect} />
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <b>Register Your New Products</b>
-        </div>
-        <input type="text" value={txtBoxValue} onChange={handleTextBox} />
-        <div>
-          <input type="file" onChange={handleImageChange} />
-        </div>
-        <div>
-          <img src={previewImage} alt="" style={{ width: '100px' }} />
-        </div>
-        <input type="button" value="Save" onClick={handleSaveClick} className="buttonNewRegister" />
-        <input type="button" value="Show" className="buttonNewRegister" />
+      <div className="form-group">
+        <label>Select Category</label>
+        <SelectField data={dataList} onChange={handleSelect} />
       </div>
+      <div className="form-group">
+        <label>New Product</label>
+        <input type="text" value={txtBoxValue} onChange={handleTextBox} className="form-control" />
+      </div>
+      <div>
+        <input type="file" onChange={handleImageChange} />
+      </div>
+      <div className="div-preview-img">
+        <img src={previewImage} alt="ProdutImage" />
+      </div>
+      <input
+        type="button"
+        value="Save"
+        onClick={handleSaveClick}
+        className="btn btn-primary"
+        style={{ padding: '5px 30px' }}
+      />
     </div>
   );
 }

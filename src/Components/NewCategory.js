@@ -26,14 +26,26 @@ function NewCategory() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="newCategory">
-        <div className="newCategory-inner">
-          <div style={{ textAlign: 'center' }}>
-            <b>Register Your New Category</b>
-          </div>
-          <input type="text" onChange={handleTextBoxChange} className="textBoxNewRegister" />
-          <input type="submit" value="Save" className="buttonNewRegister" />
-          <input type="button" value="Show" className="buttonNewRegister" />
+        <div style={{ textAlign: 'center', margin: '20px' }}>
+          <h4>Register Your New Category</h4>
         </div>
+        <div className="form-group" style={{ marginTop: '50px' }}>
+          <label for="name">Catergory Name</label>
+          <input
+            type="text"
+            onChange={handleTextBoxChange}
+            className="textBoxNewRegister"
+            className="form-control"
+            placeholder="Enter Category.."
+          />
+        </div>
+        <input
+          type="submit"
+          value="Save"
+          className="buttonNewRegister"
+          className="btn btn-primary"
+          style={{ padding: '5px 50px', marginTop: '30px' }}
+        />
       </div>
     </form>
   );

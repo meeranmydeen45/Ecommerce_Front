@@ -20,9 +20,12 @@ function SizesAddPage() {
   };
   return (
     <div className="div-Adding-Size">
-      <label>Type Size in Caps-Lock: </label>
-      <input type="text" {...size} />
-      <input type="button" value="Add" onClick={handleAddClick} />
+      <div className="form-group">
+        <h4 style={{ textAlign: 'center', marginBottom: '20px' }}>Entry for Product Size</h4>
+        <label for="Size">Enter Size</label>
+        <input type="text" {...size} placeholder="Type here.." className="form-control" name="Size" />
+      </div>
+      <input type="button" value="Add" onClick={handleAddClick} className="getbtn btn btn-primary" />
     </div>
   );
 }
