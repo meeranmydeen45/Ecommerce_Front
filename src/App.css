@@ -366,8 +366,8 @@ td {
 .newProducts {
   width: 50%;
   margin: auto;
-  min-height: 110vh;
-  padding:50px;
+  min-height: 90vh;
+  padding:30px 50px;
   background-color:honeydew;
   text-transform: uppercase;
 }
@@ -495,47 +495,31 @@ background-color:yellow;
 .div-PaymentPage{
   background-color:honeydew;
   width:50%;
-  min-height: 100vh;
+  min-height: 90vh;
   margin:auto;
-  padding: 50px;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  transition: all ease-in-out 2s;
-
-}
-.div-PaymentPage input[type="text"]{
-  max-width: 250px;
-  display: inline-block;
-  margin-right: 20px;
-  
-}
-.getbtn{
-  padding: 0;
-  min-width: 100px;
-}
-.div-bill-cust-details{
-  margin-top: 50px;
-  margin-bottom: 20px;
+  padding: 30px 80px;
   text-transform: uppercase;
-}
-.div-bill-cust-details label{
-  width:150px;
-}
-.div-thirdsection label{
-width: 150px;
-text-transform: uppercase;
-}
-.div-thirdsection input[type="text"], select{
-  width: 150px;
-}
+  }
+  .div-PaymentPage .div-CustInfo{
+    background-color:lightskyblue;
+    max-width: 380px;
+    margin-bottom: 30px;
+    padding: 30px 40px;
+    box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.6);
+  }
+  
+  .div-PaymentPage .div-CustInfo span{
+   color: blue;
+   font-weight: bold;
+  }
 
 /*Reversal-Page Section*/
 .div-ReversalPage{
   background-color:honeydew;
   width:50%;
   margin: auto;
-  min-height: 100vh;
-  padding: 50px;
+  min-height: 90vh;
+  padding: 20px 50px;
 
 }
 
@@ -544,10 +528,7 @@ text-transform: uppercase;
   margin-bottom: 20px;
 }
 .div-ReversalPage input[type="text"]{
-  max-width: 250px;
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 10px;
+  max-width: 250px; 
 }
 #ptagBillText{
   font-weight: bold;
@@ -633,6 +614,15 @@ text-transform: uppercase;
     max-width:200px;
   }
 
+/*Receipt voucher - Page Section*/
+.div-ReceiptVoucherPage{
+  background-color:honeydew;
+  width: 50%;
+  margin: auto;
+  min-height: 90vh;
+  padding: 30px 80px;
+  text-transform: uppercase;
+}
 
 
 /*GlobalCash Position- Page Section*/
@@ -661,144 +651,82 @@ text-transform: uppercase;
   padding: 50px;
 }
 
-/*Receipt voucher - Page Section*/
-.div-ReceiptVoucherPage{
-  background-color:lightcoral;
-  width: 50%;
-  margin: auto;
-  height: 90vh;
-  padding: 50px;
-}
-
-.div-ReceiptVoucherPage label{
-  min-width: 250px;
-}
-
-.div-ReceiptVoucherPage input[type="text"]{
-  max-width: 200px;
-}
-
-#btnHandleCreditClick{
-  min-width: 200px;
-  margin-left: 250px;
-  margin-top: 10px;
-}
-
 /*GlobalCash Credit _page */
 .div-GlobalCashCreditPage{
-  background-color:lightcoral;
+  background-color:honeydew;
   width: 50%;
   margin: auto;
-  height: 90vh;
-  padding: 50px;
+  min-height: 90vh;
+  padding: 30px 80px;
+  text-transform: uppercase;
 }
-.div-GlobalCashCreditPage label{
-  min-width: 150px;
-}
-.div-GlobalCashCreditPage input[type="text"]{
-  max-width: 200px;
-}
-#btnGlobalCashTx{
-  min-width: 200px;
-  margin-left: 150px;
-  margin-top: 10px;
-}
+
 
 
 /*GlobalCash Debit _page */
 .div-GlobalCashDebitPage{
-  background-color:lightcoral;
+  background-color:honeydew;
   width: 50%;
   margin: auto;
-  height: 90vh;
-  padding: 50px;
-}
-.div-GlobalCashDebitPage label{
-  min-width: 150px;
-}
-.div-GlobalCashDebitPage input[type="text"]{
-  max-width: 200px;
-}
-#btnGlobalCashTx{
-  min-width: 200px;
-  margin-left: 150px;
-  margin-top: 10px;
+  min-height: 90vh;
+  padding: 30px 80px;
+  text-transform: uppercase;
 }
 
 /*Lis of all ModifiedBills - Page*/
 
 .div-ModifiedBillsPage{
-  background-color:lightcoral;
-  width: 50%;
+  background-color:honeydew;
+  width: 60%;
   margin: auto;
   min-height: 90vh;
-  padding: 50px;
+  padding: 30px 80px;
+  text-transform: uppercase;
 }
 .div-ModifiedBillsPage table{
   width: 100%;
   margin-top: 50px;
   text-align: center;
-  font-weight: bold;
+ 
   
 }
 
 .div-ModifiedBillsPage table thead{
   background-color: black;
-  color:white;
+  color:dodgerblue;
 }
-.div-ModifiedBillsPage table tbody{
-  background-color: lightgray;
-  color: blue;
+.div-ModifiedBillsPage table tbody tr{
+  border-bottom: 0.5px solid lightgrey;
 }
 
 /*ViewTemplate01 - Page*/
 .div-ViewTemplate01{
-  height:90vh;
-  display: flex;
-  justify-content: center;
-}
-.div-ViewTemplate01-InnerDiv{
-  padding: 50px;
-  background-color: mediumseagreen;
-  width:60%;
-  height: 90vh;
-}
-.div-ViewTemplate01-InnerDiv label{
-  font-weight: bold;
-  min-width: 150px;
-}
-.div-ViewTemplate01-InnerDiv select{
-  min-width: 200px;
+ text-transform: uppercase; 
+ margin: auto;
+ background-color:honeydew;
+ width: 60%;
+ min-height: 90vh;
+ padding:30px 0px;
 }
 
-#btnGetReportData{
-  width:180px;
+.viewTemplate01-flexbox-section{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 50px 0px;
 }
 
 
 /* ViewTemplate02 - Page*/
 .div-ViewTemplate02{
-  display:flex;
-  flex-direction: column;
-  width:80%;
+  background-color:honeydew;
+  width:60%;
   min-height: 90vh;
-  background-color:royalblue;
   margin: auto;
-  padding:50px;
+  padding: 30px 120px;
+  text-transform: uppercase;
 }
-.div-ViewTemplate02 > div{
-  width: 100%;
-  margin:8px 0;
-}
-
 .div-ViewTemplate02 input[type="text"]{
   max-width: 200px;
+}
 
-}
-.div-ViewTemplate02 div label{
 
-}
-.div-ForDate{
-  display: flex;
-  background-color: black;
-}

@@ -114,8 +114,8 @@ function ReversalPage() {
 
   return (
     <div className="div-ReversalPage">
-      <h4 style={{ textAlign: 'center', marginBottom: '20px' }}>PRODUCT RETURN ENTRY PAGE</h4>
-      <div className="form-group">
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>PRODUCT RETURN ENTRY PAGE</h4>
+      <div className="input-group form-group">
         <input
           type="text"
           {...getBillNumber}
@@ -123,7 +123,9 @@ function ReversalPage() {
           className="form-control"
           placeholder="Enter Bill No.."
         />
-        <input type="button" value="GetBill" onClick={getBillData} className="getbtn btn btn-primary" />
+        <div className="input-group-append">
+          <input type="button" value="GetBill" onClick={getBillData} className="btn btn-info" />
+        </div>
       </div>
 
       <div>
@@ -144,21 +146,16 @@ function ReversalPage() {
         <SelectField data={sizeList} onChange={handleSelectSizes} />
       </div>
 
-      <div>
+      <div className="form-group">
         <input type="text" {...getQuantity} placeholder="Enter Quantity" className="form-control" />
       </div>
 
-      <div>
+      <div className="form-group">
         <input type="text" {...getSalePrice} placeholder="Enter SoldPrice" className="form-control" />
       </div>
 
       <div>
-        <input
-          type="button"
-          value="Reverse"
-          style={{ maxWidth: '250px', marginTop: '20px', padding: '5px 20px' }}
-          onClick={handleReverseClick}
-        />
+        <input type="button" value="REVERSE" className="getbtn btn btn-primary mt-3" onClick={handleReverseClick} />
       </div>
     </div>
   );

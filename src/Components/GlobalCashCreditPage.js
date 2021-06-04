@@ -36,17 +36,29 @@ function GlobalCashCreditPage() {
 
   return (
     <div className="div-GlobalCashCreditPage">
-      <h3>Global Cash Credit Section</h3>
-      <div>
-        <label>Enter</label>
-        <input type="text" placeholder="Amount.." onChange={(e) => setAmount(e.target.value)} value={amount} />
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Global Cash Credit Section</h4>
+      <div className="form-group">
+        <label>Set Credit Amount</label>
+        <input
+          type="text"
+          placeholder="enter here.."
+          onChange={(e) => setAmount(e.target.value)}
+          value={amount}
+          className="form-control"
+        />
       </div>
-      <div>
+      <div className="form-group">
         <label>Remarks</label>
-        <input type="text" placeholder="Narration.." onChange={(e) => setRemarks(e.target.value)} value={remarks} />
+        <input
+          type="text"
+          placeholder="Narration.."
+          onChange={(e) => setRemarks(e.target.value)}
+          value={remarks}
+          className="form-control"
+        />
       </div>
       <div>
-        <input type="button" value="Credit" onClick={handleClick} id="btnGlobalCashTx" />
+        <input type="button" value="Credit" onClick={handleClick} className="getbtn btn btn-primary mt-3" />
       </div>
     </div>
   );

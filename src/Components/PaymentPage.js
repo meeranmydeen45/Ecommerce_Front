@@ -106,8 +106,8 @@ class PaymentPage extends React.Component {
 
     return (
       <div className="div-PaymentPage">
-        <h4 style={{ textAlign: 'center' }}>PAYMENT SECTION</h4>
-        <div className="form-group" style={{ marginTop: '50px' }}>
+        <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>PAYMENT SECTION</h4>
+        <div className="form-group input-group">
           <input
             type="text"
             className="form-control"
@@ -116,58 +116,70 @@ class PaymentPage extends React.Component {
             value={this.state.txtBillNumber}
             onChange={handleTextBoxChange}
           />
-          <input type="button" value="Get-Bill" onClick={buttonGetBillData} className="getbtn btn btn-primary" />
+          <div className="input-group-append">
+            <input type="button" value="Get-Bill" onClick={buttonGetBillData} className="btn btn-info" />
+          </div>
         </div>
         {this.state.isValid === true ? (
-          <div className="div-bill-cust-details">
+          <div className="div-CustInfo">
             <div className="form-group">
-              <label>Customer Name</label>
-              <label>{this.state.customerName}</label>
+              <label>
+                Customer Name <span style={{ marginLeft: '20px' }}>{this.state.customerName}</span>
+              </label>
             </div>
             <div className="form-group">
-              <label>MobileNumber</label>
-              <label>{this.state.customerMobile}</label>
+              <label>
+                Mobile<span style={{ marginLeft: '100px' }}>{this.state.customerMobile}</span>
+              </label>
             </div>
-            <div className="form-group">
-              <label>Needs to Pay</label>
-              <label>{this.state.customerBillAmount}</label>
+            <div>
+              <label>
+                Needs to Pay<span style={{ marginLeft: '55px' }}>{this.state.customerBillAmount} INR</span>
+              </label>
             </div>
           </div>
         ) : (
           ''
         )}
 
-        <div className="div-thirdsection">
-          <div className="form-group">
-            <label>Payment-Mode</label>
-            <select onChange={handleSelectChange} className="form-control">
-              <option value="CASH">Cash</option>
-              <option value="ACCOUNT">Account-Debit</option>
-            </select>
-          </div>
-          <div>
-            <label>{this.state.availableAccountBalance !== '' ? 'Account Balance' : ''}</label>
-            <label style={{ fontWeight: 'bold', color: 'blue' }}>{this.state.availableAccountBalance}</label>
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Pay Amount.."
-              name="txtPay"
-              value={this.state.txtPay}
-              style={{ marginTop: '20px' }}
-              onChange={handleTextBoxChange}
-            />
-          </div>
-          <div>
-            <input
-              type="button"
-              value="Pay"
-              style={{ marginTop: '20px', padding: '6px 60px' }}
-              onClick={buttonMakePayment}
-            />
-          </div>
+        <div className="form-group">
+          <label>Payment-Mode</label>
+          <select onChange={handleSelectChange} className="form-control">
+            <option value="CASH">Cash</option>
+            <option value="ACCOUNT">Account-Debit</option>
+          </select>
+        </div>
+        <div className="form-group">
+          {this.state.availableAccountBalance !== '' ? (
+            <label>
+              Account Balance
+              <span style={{ fontWeight: 'bold', color: 'blue', marginLeft: '50px' }}>
+                {this.state.availableAccountBalance} INR
+              </span>
+            </label>
+          ) : (
+            ''
+          )}
+        </div>
+        <label>Cash Rcvd</label>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter Amount.."
+            name="txtPay"
+            value={this.state.txtPay}
+            onChange={handleTextBoxChange}
+          />
+        </div>
+        <div>
+          <input
+            type="button"
+            value="PAY"
+            onClick={buttonMakePayment}
+            className="btn btn-primary mt-3"
+            style={{ padding: '5px 30px' }}
+          />
         </div>
       </div>
     );

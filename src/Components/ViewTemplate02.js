@@ -64,48 +64,59 @@ export default function ViewTemplate02({ ReportType, Title }) {
 
   return (
     <div className="div-ViewTemplate02">
-      <div className="div-ForDate">
-        <div style={{ backgroundColor: 'red', width: '300px' }}>
-          <label>
-            <b>From Date</b>
-          </label>
-          <DatePicker
-            selected={fromDate}
-            onChange={(date) => setFromDate(date)}
-            showYearDropdown
-            scrollableMonthYearDropdown
-          />
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>{Title}</h4>
+      <label>Mobile Number</label>
+      <div className="input-group form-group">
+        <input
+          type="text"
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
+          className="form-control"
+        />
+        <div className="input-group-append">
+          <input type="button" value="Check" onClick={handleClickToValidate} className="btn btn-info" />
         </div>
-        <div style={{ backgroundColor: 'green' }}>
-          <label>
-            <b>End Date</b>
-          </label>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            showYearDropdown
-            scrollableMonthYearDropdown
-          />
-        </div>
-        <div></div>
       </div>
-      <div style={{ backgroundColor: 'yellow' }}>
-        <label>Customer Mobile</label>
-        <input type="text" onChange={(e) => setSearchValue(e.target.value)} value={searchValue} />
-        <input type="button" value="Check" onClick={handleClickToValidate} />
-      </div>
-      <div style={{ backgroundColor: 'pink' }}>
+      <div className="form-group">
         {validate == true ? (
           <div>
-            <label>Name:</label>
-            <label>{nameLable}</label>
+            <label>
+              Customer Name <span>{nameLable}</span>
+            </label>
           </div>
         ) : (
           ''
         )}
       </div>
-      <div style={{ backgroundColor: 'teal' }}>
-        <input type="button" value="GetData" onClick={handleClickToGetData} />
+
+      <label>From Date</label>
+      <div className="form-group">
+        <DatePicker
+          selected={fromDate}
+          className="form-control"
+          onChange={(date) => setFromDate(date)}
+          showYearDropdown
+          scrollableMonthYearDropdown
+        />
+      </div>
+      <label>End Date</label>
+      <div className="form-group">
+        <DatePicker
+          selected={endDate}
+          className="form-control"
+          onChange={(date) => setEndDate(date)}
+          showYearDropdown
+          scrollableMonthYearDropdown
+        />
+      </div>
+
+      <div>
+        <input
+          type="button"
+          value="GET-REPORT"
+          onClick={handleClickToGetData}
+          className="getbtn btn btn-primary mt-3"
+        />
       </div>
     </div>
   );

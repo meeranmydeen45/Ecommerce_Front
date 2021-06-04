@@ -66,28 +66,51 @@ function ReceiptVoucherPage() {
 
   return (
     <div className="div-ReceiptVoucherPage">
-      <h2>Receipt Voucher</h2>
-      <div>
-        <label>Mobile No or ID: </label>
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Account Credit Section</h4>
+
+      <label>Mobile No or ID </label>
+      <div className="input-group">
         <input
           type="text"
           onChange={(e) => setSearchValue(e.target.value)}
           value={searchValue}
-          placeholder="TypeHere..."
+          placeholder="search value.."
+          className="form-control"
         />
-        <input type="button" value="Search" onClick={handleSearchClick} />
-      </div>
-      <div>{customerName === '' ? <label>{errorMessage}</label> : <label>Customer Name {customerName}</label>}</div>
-      <div>
-        <label>Received Amount: </label>
-        <input type="text" onChange={(e) => setCreditAmount(e.target.value)} value={creditAmount} />
+        <div className="input-group-append">
+          <input type="button" value="Search" onClick={handleSearchClick} className="btn btn-info" />
+        </div>
       </div>
       <div>
-        <label>Remarks: </label>
-        <input type="text" onChange={(e) => setTextNarration(e.target.value)} value={textNarration} />
+        {customerName === '' ? (
+          <label style={{ color: 'red', margin: '20px', fontWeight: 'bold' }}>{errorMessage}</label>
+        ) : (
+          <label style={{ margin: '20px 10px' }}>
+            <b> Customer Name</b>
+            <span style={{ color: 'blue', marginLeft: '20px', fontWeight: 'bold' }}> {customerName}</span>
+          </label>
+        )}
+      </div>
+      <div className="form-group">
+        <label>Received Amount </label>
+        <input
+          type="text"
+          onChange={(e) => setCreditAmount(e.target.value)}
+          value={creditAmount}
+          className="form-control"
+        />
+      </div>
+      <div className="form-group">
+        <label>Remarks </label>
+        <input
+          type="text"
+          onChange={(e) => setTextNarration(e.target.value)}
+          value={textNarration}
+          className="form-control"
+        />
       </div>
       <div>
-        <input type="button" value="SetCredit" onClick={handleCreditClick} id="btnHandleCreditClick" />
+        <input type="button" value="SET-CREDIT" onClick={handleCreditClick} className="getbtn btn btn-primary mt-3" />
       </div>
     </div>
   );

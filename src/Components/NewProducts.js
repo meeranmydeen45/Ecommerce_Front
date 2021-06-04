@@ -68,6 +68,7 @@ function NewProducts() {
 
   return (
     <div className="newProducts">
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Register New Products</h4>
       <div className="form-group">
         <label>Select Category</label>
         <SelectField data={dataList} onChange={handleSelect} />

@@ -119,7 +119,7 @@ class StockPriceChange extends React.Component {
             placeholder="Choose prod name."
           />
           <div className="input-group-append">
-            <input type="button" value="--" onClick={handleModel} className="btn btn-primary" />
+            <input type="button" value="--" onClick={handleModel} className="btn btn-info" />
           </div>
         </div>
 

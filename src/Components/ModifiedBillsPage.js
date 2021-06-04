@@ -56,7 +56,13 @@ function ModifiedBillsPage() {
               <td>{item.billnumber}</td>
               <td>{item.customerid}</td>
               <td>
-                <input type="button" value="Get" onClick={() => getReverseHistory(item.billnumber)} />
+                <input
+                  type="button"
+                  value="Get"
+                  onClick={() => getReverseHistory(item.billnumber)}
+                  className="btn btn-outline-primary"
+                  style={{ padding: '2px 15px' }}
+                />
               </td>
             </tr>
           );
@@ -65,14 +71,14 @@ function ModifiedBillsPage() {
 
   return (
     <div className="div-ModifiedBillsPage">
-      <h3>Modified Bills</h3>
-      <div>
-        <table>
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Modified Bills</h4>
+      <div className="table-responsive">
+        <table className="table-hover">
           <thead>
             <tr>
-              <th>BillNumber</th>
-              <th>CustomerID</th>
-              <th>Details</th>
+              <th>Bill Number</th>
+              <th>Customer ID</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{tableBodyData}</tbody>

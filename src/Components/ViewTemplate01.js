@@ -99,57 +99,60 @@ function ViewTemplate01({ ReportType, Title }) {
 
   return (
     <div className="div-ViewTemplate01">
-      <div className="div-ViewTemplate01-InnerDiv">
-        <h3>{Title} Section</h3>
-        <div>
-          <label>Select Category</label>
-          <SelectField data={categoryList} onChange={handleSelectCategory} />
-        </div>
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>{Title} Section</h4>
+      <div className="viewTemplate01-flexbox-section">
+        <div className="viewTemplate01-Left-Section">
+          <div className="form-group">
+            <label>Select Category</label>
+            <SelectField data={categoryList} onChange={handleSelectCategory} />
+          </div>
 
-        <div>
-          <label>Select Product</label>
-          <SelectField data={prodList} onChange={handleSelectProduct} />
-        </div>
+          <div className="form-group">
+            <label>Select Product</label>
+            <SelectField data={prodList} onChange={handleSelectProduct} />
+          </div>
 
-        <div>
-          <label>Choose Size</label>
-          <SelectField data={sizeList} onChange={handleSelectSizes} />
+          <div className="form-group">
+            <label>Choose Size</label>
+            <SelectField data={sizeList} onChange={handleSelectSizes} />
+          </div>
         </div>
-        <div>
-          <label>
-            <b>From Date</b>
-          </label>
-          <DatePicker
-            selected={fromDate}
-            onSelect={handleDateChange}
-            onChange={(date) => setFromDate(date)}
-            showYearDropdown
-            scrollableMonthYearDropdown
-          />
-        </div>
-        <div>
-          <label>
-            <b>End Date</b>
-          </label>
-          <DatePicker
-            selected={endDate}
-            onSelect={handleDateChange}
-            onChange={(date) => setEndDate(date)}
-            showYearDropdown
-            scrollableMonthYearDropdown
-          />
-        </div>
-        <div>
-          <select onChange={handleSelectGroup}>
-            <option value="DEFAULT">Choose</option>
-            <option value="GROUP">GROUP</option>
-          </select>
-        </div>
-        <div>
+        <div className="viewTemplate01-Right-Section">
+          <label>From Date</label>
+          <div className="form-group">
+            <DatePicker
+              selected={fromDate}
+              className="form-control"
+              id="datepicker"
+              onSelect={handleDateChange}
+              onChange={(date) => setFromDate(date)}
+              showYearDropdown
+              scrollableMonthYearDropdown
+            />
+          </div>
+          <label>End Date</label>
+          <div className="form-group">
+            <DatePicker
+              selected={endDate}
+              className="form-control"
+              id="datepicker"
+              onSelect={handleDateChange}
+              onChange={(date) => setEndDate(date)}
+              showYearDropdown
+              scrollableMonthYearDropdown
+            />
+          </div>
           <label></label>
-          <input type="button" value="GetData" onClick={handleButtonClick} id="btnGetReportData" />
+          <div className="form-group">
+            <select onChange={handleSelectGroup} className="form-control">
+              <option value="DEFAULT">Choose to Total</option>
+              <option value="GROUP">TOTAL</option>
+            </select>
+          </div>
         </div>
-        <div className="div-ViewTemplate01-div-table"></div>
+      </div>
+      <div style={{ backgroundColor: 'red', margin: 'auto', width: '100px' }}>
+        <input type="button" value="GET-REPORT" onClick={handleButtonClick} className="getbtn btn btn-primary" />
       </div>
     </div>
   );
