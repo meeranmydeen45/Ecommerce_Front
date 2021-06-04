@@ -19,9 +19,8 @@ function CashPositionPage() {
   }, []);
   return (
     <div className="div-CashPositionPage">
-      <h3>Your Current Cash Position</h3>
-      <br />
-      <b>{cashPosition}</b>
+      <h3 style={{ textAlign: 'center', marginBottom: '50px' }}>Shop Cash Position</h3>
+      <div id="div-Cash">{cashPosition} INR</div>
     </div>
   );
 }

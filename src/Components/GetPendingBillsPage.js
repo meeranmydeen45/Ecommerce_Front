@@ -51,7 +51,12 @@ function GetPendingBillsPage() {
             <td>{item.customermobile}</td>
             <td>{item.customerid}</td>
             <td>
-              <input type="button" value="GetBill" onClick={(e) => buttonGetBill(item.billnumber)} />
+              <input
+                type="button"
+                value="GetBill"
+                onClick={(e) => buttonGetBill(item.billnumber)}
+                className="btn btn-outline-primary"
+              />
             </td>
           </tr>
         );
@@ -66,7 +71,12 @@ function GetPendingBillsPage() {
           <td>{billData.customermobile}</td>
           <td>{billData.customerid}</td>
           <td>
-            <input type="button" value="GetBill" onClick={(e) => buttonGetBill(billData.billnumber)} />
+            <input
+              type="button"
+              value="GetBill"
+              onClick={(e) => buttonGetBill(billData.billnumber)}
+              className="getbtn btn btn-info"
+            />
           </td>
         </tr>
       );
@@ -115,9 +125,18 @@ function GetPendingBillsPage() {
 
   return (
     <div className="div-GetPendingBillsPage">
-      <div>
-        <input type="text" onChange={(e) => setTxtValue(e.target.value)} value={txtValue} />
-        <input type="button" value="Search" onClick={handleSearchClick} />
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Collection of all Pending Bills</h4>
+      <div className="input-group form-group">
+        <input
+          type="text"
+          onChange={(e) => setTxtValue(e.target.value)}
+          value={txtValue}
+          className="form-control"
+          placeholder="Enter Your Search Value."
+        />
+        <div className="input-group-append">
+          <input type="button" value="Search" onClick={handleSearchClick} className="getbtn btn btn-primary" />
+        </div>
       </div>
       <div>
         <input type="radio" name="cust" onChange={handleCheckBox} value="CUSTOMERID" />
@@ -130,16 +149,16 @@ function GetPendingBillsPage() {
         <label for="custName">Name</label>
       </div>
       <div>{errorMessage != '' ? errorMessage : ''}</div>
-      <div>
-        <table>
+      <div className="table-responsive">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>BillNo</th>
-              <th>PendingAmout</th>
-              <th>CustomerName</th>
-              <th>CustomerID</th>
-              <th>CustomerMobile</th>
-              <th>GetBill</th>
+              <th>Pending-Amount</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Customer ID</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{errorMessage == '' ? tableBodyData : ''}</tbody>

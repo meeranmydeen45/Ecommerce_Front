@@ -24,10 +24,18 @@ function ReprintBillPage() {
 
   return (
     <div className="div-ReprintBillPage">
-      <div>
-        <label>Enter Bill Number: </label>
-        <input type="text" onChange={(e) => setTextValue(e.target.value)} value={textValue} />
-        <input type="button" value="Search" onClick={handlePrintClick} />
+      <h4 style={{ textAlign: 'center', marginBottom: '60px' }}>Bills Reprint Section</h4>
+      <div className="input-group form-group">
+        <input
+          type="text"
+          onChange={(e) => setTextValue(e.target.value)}
+          value={textValue}
+          className="form-control"
+          placeholder="Enter Bill No."
+        />
+        <div className="input-group-append">
+          <input type="button" value="Search" onClick={handlePrintClick} className="getbtn btn btn-primary" />
+        </div>
       </div>
     </div>
   );

@@ -53,21 +53,41 @@ function CustomerAccountPage() {
 
   return (
     <div className="div-CustomerAccountPage">
-      <div>
-        <label>Enter Customer ID:</label>
-        <input type="text" onChange={(e) => setCustomerId(e.target.value)} value={customerId} />
-        <input type="button" value="GetCustomer" onClick={handleGetCustomerClick} />
+      <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Create Account for Customer</h4>
+      <div className="input-group form-group">
+        <input
+          type="text"
+          placeholder="Enter Customer ID.."
+          onChange={(e) => setCustomerId(e.target.value)}
+          value={customerId}
+          className="form-control"
+        />
+        <div className="input-group-append">
+          <input type="button" value="GetCustomer" onClick={handleGetCustomerClick} className="getbtn btn btn-info" />
+        </div>
       </div>
+      {isStatusValid === true ? (
+        <div style={{ padding: '20px' }}>
+          <div>
+            <label style={{ marginRight: '50px' }}>Customer Name</label>
+            <label id="labelValue">{customerName}</label>
+          </div>
+          <div>
+            <label style={{ marginRight: '40px' }}>Customer Mobile</label>
+            <label id="labelValue">{customerMobile}</label>
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+
       <div>
-        <label>Customer Name:</label>
-        <label>{customerName}</label>
-      </div>
-      <div>
-        <label>Customer Mobile:</label>
-        <label>{customerMobile}</label>
-      </div>
-      <div>
-        <input type="button" value="CreateAccount" onClick={handleCreateAccountClick} />
+        <input
+          type="button"
+          value="CreateAccount"
+          onClick={handleCreateAccountClick}
+          className="getbtn btn btn-primary"
+        />
       </div>
     </div>
   );
