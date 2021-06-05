@@ -49,7 +49,7 @@ class StockPriceChange extends React.Component {
       promise.then((res) => {
         this.setState({ modalData: res.data });
       });
-      var modal = document.getElementById('modalBackground');
+      var modal = document.getElementById('myModal');
       modal.style.display = 'block';
     };
 

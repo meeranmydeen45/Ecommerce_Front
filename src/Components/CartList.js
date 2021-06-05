@@ -118,10 +118,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
   const cartList = cartItems.map((item, i) => {
     return (
       <tr key={i}>
-        <td>
-          {item.productName}{' '}
-          <img src={baseUrl + '/' + item.productImage} alt="NA" style={{ width: '50px', height: '50px' }} />
-        </td>
+        <td>{item.productName} </td>
         <td>{item.size}</td>
 
         <td>
@@ -136,8 +133,12 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
         <td>{item.cost}</td>
         <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
         <td>
-          <button className="btn btn-success" onClick={() => removeCart(item, cartItems, false)}>
-            X
+          <button
+            className="btn btn-outline-info"
+            onClick={() => removeCart(item, cartItems, false)}
+            style={{ padding: '0px 10px' }}
+          >
+            x
           </button>
         </td>
       </tr>
@@ -146,68 +147,108 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
 
   return (
     <div className="cardUserPage">
-      <div className="cardSection">
-        <p style={{ textAlign: 'center' }}>Info Table Added Item in Cart {totalProducts}</p>
-        <b>Customer ID: {getTxtBoxValue.customerId}</b>
-        <table className="cardPaymentTable" id="cardPaymentTable">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Size</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Tot.cost</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>{cartList}</tbody>
-        </table>
-        <div>
-          <label>Discount</label>
-          <input
-            type="text"
-            name="customerDiscount"
-            id="txtDiscount"
-            value={getTxtBoxValue.customerDiscount}
-            onChange={hanldeInputChange}
-          />
-        </div>
-        <div>Total Cost to Pay {totalCost}</div>
-        <div>
-          <input type="button" class="btn btn-info" value="Store" onClick={() => makePurchase(cartItems)} />
-        </div>
-      </div>
-      <div className="userSection">
-        <label>MobileId</label>
-        <input
-          type="text"
-          name="customerMobile"
-          id="txtMobile"
-          value={getTxtBoxValue.customerMobile}
-          onChange={hanldeInputChange}
-        />
-        <div>
-          <input type="button" value="Is-UserAvailable?" id="btnCheckUserAvailable" onClick={isUserAvailable} />
-          <input type="button" value="Update" id="btnUpdate" onClick={btnUpdateClick} />
-        </div>
-        <label>Name</label>
-        <input
-          type="text"
-          name="customerName"
-          id="txtName"
-          value={getTxtBoxValue.customerName}
-          onChange={hanldeInputChange}
-        />
-        <label>Address</label>
-        <input
-          type="text"
-          name="customerAddress"
-          id="txtAddress"
-          value={getTxtBoxValue.customerAddress}
-          onChange={hanldeInputChange}
-        />
+      <h4 style={{ textAlign: 'center' }}>Purchase Confirmation Page</h4>
+      <div className="cardUserPage-Full-Section">
+        <div className="cardUserPage-Left-Section">
+          <p style={{ textAlign: 'center' }}>Added Item in Cart {totalProducts}</p>
 
-        <input type="button" value="Store" id="btnUserStore" onClick={storeCustomer} disabled={customerStatus} />
+          <div className="table-responsive" style={{ marginBottom: '50px' }}>
+            <table className="table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Size</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Tot.cost</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody>{cartList}</tbody>
+            </table>
+          </div>
+          <div className="payment-table-below">
+            <p>
+              Customer ID
+              <span style={{ fontWeight: 'bold', color: 'blue', marginLeft: '10%' }}> {getTxtBoxValue.customerId}</span>
+            </p>
+            <label>Enter Discount</label>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="customerDiscount"
+                id="txtDiscount"
+                placeholder="Amount Here."
+                value={getTxtBoxValue.customerDiscount}
+                onChange={hanldeInputChange}
+              />
+            </div>
+            <p>
+              total <span style={{ marginLeft: '18%', fontWeight: 'bold', color: 'blue' }}>{totalCost} INR</span>
+            </p>
+            <div>
+              <input
+                type="button"
+                class="btn btn-outline-primary btn-block"
+                value="PURCHASE"
+                onClick={() => makePurchase(cartItems)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="cardUserPage-Right-Section">
+          <p style={{ textAlign: 'center' }}>Customer Selection Section</p>
+          <label>Mobile Number</label>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              name="customerMobile"
+              id="txtMobile"
+              placeholder="Enter Here.."
+              value={getTxtBoxValue.customerMobile}
+              onChange={hanldeInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <input type="button" value="Is-UserAvailable?" onClick={isUserAvailable} className="btn btn-outline-info" />
+            <input type="button" value="Update" onClick={btnUpdateClick} className="btn btn-outline-success" />
+          </div>
+          <label>Name</label>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              name="customerName"
+              id="txtName"
+              value={getTxtBoxValue.customerName}
+              onChange={hanldeInputChange}
+            />
+          </div>
+          <label>Address</label>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              name="customerAddress"
+              id="txtAddress"
+              value={getTxtBoxValue.customerAddress}
+              onChange={hanldeInputChange}
+            />
+          </div>
+          <div>
+            <input
+              type="button"
+              value="REGISTER"
+              onClick={storeCustomer}
+              disabled={customerStatus}
+              className="btn btn-primary mt-3"
+              style={{ padding: '5px 20px' }}
+            />
+          </div>
+        </div>
       </div>
       <div id="printAreaH"></div>
     </div>

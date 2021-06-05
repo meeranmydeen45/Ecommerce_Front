@@ -1,16 +1,12 @@
 import React from 'react';
 
 const Modal = (props) => {
+  var modal = document.getElementById('myModal');
   let productsList = '';
   const baseUrl = 'https://localhost:44348/Images/';
   let { data, updateValueToMain } = props;
-  const closeModal = (e) => {
-    var modal = document.getElementById('modalBackground');
-    modal.style.display = 'none';
-  };
 
   const tableSelect = (e, prodName, imagePath) => {
-    var modal = document.getElementById('modalBackground');
     modal.style.display = 'none';
     updateValueToMain(prodName, imagePath);
   };
@@ -22,7 +18,9 @@ const Modal = (props) => {
           <td>
             <input
               type="button"
-              value="Select"
+              value="SELECT"
+              className="btn btn-outline-primary"
+              style={{ padding: '0 5px', fontSize: '12px' }}
               onClick={(e) => {
                 tableSelect(e, item.productName, item.imagePath);
               }}
@@ -30,34 +28,46 @@ const Modal = (props) => {
           </td>
           <td>{item.productName}</td>
           <td>
-            <img src={baseUrl + '/' + item.imagePath} alt="NotFound" style={{ width: '50px', height: '50px' }} />
+            <img
+              src={baseUrl + '/' + item.imagePath}
+              alt="NotAvailable"
+              style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+            />
           </td>
         </tr>
       );
     });
   }
 
+  const modalClose = () => {
+    modal.style.display = 'none';
+  };
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
   return (
-    <div id="modalBackground">
-      <div id="myModal">
-        <div id="divModalClose">
-          <span onClick={closeModal}>&times;</span>
+    <div className="modal" id="myModal">
+      <div className="modal-content">
+        <div className="modal-header">
+          <span className="close" onClick={modalClose}>
+            &times;
+          </span>
         </div>
-        <div id="divModalHeader">
-          <input type="text" id="searchTextBox" placeholder="TypeHere" />
-          <input type="button" value="Search" />
-        </div>
-        <div id="divModalBody">
-          <table id="tableProductModal">
+        <div className="modal-body table-responsive">
+          <table className="table-hover">
             <thead>
               <tr>
                 <th></th>
-                <th>ProductName</th>
+                <th>Prod Name</th>
+                <th>Image</th>
               </tr>
             </thead>
             <tbody>{productsList}</tbody>
           </table>
         </div>
+        <div className="modal-footer"></div>
       </div>
     </div>
   );

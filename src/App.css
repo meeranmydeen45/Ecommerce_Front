@@ -6,6 +6,25 @@ body {
   margin: 0;
 }
 
+/*Login Container*/ 
+.LoginContainer {
+  display: flex;
+  min-height: 90vh;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  }
+  .div-LoginInner{
+    background-color:honeydew ;
+    width: 450px;
+    max-width: 500px;
+    padding: 25px 80px;
+    box-shadow: 15px 20px 30px 0px;
+  
+  }
+
+
 /*NavBar Section*/
 .containerBox {
   background-color:steelblue;
@@ -84,9 +103,64 @@ div.dropdown-item:hover{
   background-color:lightgray;
    
   }
-/**/
 
-/*Placing Order Section*/
+/*Product Entry Section*/
+.productEntryComponent{
+  min-height:90vh;
+  text-transform: uppercase;
+  background-color:darkkhaki;
+  padding: 30px 80px;
+  }
+  
+  .entry-full-section{
+    display: flex;
+    font-size: 14px;
+    background-color:darkkhaki;
+    letter-spacing: 0.5px;
+    border: 1px dotted steelblue;
+    padding: 50px 20px 20px 50px;
+    z-index: 2;
+  }
+  .entry-left-section{
+   flex: 50%;
+   border-right: 0.3px solid lightgray;
+   
+  }
+  .entry-right-section{
+    padding-left: 80px;
+    flex: 50%;
+  }
+  .entry-right-section img{
+    max-width:400px;
+    object-fit: cover;
+  }
+  
+  @media screen and (max-width:1000px) {
+    .entry-full-section{
+      display:flex;
+      flex-direction: column;
+      }
+      .entry-left-section{
+        border: none;
+        flex: 100%;
+      }
+      .entry-right-section{
+        padding:0;
+        flex: 100%;
+       background-color:honeydew;
+      }
+      .entry-right-section img{
+        max-width:200px;
+        object-fit: cover;
+      }
+    }
+    @media screen and (max-width:500px){
+      .entry-full-section{
+        padding: 5px;
+      }
+      }
+
+/*Cart Items and Card List Section - Product Purchase Selection*/
 .orderContainer {
   position: relative;
   min-height:100vh;
@@ -151,206 +225,60 @@ div.dropdown-item:hover{
 
 /*Customer Payment Registration and Card Table*/
 .cardUserPage{
-  min-height:100vh;
-  display:flex;
-  }
-  .cardSection{
-  display:flex;
-  padding:20px;
-  flex-direction:column;
-  flex:60%;
-  background-color:lightblue;
-  }
-  
-  /*.cardSection table{
-  border-collapse:collapse;
-  }
-  table th{
-  border:1px solid blue;
-  }
-  table tr td{
-  border:1px solid blue;
-  text-align:center;
-  }*/
-  #btnInfoStore{
-  width:30%;
-  padding:2px;
-  margin-top:30px;
-  align-self:flex-end;
-  }
-  .userSection{
-  flex:40%;
+  background-color:honeydew;
+  min-height: 90vh;
+  text-transform: uppercase;
+  padding:30px 0;
+}
+
+.cardUserPage-Full-Section{
+  background-color:honeydew;
+  display: flex;
+  min-height: 50vh;
+}
+.cardUserPage-Left-Section{
+  background-color:honeydew;
+  flex: 70%;
+  padding: 30px 80px;
+  border-right: 1px solid lightgray;
+}
+
+.cardUserPage-Left-Section table{
+  width: 100%;
+  text-align: center;
+}
+.cardUserPage-Left-Section table thead{
+  font-weight: normal;
+  font-size: 14px;
+  background-color: khaki;
+}
+.cardUserPage-Left-Section table tbody{
+  background-color: lavender;
+}
+
+.payment-table-below{
   background-color:lightgreen;
-  display:flex;
-  flex-direction:column;
-  }
-  
-  .userSection label{
-  padding:5px 40px;
-  }
-  .userSection input[type="text"]{
-  width: auto;
-  margin:0px 40px;
-  padding:3px;
-  }
-  
-#btnCheckUserAvailable{
-  margin:25px 40px;
-  padding:5px;
-  width:50%;
-
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  padding: 50px;
+  box-shadow: 2px 5px 20px;
+}
+.cardUserPage-Right-Section{
+background-color: honeydew;
+padding: 30px 80px;
+flex: 30%;
 }
 
-  #btnUserStore{
-  margin:25px 40px;
-  padding:5px;
-  width:50%;
-  }
-  
-  
-  @media(max-width:600px)
-  {
-  .cardUserPage{
-  display:flex;
-  flex-direction:column;
-  }
-  }
-
-
-
-
-/**/
-
-/*Product Entry Section*/
-.productEntryComponent{
-min-height:100vh ;
-}
-#divHead {
-  line-height: 50px;
-  text-align: center;
-}
-#divBody {
-  display: flex;
-  background-color: lightyellow;
-}
-#left-Section {
-  flex: 50%;
-  margin-top: 50px;
-  margin-left: 25px;
-  font-weight: bold;
-  flex-direction: column;
-}
-#right-Section {
-  flex: 50%;
-  background-color: lightblue;
-}
-
-#div4 {
-  display: flex;
-  margin-bottom: 25px;
-}
-
-#div4-1 {
-  flex: 20%;
-}
-
-#div4-2 {
-  flex: 30%;
-  overflow: hidden;
-}
-
-#div4-3 {
-  flex: 15%;
-  text-align: right;
-}
-
-#div4-4 {
-  flex: 25%;
-  text-align: center;
-}
-
-#selectCategory {
-  width: 100%;
-  height: 35px;
-}
-
-input[type='text'] {
-  box-sizing: border-box;
-  width: 100%;
-}
-input[type='file'] {
-  width: 100%;
-}
-
-/* My Custom Modal Class Creation */
-
-#modalBackground {
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
-}
-#myModal {
-  padding: 25px;
-  width: 80%;
-  height: 600px;
-  background-image: linear-gradient(to top, pink, lightblue);
-  margin: auto;
-  box-shadow: 1px 8px 16px 2px lightseagreen;
-}
-#divModalClose {
-  text-align: end;
-  font-weight: bold;
-  font-size: 40px;
-}
-#divModalClose span:hover {
-  cursor: pointer;
-  color: mediumblue;
-}
-#divModalHeader {
-  display: flex;
-}
-#divModalHeader #searchTextBox {
-  width: 50%;
-}
-#tableProductModal {
-  margin-top: 50px;
-  width: 50%;
-}
-
-/* #tableProductModal th,
-td {
-  border: 1px solid blue;
-} */
-/*Model Design End */
-
-@media screen and (max-width: 855px) {
-  #divBody {
+@media (max-width:750px){
+  .cardUserPage-Full-Section{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
-@media screen and (max-width: 400px) {
-  #divBody {
-    display: flex;
-    flex-direction: column;
-  }
-  #div4 {
-    display: flex;
-    flex-direction: column;
-  }
 
-  #div4 #div4-3 {
-    text-align: left;
-  }
-  #div4 #div4-4 {
-    text-align: left;
-  }
-}
+
+
 
 /*Adding New Category and Product - Section*/
 .newCategory {
@@ -403,92 +331,8 @@ td {
   
   
 }
-/*Login Container*/ 
-.LoginContainer {
-  display: flex;
-  min-height: 90vh;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  }
-  .div-LoginInner{
-    background-color:honeydew ;
-    width: 450px;
-    max-width: 500px;
-    padding: 25px 80px;
-    box-shadow: 15px 20px 30px 0px;
-  
-  }
-
-  /* Print Area Desing */
 
 
-#printAreaH{
-position:absolute;
-bottom:1200px;
-min-width:800px;
-min-height: 1500px;
-background-color:yellow;
-    /*Its hidden below of User-Card Page */
-}
-
- .dynamicDiv{
-   background-color: cadetblue;
-   color:darkblue;
-   font-size: 16px;
-  }
-
-  .dynamicDiv .content-head{
-    height:80px;
-    background-color: coral;
-    text-align: center;
-  }
-
-   /*Customer Details and Invoice No and Date*/
-  .dynamicDiv .div2-Section{
-    display: flex;
-    height: 100px;
-    background-color: greenyellow;
-    padding: 20px;
-    overflow: hidden;
-  }
-  .div2-Section .div-Cust{
-   color:green;
-   flex:50%;
-   padding-left: 20px;
-  }
-  .div2-Section .div-Date{
-    color:green;
-    flex:50%;
-    margin-left: 100px;
-  
-  }
- 
-  /*Table present Inside this DIV */
-  .dynamicDiv{
-    padding: 30px;
-  }
-  .dynamicDiv .divTable table{
-    width: 100%;
-    padding: 25px;
-    border: 1px solid #000;
-    border-collapse: collapse;
-  }
-  .dynamicDiv .divTable td{
-    background-color: #eee;
-    padding:5px;
-    text-align: center;
-  }
-  
-  .divTableTotal{
-    
-    margin-left:550px;
-    font-weight: bold;
-    font-size: larger;
-    margin-top:20px;
-  }
- /*End of Print Area*/
   
 /* Payment-Page Section */
 
@@ -511,6 +355,9 @@ background-color:yellow;
   .div-PaymentPage .div-CustInfo span{
    color: blue;
    font-weight: bold;
+  }
+  .div-PaymentPage select{
+    max-width: 300px;
   }
 
 /*Reversal-Page Section*/
@@ -606,6 +453,7 @@ background-color:yellow;
   margin: auto;
   height: 90vh;
   padding: 30px 100px;
+  text-transform: uppercase;
 }
 .div-ReprintBillPage label{
   min-width: 150px;
@@ -642,14 +490,7 @@ background-color:yellow;
     font-size: 30px;
   }
 
-/*PDF Table Creation - jsPDF*/
-.div-PDFTableCreation{
-  background-color:darkcyan;
-  width: 50%;
-  margin: auto;
-  height: 90vh;
-  padding: 50px;
-}
+
 
 /*GlobalCash Credit _page */
 .div-GlobalCashCreditPage{
@@ -730,3 +571,162 @@ background-color:yellow;
 }
 
 
+/*Custom Modal Class Creation */
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  max-width: 800px;
+  min-height: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color:darkslateblue;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: darkslateblue;
+  color: white;
+}
+
+.modal table{
+  width: 80%;
+  margin: auto;
+}
+.modal table thead{
+  background-color: black;
+  color: dodgerblue;
+  font-size: 15px;
+}
+.modal table tbody{
+font-size: 15px;
+}
+  
+
+/* HTML Canvas - Print Area Design - Invoice */
+    #printAreaH{
+    position:absolute;
+    bottom:1200px;
+    min-width:800px;
+    min-height: 1500px;
+    background-color:yellow;
+    /*Its hidden below of User-Card Page */
+    }
+    
+     .dynamicDiv{
+       background-color: cadetblue;
+       color:darkblue;
+       font-size: 16px;
+      }
+    
+      .dynamicDiv .content-head{
+        height:80px;
+        background-color: coral;
+        text-align: center;
+      }
+    
+       /*Customer Details and Invoice No and Date*/
+      .dynamicDiv .div2-Section{
+        display: flex;
+        height: 100px;
+        background-color: greenyellow;
+        padding: 20px;
+        overflow: hidden;
+      }
+      .div2-Section .div-Cust{
+       color:green;
+       flex:50%;
+       padding-left: 20px;
+      }
+      .div2-Section .div-Date{
+        color:green;
+        flex:50%;
+        margin-left: 100px;
+      
+      }
+     
+      /*Table present Inside this DIV */
+      .dynamicDiv{
+        padding: 30px;
+      }
+      .dynamicDiv .divTable table{
+        width: 100%;
+        padding: 25px;
+        border: 1px solid #000;
+        border-collapse: collapse;
+      }
+      .dynamicDiv .divTable td{
+        background-color: #eee;
+        padding:5px;
+        text-align: center;
+      }
+      
+      .divTableTotal{
+        
+        margin-left:550px;
+        font-weight: bold;
+        font-size: larger;
+        margin-top:20px;
+      }
+     /*End of Print Area*/
+
+
+/*PDF Table Creation - jsPDF */
+.div-PDFTableCreation{
+  background-color:darkcyan;
+  width: 50%;
+  margin: auto;
+  height: 90vh;
+  padding: 50px;
+}

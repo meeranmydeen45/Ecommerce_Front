@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Modal from './Modal';
 import { getProductsforModal } from '../shared/utils/apicalls';
+import { modalHandling } from '../shared/utils/helper';
+import $ from 'jquery';
 
 class ProductEntry extends React.Component {
   constructor(props) {
@@ -69,7 +71,8 @@ class ProductEntry extends React.Component {
       promise.then((res) => {
         this.setState({ modalData: res.data });
       });
-      var modal = document.getElementById('modalBackground');
+
+      var modal = document.getElementById('myModal');
       modal.style.display = 'block';
     };
 
@@ -87,8 +90,6 @@ class ProductEntry extends React.Component {
       formData.append('Quantity', this.state.productQuantity);
       formData.append('Cost', this.state.productPrize);
 
-      console.log(this.state.categoryValue);
-
       axios
         .post(`https://localhost:44348/api/home/register`, formData)
         .then((res) => {
@@ -101,98 +102,95 @@ class ProductEntry extends React.Component {
 
     return (
       <div className="productEntryComponent">
-        <div id="divHead">Product Entry</div>
-
-        <div id="divBody">
-          <div id="left-Section">
+        <h4 style={{ textAlign: 'center', marginBottom: '30px' }}>Product Purchase Entry Section</h4>
+        <div className="entry-full-section">
+          <div className="entry-left-section">
             <form onSubmit={handleFormSumbit}>
-              <div id="div4">
-                <div id="div4-1">
+              <div className="row form-group">
+                <div className="col-3 mt-2">
                   <label>Select Category</label>
                 </div>
-                <div id="div4-2">
-                  <select onChange={handleDropDownChange} id="selectCategory">
+                <div className="col-6">
+                  <select onChange={handleDropDownChange} id="selectCategory" className="form-control">
                     <option value="default">Choose Option</option>
                     {this.state.optionList}
                   </select>
                 </div>
-                <div id="div4-3"></div>
-                <div id="div4-4"></div>
               </div>
-
-              <div id="div4">
-                <div id="div4-1">
-                  <label>ProductName</label>
+              <div className="row form-group">
+                <div className="col-3 mt-2">
+                  <label>Product Name</label>
                 </div>
-                <div id="div4-2">
-                  <input type="text" onChange={handleTextBoxChange} name="productName" value={this.state.productName} />
-                </div>
-                <div id="div4-3" style={{ textAlign: 'left' }}>
-                  <input type="button" value="--" onClick={handleModel} />
-                </div>
-                <div id="div4-4"></div>
-              </div>
-
-              <div id="div4">
-                <div id="div4-1">
-                  <label>ProductSize</label>
-                </div>
-                <div id="div4-2">
-                  <input type="text" onChange={handleTextBoxChange} name="productSize" />
-                </div>
-                <div id="div4-3" style={{ textAlign: 'left' }}>
-                  <input type="button" value="--" />
-                </div>
-                <div id="div4-4"></div>
-              </div>
-
-              <div id="div4">
-                <div id="div4-1">
-                  <label>UnitPrice</label>
-                </div>
-                <div id="div4-2">
-                  <input type="text" onChange={handleTextBoxChange} name="productPrize" />
-                </div>
-                <div id="div4-3"></div>
-                <div id="div4-4"></div>
-              </div>
-
-              <div id="div4">
-                <div id="div4-1">
-                  <label>TotalNumbers</label>
-                </div>
-                <div id="div4-2">
-                  <input type="text" onChange={handleTextBoxChange} name="productQuantity" />
-                </div>
-                <div id="div4-3">
-                  <label>TotalCost</label>
-                </div>
-                <div id="div4-4">
-                  <label>INR {this.state.productQuantity * this.state.productPrize}</label>
+                <div className="col-6 input-group">
+                  <input
+                    type="text"
+                    onChange={handleTextBoxChange}
+                    name="productName"
+                    value={this.state.productName}
+                    className="form-control"
+                  />
+                  <div className="input-group-append">
+                    <input
+                      type="button"
+                      value="--"
+                      onClick={handleModel}
+                      className="btn btn-info"
+                      style={{ maxHeight: '40px' }}
+                    />
+                  </div>
                 </div>
               </div>
-
-              <div id="div4">
-                <div id="div4-1">
-                  <label>EXTRAS</label>
+              <div className="row form-group">
+                <div className="col-3 mt-2">
+                  <label>Product Size</label>
                 </div>
-                <div id="div4-2">FILE UPLOAD REMOVED</div>
-                <div id="div4-3"></div>
-                <div id="div4-4"></div>
+                <div className="col-6 input-group">
+                  <input type="text" onChange={handleTextBoxChange} name="productSize" className="form-control" />
+                  <div className="input-group-append">
+                    <input type="button" value="--" className="btn btn-info" style={{ maxHeight: '40px' }} />
+                  </div>
+                </div>
               </div>
-
-              <div>
-                <input type="submit" value="Store" className="btn btn-primary" />
+              <div className="row form-group">
+                <div className="col-3 mt-2">
+                  <label>Unit Price</label>
+                </div>
+                <div className="col-6">
+                  <input type="text" onChange={handleTextBoxChange} name="productPrize" className="form-control" />
+                </div>
+              </div>
+              <div className="row form-group">
+                <div className="col-3 mt-2">
+                  <label>Total Numbers</label>
+                </div>
+                <div className="col-6">
+                  <input type="text" onChange={handleTextBoxChange} name="productQuantity" className="form-control" />
+                </div>
+              </div>
+              <div className="row form-group">
+                <div className="col-3 mt-2">
+                  <label>Total Cost</label>
+                </div>
+                <div className="col-6 mt-2">
+                  <p style={{ fontWeight: 'bold', color: 'blue' }}>
+                    {this.state.productQuantity * this.state.productPrize} INR
+                  </p>
+                </div>
+              </div>
+              <div className="row form-group">
+                <div className="col-9">
+                  <input type="submit" value="STORE" className="btn btn-outline-primary btn-block" />
+                </div>
               </div>
             </form>
           </div>
-
-          <div id="right-Section">
-            <label htmlFor="previewImage">PreviewImage of Uploaded File</label>
-            <img src={baseUrl + '/' + this.state.imagePathName} alt="" style={{ height: '300px' }} />
+          <div className="entry-right-section">
+            <div>
+              <img src={baseUrl + '/' + this.state.imagePathName} alt="Image" />
+            </div>
           </div>
-          <Modal data={this.state.modalData} updateValueToMain={updateValueFromModal}></Modal>
         </div>
+        <Modal data={this.state.modalData} updateValueToMain={updateValueFromModal}></Modal>
       </div>
     );
   }
