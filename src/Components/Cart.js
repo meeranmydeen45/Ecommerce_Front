@@ -12,10 +12,7 @@ class Cart extends React.Component {
     const cartList = cartItems.map((item, i) => {
       return (
         <tr key={i}>
-          <td>
-            {item.productName}{' '}
-            <img src={baseUrl + '/' + item.productImage} alt="NA" style={{ width: '50px', height: '50px' }} />
-          </td>
+          <td>{item.productName} </td>
           <td>{item.size}</td>
           <td>{item.Quantity}</td>
           <td>{item.cost}</td>

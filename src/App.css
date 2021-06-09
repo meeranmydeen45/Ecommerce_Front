@@ -5,6 +5,12 @@ body {
   padding: 0;
   margin: 0;
 }
+/*Container Box of All Components*/
+.containerBox {
+  background-color:darkseagreen;
+  width: 100%;
+  min-height: 100vh;
+}
 
 /*Login Container*/ 
 .LoginContainer {
@@ -26,96 +32,120 @@ body {
 
 
 /*NavBar Section*/
-.containerBox {
-  background-color:steelblue;
-  width: 100%;
-  min-height: 100vh;
+.head-section{
+position: sticky;
+top:0px;
+background-color:brown;
+width: 100%;
+z-index: 1000;
 }
+.my-nav-container{
+  max-width: 85%;
+  height: 3rem;
+  margin:0 auto;
+  display: flex;
+  
 
-.navbarHead{
-  height: 60px;
-  display:flex;
-  background-color:black;
+}
+.my-logo{
+ flex: 1;
+ line-height: 3rem;
+}
+.my-logo a{
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color:darkseagreen;
   
 }
-.div1navbarLogo{  
+.my-logo a:hover{
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color:greenyellow;
+}
+.my-nav-links{
+  text-transform: uppercase;
+  flex: 3;
+}
+
+.my-userName{
+  
+  flex:1;
   display: flex;
+  text-transform: uppercase;
   justify-content: center;
-  align-items: center;
-  flex:50%;
-}
-.navbarLogo a{
-  color:dodgerblue;
+  line-height: 3rem;
   font-weight: bold;
-  text-decoration: none;
-  font-size: large;
+  color: darkseagreen;
 }
-.div2afterLogo{
+.my-nav-links > ul{
+  list-style: none;
   display: flex;
-  flex:50%;
+  align-items: center;
+  justify-content: center;
+}
+.my-link{
+  position: relative;
+}
+.my-link > a{
+line-height: 3rem;
+color: #fff;
+padding: 0 30px;
+letter-spacing: 1px;
+font-size: .95rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+.my-link:hover > a{
+ text-decoration: none;
+ background-color: rgba(0, 0, 0, 0.6);
+ color: grey;
 }
 
-.div2afterLogo > div:hover {
-  border: 2px solid blue;
+.my-dropdown{ 
+  display: none;
+  position:absolute;
+  top:100%;
+  left: 0;
+  width: 140px;
+  background-color:rgba(0, 0, 0, 0.9);
+  border-radius: 5px;
+  
 }
-.div2afterLogo > div > a{
- 
-  float: left;
-  padding:15px 20px;
-  color:dodgerblue;
-  transition: all 0.5s ease-out;
+.my-link:hover > .my-dropdown{
+  display: block;
 }
-.div2afterLogo > div > a:hover{
+.my-dropdown ul{
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+}
+.my-dropdown-link > a{
+  display: flex;
+  color: white;
+  padding: 12px 8px;
+}
+.my-dropdown-link:hover > a{
   text-decoration: none;
-  color:white;
-}
-
-#userNameText{
   color:dodgerblue;
-  font-weight: bold;
-  user-select: none;
-  padding:15px 20px;
-}
-
-.dropdown {
-  padding:15px 0;
-  cursor: pointer;
-  color: dodgerblue;
-  border: none;
+  background-color:rgba(0, 0, 0, 0.8);
 
 }
-
-div.dropdown-menu.show{
-   margin:0px 0px;
-   padding: 0px 0px;
-}
-div.dropdown-item{
-  padding:10px 10px;
-}
-div.dropdown-item a{
-text-decoration: none;
-}
-div.dropdown-item a:hover{
-  color:blue;
-  }
-div.dropdown-item:hover{
-  text-decoration: none;
-  background-color:lightgray;
-   
-  }
-
 /*Product Entry Section*/
 .productEntryComponent{
   min-height:90vh;
   text-transform: uppercase;
-  background-color:darkkhaki;
+  background-color:darkseagreen;
   padding: 30px 80px;
   }
   
   .entry-full-section{
     display: flex;
     font-size: 14px;
-    background-color:darkkhaki;
+    background-color:honeydew;
     letter-spacing: 0.5px;
     border: 1px dotted steelblue;
     padding: 50px 20px 20px 50px;
@@ -162,8 +192,8 @@ div.dropdown-item:hover{
 
 /*Cart Items and Card List Section - Product Purchase Selection*/
 .orderContainer {
-  position: relative;
-  min-height:100vh;
+  background-color: darkseagreen;
+  min-height:90vh;
   display: flex;
 }
 .o-container1 {

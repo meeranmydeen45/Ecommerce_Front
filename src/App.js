@@ -36,6 +36,7 @@ import CustomerTxHistoryReportPage from './Components/CustomerTxHistoryReportPag
 import Logout from '../src/Components/Logout';
 import { getUser } from './shared/utils/helper';
 import LogoutRoute from './Components/LogoutRoute';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,133 +45,154 @@ class App extends React.Component {
       userName: '',
     };
   }
+
   render() {
     let navbar = '';
+    // $('.dropdown').on('show.bs.dropdown', function (e) {
+    //   $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+    // });
     const isUserAvailable = getUser();
     console.log(isUserAvailable);
     if (isUserAvailable) {
       navbar = (
-        <div className="navbarHead">
-          <div className="div1navbarLogo">
-            <div className="navbarLogo">
+        <div className="head-section">
+          <div class="my-nav-container">
+            <div className="my-logo">
               <a href="#">Logo</a>
             </div>
-          </div>
 
-          <div className="div2afterLogo">
-            <div>
-              <NavLink activeClassName="active" to="/register">
-                ProductEntry
-              </NavLink>
-            </div>
-            <div>
-              <NavLink activeClassName="active" to="/order">
-                PlacerOrder
-              </NavLink>
-            </div>
-            <div>
-              <NavLink activeClassName="active" to="/payment">
-                Payment
-              </NavLink>
-            </div>
-            <div>
-              <NavLink activeClassName="active" to="/reverse">
-                Reverse Entry
-              </NavLink>
-            </div>
-            <div className="dropdown">
-              <div className="dropdown-toggle" data-toggle="dropdown">
-                MenuItems
-              </div>
-              <div className="dropdown-menu">
-                <div className="dropdown-item">
-                  <NavLink to="/newcategory">Add-Catergory</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/newproducts">Add-Products</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/newsizes">Add-Sizes</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/stockpricechange">StockPrice-Edit</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/createcustomeraccount">Create-Cust-Account</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/getallpendingbills">Get-PendingBills</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/reprintbill">Reprint-Bill</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/cashposition">Cash-Position</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/newuser">NewUser</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/TestPrintPDF">TestPrintPDF</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/logout">LogOut</NavLink>
-                </div>
-              </div>
-            </div>
-            <div className="dropdown">
-              <div className="dropdown-toggle" data-toggle="dropdown">
-                Accounts
-              </div>
-              <div className="dropdown-menu">
-                <div className="dropdown-item">
-                  <NavLink to="/receiptvoucher">Receipt-Voucher</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/globalcashcredit">GlobalCash-Credit</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/globalcashdebit">GlobalCash-Debit</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/modifiedBillsPage">ModifiedBills</NavLink>
-                </div>
-              </div>
+            <div className="my-nav-links">
+              <ul>
+                <li className="my-link">
+                  <a href="#">Add</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/newcategory">Catergory</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/newproducts">Products</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/newsizes">Sizes</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/stockpricechange">Stock Price Edit</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/createcustomeraccount">Create Ac</a>
+                      </li>
+
+                      <li className="my-dropdown-link">
+                        <a href="/newuser">New User</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="my-link">
+                  <a href="#">Credit</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/order">Place Order</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/payment">Payment</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/receiptvoucher">Set Ac Credit</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/globalcashcredit">GlobalCash Credit</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="my-link">
+                  <a href="#">Debit</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/register">Prod Entry</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/reverse">Reverse</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/globalcashdebit">GlobalCash Debit</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="my-link">
+                  <a href="#">Bills</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/getallpendingbills">PendingBills</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/modifiedBillsPage">Modified Bills</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/reprintbill">Reprint</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="my-link">
+                  <a href="#">Reports</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/prodaddhistoryreport">Purchase</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/prodsalehistory">Sale</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/prodsaleprofit">Prod Profit</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/prodstockreport">Stock</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/prodcostcomparison">Cost Comparison</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/monthProfit">Month Profit</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/customeracdetails">Account History</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/customertxhistory">Tx History</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="my-link">
+                  <a href="#">Global</a>
+                  <div className="my-dropdown">
+                    <ul>
+                      <li className="my-dropdown-link">
+                        <a href="/cashposition">Cash-Position</a>
+                      </li>
+                      <li className="my-dropdown-link">
+                        <a href="/logout">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            <div className="dropdown">
-              <div className="dropdown-toggle" data-toggle="dropdown">
-                Reports
-              </div>
-              <div className="dropdown-menu">
-                <div className="dropdown-item">
-                  <NavLink to="/prodaddhistoryreport">ProdAddHistory</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/prodsalehistory">ProdSaleHistory</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/prodsaleprofit">ProdSaleProfitHistory</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/prodstockreport">ProdStockReport</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/prodcostcomparison">ProdCostComparison</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/monthProfit">MonthProfit</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/customeracdetails">CustomerAccountHistory</NavLink>
-                </div>
-                <div className="dropdown-item">
-                  <NavLink to="/customertxhistory">CustomerTxHistory</NavLink>
-                </div>
-              </div>
-            </div>
-
-            <div id="userNameText">Welcome {isUserAvailable.username} !</div>
+            <div className="my-userName">Welcome {isUserAvailable.username}</div>
           </div>
         </div>
       );
@@ -203,7 +225,6 @@ class App extends React.Component {
                 <AdminRoute path="/cashposition" component={CashPositionPage} />
                 <AdminRoute path="/stockpricechange" component={StockPriceChange} />
                 <AdminRoute path="/newuser" component={NewUser} />
-                <AdminRoute path="/TestPrintPDF" component={PDFTableCreation} />
                 <AdminRoute path="/receiptvoucher" component={ReceiptVoucherPage} />
                 <AdminRoute path="/globalcashcredit" component={GlobalCashCreditPage} />
                 <AdminRoute path="/globalcashdebit" component={GlobalCashDebitPage} />
