@@ -39,15 +39,21 @@ class Product extends React.Component {
             </div>
             <div className="card-body">
               <img src={baseUrl + '/' + item.productImage} alt="NotFound" style={{ width: '200px', height: '100px' }} />
-              <select onChange={handleDropDownChange}>
+              <select
+                onChange={handleDropDownChange}
+                className="form-control"
+                style={{ maxWidth: '120px', margin: 'auto', paddingLeft: '50px' }}
+              >
                 {item.listOfstocksBySize.map((sizeitem, index) => {
                   return <option value={index + '-' + i}>{sizeitem.size}</option>;
                 })}
               </select>
-              <div>Quantity: {item.listOfstocksBySize[indexArray[i].SizeIndex].quantity}</div>
+              <div>
+                <div>Quantity: {item.listOfstocksBySize[indexArray[i].SizeIndex].quantity}</div>
+                <div>Cost ${item.listOfstocksBySize[indexArray[i].SizeIndex].cost}</div>
+              </div>
             </div>
             <div className="card-footer">
-              Cost ${item.listOfstocksBySize[indexArray[i].SizeIndex].cost}
               <button className="btn btn-primary" onClick={() => this.props.addToCart(item, indexArray, cartItems, i)}>
                 Add
               </button>
@@ -61,10 +67,12 @@ class Product extends React.Component {
       <div className="div-Product">
         <div className="shoppingCartLogo">
           <NavLink to="/cardList" className="btn btn-secondary">
-            <span class="fa fa-shopping-cart">{totalProducts}</span>
+            <i class="fa fa-shopping-cart">
+              <span style={{ marginLeft: '10px' }}>{totalProducts}</span>
+            </i>
           </NavLink>
         </div>
-        {productList}
+        <div>{productList}</div>
       </div>
     );
   }

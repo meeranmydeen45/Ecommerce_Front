@@ -18,8 +18,12 @@ class Cart extends React.Component {
           <td>{item.cost}</td>
           <td>{parseInt(item.Quantity) * parseInt(item.cost)}</td>
           <td>
-            <button className="btn btn-success" onClick={() => removeCart(item, cartItems, false)}>
-              X
+            <button
+              className="btn btn-outline-info"
+              style={{ padding: '2px 10px' }}
+              onClick={() => removeCart(item, cartItems, false)}
+            >
+              x
             </button>
           </td>
         </tr>
@@ -27,12 +31,11 @@ class Cart extends React.Component {
     });
 
     return (
-      <div className="div-Cart">
-        Added Item in Cart {totalProducts}
-        <table className="cartTable">
+      <div className="div-Cart table-responsive">
+        <table className="table table-hover">
           <thead>
             <tr>
-              <th>Product Name</th>
+              <th>Product</th>
               <th>Size</th>
               <th>Quantity</th>
               <th>Price</th>
@@ -42,7 +45,7 @@ class Cart extends React.Component {
           </thead>
           <tbody>{cartList}</tbody>
         </table>
-        Total Cost to Pay ${totalCost}
+        Total {totalCost} INR
       </div>
     );
   }

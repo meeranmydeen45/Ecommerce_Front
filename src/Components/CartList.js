@@ -42,6 +42,9 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           customerAddress: customeraddress,
           customerId: customerId,
         });
+        let paymentInfoDiv = document.getElementsByTagName('div');
+        paymentInfoDiv[18].classList.add('payment-table-anime');
+        console.log(paymentInfoDiv[18].className);
       } else {
         alert('Mobile No. not registered with Us');
         setCustomerStatus(false);
@@ -153,7 +156,7 @@ function CartList({ cartItems, removeCart, cartItemIncrement, cartItemDecrement 
           <p style={{ textAlign: 'center' }}>Added Item in Cart {totalProducts}</p>
 
           <div className="table-responsive" style={{ marginBottom: '50px' }}>
-            <table className="table-hover">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th>Name</th>

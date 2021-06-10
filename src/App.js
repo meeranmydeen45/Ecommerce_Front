@@ -95,7 +95,7 @@ class App extends React.Component {
                   <div className="my-dropdown">
                     <ul>
                       <li className="my-dropdown-link">
-                        <a href="/order">Place Order</a>
+                        <NavLink to="/order">Place Order</NavLink>
                       </li>
                       <li className="my-dropdown-link">
                         <a href="/payment">Payment</a>
@@ -132,10 +132,10 @@ class App extends React.Component {
                   <div className="my-dropdown">
                     <ul>
                       <li className="my-dropdown-link">
-                        <a href="/getallpendingbills">PendingBills</a>
+                        <a href="/getallpendingbills">Pending</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/modifiedBillsPage">Modified Bills</a>
+                        <a href="/modifiedBillsPage">Modified</a>
                       </li>
                       <li className="my-dropdown-link">
                         <a href="/reprintbill">Reprint</a>

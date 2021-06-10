@@ -60,6 +60,10 @@ class PaymentPage extends React.Component {
               customerBillAmount: data.totalcost,
               isValid: true,
             });
+            //Getting the Cust-Info div and adding CLass for Animation
+            let divCustInfo = document.getElementsByTagName('div');
+
+            divCustInfo[17].classList.add('cust-info-anime');
           } else {
             alert('Incorrect Bill Number');
             this.setState({
@@ -120,27 +124,24 @@ class PaymentPage extends React.Component {
             <input type="button" value="Get-Bill" onClick={buttonGetBillData} className="btn btn-info" />
           </div>
         </div>
-        {this.state.isValid === true ? (
-          <div className="div-CustInfo">
-            <div className="form-group">
-              <label>
-                Customer Name <span style={{ marginLeft: '20px' }}>{this.state.customerName}</span>
-              </label>
-            </div>
-            <div className="form-group">
-              <label>
-                Mobile<span style={{ marginLeft: '100px' }}>{this.state.customerMobile}</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                Needs to Pay<span style={{ marginLeft: '55px' }}>{this.state.customerBillAmount} INR</span>
-              </label>
-            </div>
+
+        <div className="div-CustInfo">
+          <div className="form-group">
+            <label>
+              Customer Name <span style={{ marginLeft: '20px' }}>{this.state.customerName}</span>
+            </label>
           </div>
-        ) : (
-          ''
-        )}
+          <div className="form-group">
+            <label>
+              Mobile<span style={{ marginLeft: '95px' }}>{this.state.customerMobile}</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              Needs to Pay<span style={{ marginLeft: '50px' }}>{this.state.customerBillAmount} INR</span>
+            </label>
+          </div>
+        </div>
 
         <div className="form-group">
           <label>Payment-Mode</label>
@@ -153,7 +154,7 @@ class PaymentPage extends React.Component {
           {this.state.availableAccountBalance !== '' ? (
             <label>
               Account Balance
-              <span style={{ fontWeight: 'bold', color: 'blue', marginLeft: '50px' }}>
+              <span style={{ fontWeight: 'bold', color: 'blue', marginLeft: '40px' }}>
                 {this.state.availableAccountBalance} INR
               </span>
             </label>
