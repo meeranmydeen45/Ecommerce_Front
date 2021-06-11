@@ -32,29 +32,30 @@ class Product extends React.Component {
 
     const productList = items.map((item, i) => {
       return (
-        <div className="cardAlignment">
-          <div className="card" key={i}>
-            <div className="card-header">
-              <div className="card-title">{item.productName}</div>
+        <div className="my-card" key={i}>
+          <div className="my-card-header">
+            <div className="my-card-title">{item.productName}</div>
+          </div>
+          <div className="my-card-body">
+            <div className="my-card-image">
+              <img src={baseUrl + '/' + item.productImage} alt="NotFound" />
             </div>
-            <div className="card-body">
-              <img src={baseUrl + '/' + item.productImage} alt="NotFound" style={{ width: '200px', height: '100px' }} />
-              <select
-                onChange={handleDropDownChange}
-                className="form-control"
-                style={{ maxWidth: '120px', margin: 'auto', paddingLeft: '50px' }}
+            <select onChange={handleDropDownChange} style={{ width: '150px', marginBottom: '10px' }}>
+              {item.listOfstocksBySize.map((sizeitem, index) => {
+                return <option value={index + '-' + i}>{sizeitem.size}</option>;
+              })}
+            </select>
+            <div>
+              <div>Quantity {item.listOfstocksBySize[indexArray[i].SizeIndex].quantity}</div>
+              <div>{item.listOfstocksBySize[indexArray[i].SizeIndex].cost} INR</div>
+            </div>
+          </div>
+          <div className="my-card-footer">
+            <div className="my-card-button">
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => this.props.addToCart(item, indexArray, cartItems, i)}
               >
-                {item.listOfstocksBySize.map((sizeitem, index) => {
-                  return <option value={index + '-' + i}>{sizeitem.size}</option>;
-                })}
-              </select>
-              <div>
-                <div>Quantity: {item.listOfstocksBySize[indexArray[i].SizeIndex].quantity}</div>
-                <div>Cost ${item.listOfstocksBySize[indexArray[i].SizeIndex].cost}</div>
-              </div>
-            </div>
-            <div className="card-footer">
-              <button className="btn btn-primary" onClick={() => this.props.addToCart(item, indexArray, cartItems, i)}>
                 Add
               </button>
             </div>

@@ -77,7 +77,7 @@ class App extends React.Component {
                         <a href="/newsizes">Sizes</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/stockpricechange">Stock Price Edit</a>
+                        <a href="/stockpricechange">Sale Price</a>
                       </li>
                       <li className="my-dropdown-link">
                         <a href="/createcustomeraccount">Create Ac</a>
@@ -104,7 +104,7 @@ class App extends React.Component {
                         <a href="/receiptvoucher">Set Ac Credit</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/globalcashcredit">GlobalCash Credit</a>
+                        <a href="/globalcashcredit">GlobalCash</a>
                       </li>
                     </ul>
                   </div>
@@ -121,7 +121,7 @@ class App extends React.Component {
                         <a href="/reverse">Reverse</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/globalcashdebit">GlobalCash Debit</a>
+                        <a href="/globalcashdebit">GlobalCash</a>
                       </li>
                     </ul>
                   </div>
@@ -161,16 +161,16 @@ class App extends React.Component {
                         <a href="/prodstockreport">Stock</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/prodcostcomparison">Cost Comparison</a>
+                        <a href="/prodcostcomparison">Cost Compare</a>
                       </li>
                       <li className="my-dropdown-link">
                         <a href="/monthProfit">Month Profit</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/customeracdetails">Account History</a>
+                        <a href="/customeracdetails">Account</a>
                       </li>
                       <li className="my-dropdown-link">
-                        <a href="/customertxhistory">Tx History</a>
+                        <a href="/customertxhistory">Transaction</a>
                       </li>
                     </ul>
                   </div>
@@ -181,7 +181,7 @@ class App extends React.Component {
                   <div className="my-dropdown">
                     <ul>
                       <li className="my-dropdown-link">
-                        <a href="/cashposition">Cash-Position</a>
+                        <a href="/cashposition">Cash Position</a>
                       </li>
                       <li className="my-dropdown-link">
                         <a href="/logout">Logout</a>
